@@ -1,0 +1,1753 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Wahoo Fitness API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#data-model" class="toc-h2 toc-link" data-title="Data Model">Data Model</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-authenticated-user" class="toc-h2 toc-link" data-title="Get Authenticated User">Get Authenticated User</a>
+                  </li>
+                  <li>
+                    <a href="#update-user" class="toc-h2 toc-link" data-title="Update User">Update User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#power-zones" class="toc-h1 toc-link" data-title="Power Zones">Power Zones</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-power-zones" class="toc-h2 toc-link" data-title="Get Power Zones">Get Power Zones</a>
+                  </li>
+                  <li>
+                    <a href="#update-power-zones" class="toc-h2 toc-link" data-title="Update Power Zones">Update Power Zones</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#heart-rate-zones" class="toc-h1 toc-link" data-title="Heart Rate Zones">Heart Rate Zones</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-heart-rate-zones" class="toc-h2 toc-link" data-title="Get Heart Rate Zones">Get Heart Rate Zones</a>
+                  </li>
+                  <li>
+                    <a href="#update-heart-rate-zones" class="toc-h2 toc-link" data-title="Update Heart Rate Zones">Update Heart Rate Zones</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#workouts" class="toc-h1 toc-link" data-title="Workouts">Workouts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-workout" class="toc-h2 toc-link" data-title="Create a Workout">Create a Workout</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-workout" class="toc-h2 toc-link" data-title="Get a Workout">Get a Workout</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-workout" class="toc-h2 toc-link" data-title="Update a Workout">Update a Workout</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-workouts" class="toc-h2 toc-link" data-title="Get all Workouts">Get all Workouts</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-workout" class="toc-h2 toc-link" data-title="Delete a Workout">Delete a Workout</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#workout-summaries" class="toc-h1 toc-link" data-title="Workout Summaries">Workout Summaries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-workout-summary" class="toc-h2 toc-link" data-title="Get a Workout Summary">Get a Workout Summary</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-workout-summary" class="toc-h2 toc-link" data-title="Create a Workout Summary">Create a Workout Summary</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#workout-types" class="toc-h1 toc-link" data-title="Workout Types">Workout Types</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://developers.wahooligan.com'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Wahoo Fitness OAuth2 API! You can use our API to access Wahoo Fitness OAuth2 API endpoints, which can get information on your  user profile and workout history stored in our cloud.</p>
+
+<p>We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h2 id='data-model'>Data Model</h2>
+<p>This diagram shows how the data records are related within the API</p>
+
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="551px" viewBox="-0.5 -0.5 551 474" style="max-width:100%;max-height:474px;"><defs/><g><rect x="328" y="410" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(438,0)scale(-1,1)translate(-438,0)" opacity="0.25"/><rect x="328" y="410" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(438,0)scale(-1,1)translate(-438,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="437.5" y="444.5">Workout Summary</text></g><rect x="167" y="308" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="167" y="308" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="276.5" y="342.5">Workout</text></g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="34.5">User</text></g><rect x="158" y="100" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(268,0)scale(-1,1)translate(-268,0)" opacity="0.25"/><rect x="158" y="100" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(268,0)scale(-1,1)translate(-268,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="134.5">Power Zone</text></g><rect x="318" y="400" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(428,0)scale(-1,1)translate(-428,0)" opacity="0.25"/><rect x="318" y="400" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(428,0)scale(-1,1)translate(-428,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="427.5" y="434.5">Workout Summary</text></g><rect x="158" y="300" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="158" y="300" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="334.5">Workout</text></g><path d="M 100 60 L 100 120 Q 100 130 110 130 L 143.53 130" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 130 L 143.53 135 L 143.53 125 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><rect x="158" y="200" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="158" y="200" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="234.5">Heart Rate Zone</text></g><path d="M 100 60 L 100 220 Q 100 230 110 230 L 143.53 230" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 230 L 143.53 235 L 143.53 225 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 60 L 100 320 Q 100 330 110 330 L 143.53 330" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 330 L 143.53 335 L 143.53 325 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 268 360 L 268 420 Q 268 430 278 430 L 303.53 430" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 313.53 430 L 303.53 435 L 303.53 425 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/></g></svg></p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>&lt;Token&gt;</code> with your API key.</p>
+</blockquote>
+
+<p>Wahoo Fitness uses OAuth2 API keys to allow access to the API. You can register your App at our <a href="http://developers.wahooligan.com">developer portal</a>.</p>
+
+<p>Wahoo Fitness endpoints expect the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>Authorization: Bearer &lt;Token&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>Token</code> with your personal API key.
+</aside>
+<h1 id='users'>Users</h1>
+<p>Applications can get and update the attributes of the authenticated user.</p>
+<h2 id='get-authenticated-user'>Get Authenticated User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample@test-domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heart_rate_zone"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"power_zone"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the authenticated user along with power and heart rate zone records.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/user</code></p>
+<h2 id='update-user'>Update User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+     -X PUT -d user[mobile]<span class="o">=</span>7704106437 https://api.wahooligan.com/v1/user
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob.s@wahoofitness.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7704106437"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heart_rate_zone"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"power_zone"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the current authenticated user.</p>
+
+<aside class="notice">
+  There are separate endpoints for updating power and heart rate zones.
+</aside>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.wahooligan.com/v1/user</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user[email]</td>
+<td>String</td>
+<td>no</td>
+<td>Well formed email address, must be unique in the system</td>
+</tr>
+<tr>
+<td>user[first]</td>
+<td>String</td>
+<td>no</td>
+<td>First name</td>
+</tr>
+<tr>
+<td>user[last]</td>
+<td>String</td>
+<td>no</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td>user[mobile]</td>
+<td>String</td>
+<td>no</td>
+<td>Mobile number</td>
+</tr>
+<tr>
+<td>user[height]</td>
+<td>Decimal</td>
+<td>no</td>
+<td>Height in meters</td>
+</tr>
+<tr>
+<td>user[weight]</td>
+<td>Decimal</td>
+<td>no</td>
+<td>Weight in kilograms</td>
+</tr>
+<tr>
+<td>user[birth ]</td>
+<td>Date</td>
+<td>no</td>
+<td>Date of birth formatted as YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>user[gender]</td>
+<td>0 or 1</td>
+<td>no</td>
+<td>Use 0 for male, 1 for female</td>
+</tr>
+</tbody></table>
+<h1 id='power-zones'>Power Zones</h1><h2 id='get-power-zones'>Get Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zone
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the power zone record for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/power_zone</code></p>
+<h2 id='update-power-zones'>Update Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+     -X PUT -d power_zone[ftp]<span class="o">=</span>195 https://api.wahooligan.com/v1/power_zone
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">195</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the power zone record of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.wahooligan.com/v1/power_zone</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>power_zone[zone_1]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 1</td>
+</tr>
+<tr>
+<td>power_zone[zone_2]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 2</td>
+</tr>
+<tr>
+<td>power_zone[zone_3]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 3</td>
+</tr>
+<tr>
+<td>power_zone[zone_4]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 4</td>
+</tr>
+<tr>
+<td>power_zone[zone_5]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 5</td>
+</tr>
+<tr>
+<td>power_zone[zone_6]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 6</td>
+</tr>
+<tr>
+<td>power_zone[zone_7]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 7</td>
+</tr>
+<tr>
+<td>power_zone[ftp]</td>
+<td>Number</td>
+<td>no</td>
+<td>FTP (Functional Threshold Power)</td>
+</tr>
+<tr>
+<td>power_zone[zone_count]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone Count, the number of zones supported for this user</td>
+</tr>
+</tbody></table>
+<h1 id='heart-rate-zones'>Heart Rate Zones</h1><h2 id='get-heart-rate-zones'>Get Heart Rate Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/heart_rate_zone
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the heart rate zone record for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/heart_rate_zone</code></p>
+<h2 id='update-heart-rate-zones'>Update Heart Rate Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+     -X PUT -d heart_rate_zone[resting]<span class="o">=</span>90 https://api.wahooligan.com/v1/heart_rate_zone
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the heart rate zone record of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.wahooligan.com/v1/power_zone</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>heart_rate_zone[zone_1]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 1</td>
+</tr>
+<tr>
+<td>heart_rate_zone[zone_2]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 2</td>
+</tr>
+<tr>
+<td>heart_rate_zone[zone_3]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 3</td>
+</tr>
+<tr>
+<td>heart_rate_zone[zone_4]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 4</td>
+</tr>
+<tr>
+<td>heart_rate_zone[zone_5]</td>
+<td>Number</td>
+<td>no</td>
+<td>Zone 5</td>
+</tr>
+<tr>
+<td>heart_rate_zone[resting]</td>
+<td>Number</td>
+<td>no</td>
+<td>Resting heart rate</td>
+</tr>
+<tr>
+<td>heart_rate_zone[maximum]</td>
+<td>Number</td>
+<td>no</td>
+<td>Maximum heart rate</td>
+</tr>
+</tbody></table>
+<h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2>
+<p>Creates a workout for the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span>  -X POST
+  -d <span class="s1">'workout[name]="Friday fun"&amp;
+      workout[workout_token]=123&amp;
+      workout[workout_type_id]=40&amp;
+      workout[starts]=2015-08-12T09:00:00.000Z&amp;
+      workout[minutes]=12'</span>  api.lvh.me:3000/v1/workouts
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workout[name]</td>
+<td>String</td>
+<td>yes</td>
+<td></td>
+<td>The name of the workout</td>
+</tr>
+<tr>
+<td>workout[workout_type_id]</td>
+<td>Number</td>
+<td>yes</td>
+<td></td>
+<td>The type of the workout - <a href="#workout-types">Workout Types</a></td>
+</tr>
+<tr>
+<td>workout[starts]</td>
+<td>Time</td>
+<td>yes</td>
+<td></td>
+<td>Start time</td>
+</tr>
+<tr>
+<td>workout[minutes]</td>
+<td>Number</td>
+<td>yes</td>
+<td></td>
+<td>Duration of the workout in minutes</td>
+</tr>
+<tr>
+<td>workout[workout_token]</td>
+<td>String</td>
+<td>no</td>
+<td></td>
+<td>Can be used by the application to identify the workout</td>
+</tr>
+<tr>
+<td>workout[plan_id]</td>
+<td>Number</td>
+<td>no</td>
+<td>null</td>
+<td>Id of the plan used in this workout</td>
+</tr>
+<tr>
+<td>workout[workout_summary]</td>
+<td>Object</td>
+<td>no</td>
+<td></td>
+<td>Include summary results - <a href="#create-a-workout-summary">Workout Summary</a></td>
+</tr>
+</tbody></table>
+<h2 id='get-a-workout'>Get a Workout</h2>
+<p>Returns a workout for the current authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:id</code></p>
+<h2 id='update-a-workout'>Update a Workout</h2>
+<p>Updates a workout for the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X PUT
+  -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> api.lvh.me:3000/v1/workouts/56519
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://api.wahooligan.com/cloud-api/workouts</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workout[name]</td>
+<td>String</td>
+<td>no</td>
+<td>The name of the workout</td>
+</tr>
+<tr>
+<td>workout[workout_token]</td>
+<td>String</td>
+<td>no</td>
+<td>Can be used by the application to identify the workout</td>
+</tr>
+<tr>
+<td>workout[starts]</td>
+<td>Time</td>
+<td>no</td>
+<td>Start time</td>
+</tr>
+<tr>
+<td>workout[minutes]</td>
+<td>Number</td>
+<td>no</td>
+<td>Duration of the workout in minutes</td>
+</tr>
+<tr>
+<td>workout[plan_id]</td>
+<td>Number</td>
+<td>no</td>
+<td>Id of the plan used in this workout</td>
+</tr>
+<tr>
+<td>workout[workout_type_id]</td>
+<td>Number</td>
+<td>no</td>
+<td>The type of the workout - <a href="#workout-types">Workout Types</a></td>
+</tr>
+<tr>
+<td>workout[workout_summary]</td>
+<td>Object</td>
+<td>no</td>
+<td>Include summary results - <a href="#update-a-workout-summary">Workout Summary</a></td>
+</tr>
+</tbody></table>
+<h2 id='get-all-workouts'>Get all Workouts</h2>
+<p>Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
+
+<p>In the response the total attribute is the total number of workouts for the current user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"workouts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"descending"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starts"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://api.wahooligan.com/v1/workouts</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>no</td>
+<td>1</td>
+<td>Used for pagination.</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>integer</td>
+<td>no</td>
+<td>30</td>
+<td>Limits the number of workouts returned.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-workout'>Delete a Workout</h2>
+<p>Deletes a workout that is owned by the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE https://api.wahooligan.com/v1/workouts/:id</code></p>
+<h1 id='workout-summaries'>Workout Summaries</h1>
+<p>Workout Summary records contain the results of a workout.</p>
+<h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
+<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descent_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lat_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lat_first"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lng_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lng_first"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_if_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_lr_balance_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr1_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr2_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr3_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr4_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr5_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"torque_bike_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"torque_bike_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kilo_joules_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
+<h2 id='create-a-workout-summary'>Create a Workout Summary</h2>
+<p>Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X POST
+  -d workout_summary[data]<span class="o">=</span><span class="s2">"Friday afternoon workout"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descent_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"elevation_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_saturated_pct_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hemoglobin_total_concentration_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lat_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lat_first"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lng_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lng_first"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_gct_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_smoothness_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ma_vert_ocs_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_if_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_lr_balance_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pressure_barom_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"temperature_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr1_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr2_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr3_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr4_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tiz_hr5_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"torque_bike_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"torque_bike_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kilo_joules_avg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workout_summary[ascent_accum]</td>
+<td>decimal</td>
+<td>Ascent in meters</td>
+</tr>
+<tr>
+<td>workout_summary[cadence_avg]</td>
+<td>number</td>
+<td>Average rotations per minute</td>
+</tr>
+<tr>
+<td>workout_summary[cadence_max]</td>
+<td>number</td>
+<td>Max rotations per minute</td>
+</tr>
+<tr>
+<td>workout_summary[calories_accum]</td>
+<td>decimal</td>
+<td>Calories (kCal)</td>
+</tr>
+<tr>
+<td>workout_summary[descent_accum]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[distance_accum]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[duration_active_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[duration_paused_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[duration_total_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[elevation_avg]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[elevation_max]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[elevation_min]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[elevation_last]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[grade_avg]</td>
+<td>decimal</td>
+<td>percentage</td>
+</tr>
+<tr>
+<td>workout_summary[grade_max]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[grade_min]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[heart_rate_avg]</td>
+<td>number</td>
+<td>bpm</td>
+</tr>
+<tr>
+<td>workout_summary[heart_rate_max]</td>
+<td>number</td>
+<td>bpm</td>
+</tr>
+<tr>
+<td>workout_summary[heart_rate_min]</td>
+<td>number</td>
+<td>bpm</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_saturated_pct_avg]</td>
+<td>decimal</td>
+<td>percentage</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_saturated_pct_max]</td>
+<td>decimal</td>
+<td>percentage</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_saturated_pct_min]</td>
+<td>decimal</td>
+<td>percentage</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_total_concentration_avg]</td>
+<td>decimal</td>
+<td>g/dL</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_total_concentration_max]</td>
+<td>decimal</td>
+<td>g/dL</td>
+</tr>
+<tr>
+<td>workout_summary[hemoglobin_total_concentration_min]</td>
+<td>decimal</td>
+<td>g/dL</td>
+</tr>
+<tr>
+<td>workout_summary[kilo_joules_avg]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[lat_last]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[lat_first]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[lng_last]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[lng_first]</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[ma_gct_avg]</td>
+<td>decimal</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[ma_gct_max]</td>
+<td>decimal</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[ma_gct_min]</td>
+<td>decimal</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[ma_smoothness_avg]</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[ma_smoothness_max]</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[ma_smoothness_min]</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[ma_vert_ocs_avg]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[ma_vert_ocs_max]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[ma_vert_ocs_min]</td>
+<td>decimal</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>workout_summary[power_avg]</td>
+<td>decimal</td>
+<td>Watts</td>
+</tr>
+<tr>
+<td>workout_summary[power_max]</td>
+<td>number</td>
+<td>Watts</td>
+</tr>
+<tr>
+<td>workout_summary[power_min]</td>
+<td>number</td>
+<td>Watts</td>
+</tr>
+<tr>
+<td>workout_summary[power_bike_if_last]</td>
+<td>decimal</td>
+<td>intensity factor</td>
+</tr>
+<tr>
+<td>workout_summary[power_bike_lr_balance_avg]</td>
+<td>decimal</td>
+<td>percentage</td>
+</tr>
+<tr>
+<td>workout_summary[power_bike_np_last]</td>
+<td>number</td>
+<td>Watts</td>
+</tr>
+<tr>
+<td>workout_summary[power_bike_tss_last]</td>
+<td>decimal</td>
+<td>unitless</td>
+</tr>
+<tr>
+<td>workout_summary[pressure_barom_avg]</td>
+<td>number</td>
+<td>newtons per meter squared</td>
+</tr>
+<tr>
+<td>workout_summary[pressure_barom_max]</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[pressure_barom_min]</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>workout_summary[speed_avg]</td>
+<td>decimal</td>
+<td>Meters/Sec</td>
+</tr>
+<tr>
+<td>workout_summary[speed_max]</td>
+<td>decimal</td>
+<td>Meters/Sec</td>
+</tr>
+<tr>
+<td>workout_summary[temperature_avg]</td>
+<td>decimal</td>
+<td>degrees celsius</td>
+</tr>
+<tr>
+<td>workout_summary[temperature_max]</td>
+<td>decimal</td>
+<td>degrees celsius</td>
+</tr>
+<tr>
+<td>workout_summary[temperature_min]</td>
+<td>decimal</td>
+<td>degrees celsius</td>
+</tr>
+<tr>
+<td>workout_summary[tiz_hr1_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[tiz_hr2_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[tiz_hr3_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[tiz_hr4_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[tiz_hr5_accum]</td>
+<td>number</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>workout_summary[torque_bike_avg]</td>
+<td>decimal</td>
+<td>newton / meters</td>
+</tr>
+<tr>
+<td>workout_summary[torque_bike_max]</td>
+<td>decimal</td>
+<td>newton / meters</td>
+</tr>
+<tr>
+<td>workout_summary[work_accum]</td>
+<td>number</td>
+<td>joules</td>
+</tr>
+<tr>
+<td>workout_summary[reps_accum]</td>
+<td>number</td>
+<td>unitless</td>
+</tr>
+<tr>
+<td>workout_summary[data]</td>
+<td>String</td>
+<td>Holds raw fields + additional fields</td>
+</tr>
+<tr>
+<td>workout_summary[file]</td>
+<td>File</td>
+<td>Fit file</td>
+</tr>
+</tbody></table>
+<h1 id='workout-types'>Workout Types</h1>
+<p>The Wahoo Fitness API supports the following workout types:</p>
+
+<table><thead>
+<tr>
+<th>Id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>1</td>
+<td>RUNNING</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FE</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RUNNING_TRACK</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RUNNING_TRAIL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RUNNING_TREADMILL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>7</td>
+<td>WALKING_SPEED</td>
+</tr>
+<tr>
+<td>8</td>
+<td>WALKING_NORDIC</td>
+</tr>
+<tr>
+<td>56</td>
+<td>WALKING_TREADMILL</td>
+</tr>
+<tr>
+<td>9</td>
+<td>HIKING</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MOUNTAINEERING</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BIKING_CYCLECROSS</td>
+</tr>
+<tr>
+<td>12</td>
+<td>BIKING_INDOOR</td>
+</tr>
+<tr>
+<td>61</td>
+<td>BIKING_INDOOR_TRAINER</td>
+</tr>
+<tr>
+<td>13</td>
+<td>BIKING_MOUNTAIN</td>
+</tr>
+<tr>
+<td>14</td>
+<td>BIKING_RECUMBENT</td>
+</tr>
+<tr>
+<td>15</td>
+<td>BIKING_ROAD</td>
+</tr>
+<tr>
+<td>16</td>
+<td>BIKING_TRACK</td>
+</tr>
+<tr>
+<td>17</td>
+<td>BIKING_MOTOCYCLING</td>
+</tr>
+<tr>
+<td>49</td>
+<td>BIKING_INDOOR_CYCLING_CLASS</td>
+</tr>
+<tr>
+<td>18</td>
+<td>FE_GENERAL</td>
+</tr>
+<tr>
+<td>19</td>
+<td>FE_TREADMILL</td>
+</tr>
+<tr>
+<td>20</td>
+<td>FE_ELLIPTICAL</td>
+</tr>
+<tr>
+<td>21</td>
+<td>FE_BIKE</td>
+</tr>
+<tr>
+<td>22</td>
+<td>FE_ROWER</td>
+</tr>
+<tr>
+<td>23</td>
+<td>FE_CLIMBER</td>
+</tr>
+<tr>
+<td>57</td>
+<td>FE_STEPPER</td>
+</tr>
+<tr>
+<td>58</td>
+<td>FE_STEP_MILL</td>
+</tr>
+<tr>
+<td>59</td>
+<td>FE_TREAD_CLIMBER</td>
+</tr>
+<tr>
+<td>60</td>
+<td>FE_TOTAL_BODY</td>
+</tr>
+<tr>
+<td>24</td>
+<td>SWIMMING</td>
+</tr>
+<tr>
+<td>25</td>
+<td>SWIMMING_LAP</td>
+</tr>
+<tr>
+<td>26</td>
+<td>SWIMMING_OPEN_WATER</td>
+</tr>
+<tr>
+<td>27</td>
+<td>SNOWBOARDING</td>
+</tr>
+<tr>
+<td>28</td>
+<td>SKIING</td>
+</tr>
+<tr>
+<td>29</td>
+<td>SKIING_DOWNHILL</td>
+</tr>
+<tr>
+<td>30</td>
+<td>SKIINGCROSS_COUNTRY</td>
+</tr>
+<tr>
+<td>31</td>
+<td>SKATING</td>
+</tr>
+<tr>
+<td>32</td>
+<td>SKATING_ICE</td>
+</tr>
+<tr>
+<td>33</td>
+<td>SKATING_INLINE</td>
+</tr>
+<tr>
+<td>34</td>
+<td>LONG_BOARDING</td>
+</tr>
+<tr>
+<td>35</td>
+<td>SAILING</td>
+</tr>
+<tr>
+<td>36</td>
+<td>WINDSURFING</td>
+</tr>
+<tr>
+<td>37</td>
+<td>CANOEING</td>
+</tr>
+<tr>
+<td>38</td>
+<td>KAYAKING</td>
+</tr>
+<tr>
+<td>39</td>
+<td>ROWING</td>
+</tr>
+<tr>
+<td>40</td>
+<td>KITEBOARDING</td>
+</tr>
+<tr>
+<td>41</td>
+<td>STAND_UP_PADDLE_BOARD</td>
+</tr>
+<tr>
+<td>42</td>
+<td>WORKOUT</td>
+</tr>
+<tr>
+<td>43</td>
+<td>CARDIO_CLASS</td>
+</tr>
+<tr>
+<td>44</td>
+<td>STAIR_CLIMBER</td>
+</tr>
+<tr>
+<td>45</td>
+<td>WHEELCHAIR</td>
+</tr>
+<tr>
+<td>46</td>
+<td>GOLFING</td>
+</tr>
+<tr>
+<td>47</td>
+<td>OTHER</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+  Errors are returned as HTTP response status codes
+</aside>
+
+<p>The Wahoo Fitness API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- You do not have access to the specified resource.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified resource could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The resource requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity -- One or more parameters supplied are missing or invalid.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
