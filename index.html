@@ -233,6 +233,9 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#authorization" class="toc-h1 toc-link" data-title="Authorization">Authorization</a>
+          </li>
+          <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
@@ -340,9 +343,42 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>Token</code> with your personal API key.
 </aside>
+<h1 id='authorization'>Authorization</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
+curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profile_write"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
+</code></pre>
+<p>Applications must only request permission for resources they intend to access or modify. You can choose which permission scopes your app will request either by setting the scopes for your app in the developer portal or by sending a space separated list of scopes as a parameter in the <code>oauth/authorize</code> request.</p>
+
+<p>We support the following OAuth 2.0 permission scopes:</p>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>profile_read</td>
+<td>Access your user profile data</td>
+</tr>
+<tr>
+<td>profile_write</td>
+<td>Update your user profile data</td>
+</tr>
+<tr>
+<td>workouts_read</td>
+<td>Access your workout history</td>
+</tr>
+<tr>
+<td>workouts_write</td>
+<td>Update your workout history</td>
+</tr>
+</tbody></table>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
-<h2 id='get-authenticated-user'>Get Authenticated User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
+<h2 id='get-authenticated-user'>Get Authenticated User</h2>
+<p>Requires <code>profile_read</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -392,7 +428,9 @@ You must replace <code>Token</code> with your personal API key.
 <p>Returns the authenticated user along with power and heart rate zone records.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/user</code></p>
-<h2 id='update-user'>Update User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+<h2 id='update-user'>Update User</h2>
+<p>Requires the <code>profile_write</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
      -X PUT -d user[mobile]<span class="o">=</span>7704106437 https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
@@ -505,7 +543,9 @@ You must replace <code>Token</code> with your personal API key.
 <td>Use 0 for male, 1 for female</td>
 </tr>
 </tbody></table>
-<h1 id='power-zones'>Power Zones</h1><h2 id='get-power-zones'>Get Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zone
+<h1 id='power-zones'>Power Zones</h1><h2 id='get-power-zones'>Get Power Zones</h2>
+<p>Requires the <code>profile_read</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zone
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -528,7 +568,9 @@ You must replace <code>Token</code> with your personal API key.
 <p>Returns the power zone record for the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/power_zone</code></p>
-<h2 id='update-power-zones'>Update Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+<h2 id='update-power-zones'>Update Power Zones</h2>
+<p>Requires the <code>profile_write</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
      -X PUT -d power_zone[ftp]<span class="o">=</span>195 https://api.wahooligan.com/v1/power_zone
 </code></pre>
 <blockquote>
@@ -616,7 +658,9 @@ You must replace <code>Token</code> with your personal API key.
 <td>Zone Count, the number of zones supported for this user</td>
 </tr>
 </tbody></table>
-<h1 id='heart-rate-zones'>Heart Rate Zones</h1><h2 id='get-heart-rate-zones'>Get Heart Rate Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/heart_rate_zone
+<h1 id='heart-rate-zones'>Heart Rate Zones</h1><h2 id='get-heart-rate-zones'>Get Heart Rate Zones</h2>
+<p>Requires the <code>profile_read</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/heart_rate_zone
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -637,7 +681,9 @@ You must replace <code>Token</code> with your personal API key.
 <p>Returns the heart rate zone record for the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/heart_rate_zone</code></p>
-<h2 id='update-heart-rate-zones'>Update Heart Rate Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+<h2 id='update-heart-rate-zones'>Update Heart Rate Zones</h2>
+<p>Requires the <code>profile_write</code> scope</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
      -X PUT -d heart_rate_zone[resting]<span class="o">=</span>90 https://api.wahooligan.com/v1/heart_rate_zone
 </code></pre>
 <blockquote>
@@ -712,6 +758,8 @@ You must replace <code>Token</code> with your personal API key.
 </tr>
 </tbody></table>
 <h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2>
+<p>Requires the <code>workouts_write</code> scope</p>
+
 <p>Creates a workout for the authenticated user.</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
@@ -797,6 +845,8 @@ You must replace <code>Token</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-a-workout'>Get a Workout</h2>
+<p>Requires the <code>workouts_read</code> scope</p>
+
 <p>Returns a workout for the current authenticated user.</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
 </code></pre>
@@ -818,6 +868,8 @@ You must replace <code>Token</code> with your personal API key.
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/workouts/:id</code></p>
 <h2 id='update-a-workout'>Update a Workout</h2>
+<p>Requires the <code>workouts_write</code> scope</p>
+
 <p>Updates a workout for the authenticated user.</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X PUT
   -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> api.lvh.me:3000/v1/workouts/56519
@@ -892,6 +944,8 @@ You must replace <code>Token</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='get-all-workouts'>Get all Workouts</h2>
+<p>Requires the <code>workouts_read</code> scope</p>
+
 <p>Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
 
 <p>In the response the total attribute is the total number of workouts for the current user.</p>
@@ -949,6 +1003,8 @@ You must replace <code>Token</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='delete-a-workout'>Delete a Workout</h2>
+<p>Requires the <code>workouts_write</code> scope</p>
+
 <p>Deletes a workout that is owned by the authenticated user.</p>
 <pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
 </code></pre><h3 id='http-request'>HTTP Request</h3>
@@ -956,6 +1012,8 @@ You must replace <code>Token</code> with your personal API key.
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
 <h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
+<p>Requires the <code>workouts_read</code> scope</p>
+
 <p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
 </code></pre>
@@ -986,6 +1044,8 @@ You must replace <code>Token</code> with your personal API key.
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
 <h2 id='create-a-workout-summary'>Create a Workout Summary</h2>
+<p>Requires the <code>workouts_write</code> scope</p>
+
 <p>Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X POST
   -d workout_summary[data]<span class="o">=</span><span class="s2">"Friday afternoon workout"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
@@ -1372,7 +1432,7 @@ You must replace <code>Token</code> with your personal API key.
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You are sending too many requests in short period of time.</td>
 </tr>
 <tr>
 <td>500</td>
