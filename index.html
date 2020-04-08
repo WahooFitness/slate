@@ -308,6 +308,17 @@
               </ul>
           </li>
           <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#settings" class="toc-h2 toc-link" data-title="Settings">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#workout-summary" class="toc-h2 toc-link" data-title="Workout Summary">Workout Summary</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#workout-types" class="toc-h1 toc-link" data-title="Workout Types">Workout Types</a>
           </li>
           <li>
@@ -428,6 +439,10 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 <tr>
 <td>workouts_write</td>
 <td>Update your workout history</td>
+</tr>
+<tr>
+<td>offline_data</td>
+<td>Receive data even when the app is closed</td>
 </tr>
 </tbody></table>
 <h1 id='users'>Users</h1>
@@ -1211,7 +1226,85 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 <td>Fit file</td>
 </tr>
 </tbody></table>
-<h1 id='workout-types'>Workout Types</h1>
+<h1 id='webhooks'>Webhooks</h1>
+<p>Receive API calls from Wahoo to your webhook url.</p>
+
+<p>If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:</p>
+
+<ol>
+<li>After 30 minutes</li>
+<li>After 4 hours</li>
+<li>After 24 hours</li>
+<li>After 72 hours</li>
+</ol>
+
+<p>API Calls will be sent via HTTP POST with the HTTP header <code>Content-Type: application/json</code></p>
+<h2 id='settings'>Settings</h2>
+<table><thead>
+<tr>
+<th>Setting</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>webhook_enabled</em>:</td>
+<td>Toggle the webhook api calls on/off.</td>
+</tr>
+<tr>
+<td><em>webhook_url</em>:</td>
+<td>Receive an HTTP POST with a JSON payload to this url.</td>
+</tr>
+<tr>
+<td><em>webhook_token</em>:</td>
+<td>Specify a token that you would like us to send. Any request that doesn&#39;t include this token should be ignored.</td>
+</tr>
+</tbody></table>
+<h2 id='workout-summary'>Workout Summary</h2>
+<p>Requires the <code>offline_data</code> scope</p>
+
+<blockquote>
+<p>Sample Workout Summary Webhook Message</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "event_type": "workout_summary",
+  "webhook_token": &lt;webhook_token&gt;,
+  "user": {
+    "id": 60462
+  },
+  "workout_summary": {
+    "id": 8297,
+    "ascent_accum": null,
+    "cadence_avg": null,
+    "calories_accum": null,
+    "distance_accum": null,
+    "duration_active_accum": null,
+    "duration_paused_accum": null,
+    "duration_total_accum": null,
+    "heart_rate_avg": null,
+    "power_bike_np_last": null,
+    "power_bike_tss_last": null,
+    "power_avg": null,
+    "speed_avg": null,
+    "work_accum": null,
+    "created_at": "2018-10-23T20:43:50.000Z",
+    "updated_at": "2018-10-23T20:43:50.000Z",
+    "file": {
+      "url": "https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"
+    },
+    "workout": {
+      "id": 56519,
+      "starts": "2015-08-12T09:00:00.000Z",
+      "minutes": 12,
+      "name": "Friday Fun",
+      "created_at": "2018-10-23T20:41:55.000Z",
+      "updated_at": "2018-10-23T20:41:55.000Z",
+      "plan_id": null,
+      "workout_token": "123",
+      "workout_type_id": 40
+    }
+  }     
+}
+</code></pre><h1 id='workout-types'>Workout Types</h1>
 <p>The Wahoo Fitness API supports the following workout types:</p>
 
 <table><thead>
