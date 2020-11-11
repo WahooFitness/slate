@@ -255,28 +255,6 @@
               </ul>
           </li>
           <li>
-            <a href="#power-zones" class="toc-h1 toc-link" data-title="Power Zones">Power Zones</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-power-zones" class="toc-h2 toc-link" data-title="Get Power Zones">Get Power Zones</a>
-                  </li>
-                  <li>
-                    <a href="#update-power-zones" class="toc-h2 toc-link" data-title="Update Power Zones">Update Power Zones</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#heart-rate-zones" class="toc-h1 toc-link" data-title="Heart Rate Zones">Heart Rate Zones</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-heart-rate-zones" class="toc-h2 toc-link" data-title="Get Heart Rate Zones">Get Heart Rate Zones</a>
-                  </li>
-                  <li>
-                    <a href="#update-heart-rate-zones" class="toc-h2 toc-link" data-title="Update Heart Rate Zones">Update Heart Rate Zones</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#workouts" class="toc-h1 toc-link" data-title="Workouts">Workouts</a>
               <ul class="toc-list-h2">
                   <li>
@@ -340,7 +318,7 @@
 <h2 id='data-model'>Data Model</h2>
 <p>This diagram shows how the data records are related within the API</p>
 
-<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="551px" viewBox="-0.5 -0.5 551 474" style="max-width:100%;max-height:474px;"><defs/><g><rect x="328" y="410" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(438,0)scale(-1,1)translate(-438,0)" opacity="0.25"/><rect x="328" y="410" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(438,0)scale(-1,1)translate(-438,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="437.5" y="444.5">Workout Summary</text></g><rect x="167" y="308" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="167" y="308" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="276.5" y="342.5">Workout</text></g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="34.5">User</text></g><rect x="158" y="100" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(268,0)scale(-1,1)translate(-268,0)" opacity="0.25"/><rect x="158" y="100" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(268,0)scale(-1,1)translate(-268,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="134.5">Power Zone</text></g><rect x="318" y="400" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(428,0)scale(-1,1)translate(-428,0)" opacity="0.25"/><rect x="318" y="400" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(428,0)scale(-1,1)translate(-428,0)" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="427.5" y="434.5">Workout Summary</text></g><rect x="158" y="300" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="158" y="300" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="334.5">Workout</text></g><path d="M 100 60 L 100 120 Q 100 130 110 130 L 143.53 130" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 130 L 143.53 135 L 143.53 125 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><rect x="158" y="200" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="158" y="200" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="none"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="267.5" y="234.5">Heart Rate Zone</text></g><path d="M 100 60 L 100 220 Q 100 230 110 230 L 143.53 230" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 230 L 143.53 235 L 143.53 225 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 100 60 L 100 320 Q 100 330 110 330 L 143.53 330" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 153.53 330 L 143.53 335 L 143.53 325 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 268 360 L 268 420 Q 268 430 278 430 L 303.53 430" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 313.53 430 L 303.53 435 L 303.53 425 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/></g></svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg></p>
 <h1 id='registration'>Registration</h1>
 <p>Create a user account and register your app in our developer portals:</p>
 
@@ -550,10 +528,6 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Updates the current authenticated user.</p>
-
-<aside class="notice">
-  There are separate endpoints for updating power and heart rate zones.
-</aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.wahooligan.com/v1/user</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -612,220 +586,6 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 <td>0 or 1</td>
 <td>no</td>
 <td>Use 0 for male, 1 for female</td>
-</tr>
-</tbody></table>
-<h1 id='power-zones'>Power Zones</h1><h2 id='get-power-zones'>Get Power Zones</h2>
-<p>Requires the <code>profile_read</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zone
-</code></pre>
-<blockquote>
-<p>Sample Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Returns the power zone record for the authenticated user.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/power_zone</code></p>
-<h2 id='update-power-zones'>Update Power Zones</h2>
-<p>Requires the <code>profile_write</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
-     -X PUT -d power_zone[ftp]<span class="o">=</span>195 https://api.wahooligan.com/v1/power_zone
-</code></pre>
-<blockquote>
-<p>Sample Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56785</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">195</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:02:44.000Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Updates the power zone record of the authenticated user.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>PUT https://api.wahooligan.com/v1/power_zone</code></p>
-<h3 id='parameters'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>power_zone[zone_1]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 1</td>
-</tr>
-<tr>
-<td>power_zone[zone_2]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 2</td>
-</tr>
-<tr>
-<td>power_zone[zone_3]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 3</td>
-</tr>
-<tr>
-<td>power_zone[zone_4]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 4</td>
-</tr>
-<tr>
-<td>power_zone[zone_5]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 5</td>
-</tr>
-<tr>
-<td>power_zone[zone_6]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 6</td>
-</tr>
-<tr>
-<td>power_zone[zone_7]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 7</td>
-</tr>
-<tr>
-<td>power_zone[ftp]</td>
-<td>Number</td>
-<td>no</td>
-<td>FTP (Functional Threshold Power)</td>
-</tr>
-<tr>
-<td>power_zone[zone_count]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone Count, the number of zones supported for this user</td>
-</tr>
-</tbody></table>
-<h1 id='heart-rate-zones'>Heart Rate Zones</h1><h2 id='get-heart-rate-zones'>Get Heart Rate Zones</h2>
-<p>Requires the <code>profile_read</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/heart_rate_zone
-</code></pre>
-<blockquote>
-<p>Sample Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Returns the heart rate zone record for the authenticated user.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/heart_rate_zone</code></p>
-<h2 id='update-heart-rate-zones'>Update Heart Rate Zones</h2>
-<p>Requires the <code>profile_write</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
-     -X PUT -d heart_rate_zone[resting]<span class="o">=</span>90 https://api.wahooligan.com/v1/heart_rate_zone
-</code></pre>
-<blockquote>
-<p>Sample Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resting"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:39:41.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T22:22:23.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Updates the heart rate zone record of the authenticated user.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>PUT https://api.wahooligan.com/v1/power_zone</code></p>
-<h3 id='parameters'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>heart_rate_zone[zone_1]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 1</td>
-</tr>
-<tr>
-<td>heart_rate_zone[zone_2]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 2</td>
-</tr>
-<tr>
-<td>heart_rate_zone[zone_3]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 3</td>
-</tr>
-<tr>
-<td>heart_rate_zone[zone_4]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 4</td>
-</tr>
-<tr>
-<td>heart_rate_zone[zone_5]</td>
-<td>Number</td>
-<td>no</td>
-<td>Zone 5</td>
-</tr>
-<tr>
-<td>heart_rate_zone[resting]</td>
-<td>Number</td>
-<td>no</td>
-<td>Resting heart rate</td>
-</tr>
-<tr>
-<td>heart_rate_zone[maximum]</td>
-<td>Number</td>
-<td>no</td>
-<td>Maximum heart rate</td>
 </tr>
 </tbody></table>
 <h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2>
