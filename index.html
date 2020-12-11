@@ -244,6 +244,14 @@
             <a href="#authorization" class="toc-h1 toc-link" data-title="Authorization">Authorization</a>
           </li>
           <li>
+            <a href="#deauthorize" class="toc-h1 toc-link" data-title="Deauthorize">Deauthorize</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
@@ -423,6 +431,13 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 <td>Receive data even when the app is closed</td>
 </tr>
 </tbody></table>
+<h1 id='deauthorize'>Deauthorize</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can revoke access to an application</span>
+curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/permissions"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
+</code></pre>
+<p>Application access can be revoked by sending a request to delete all permissions.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
 <h2 id='get-authenticated-user'>Get Authenticated User</h2>
