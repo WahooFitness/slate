@@ -328,12 +328,7 @@
 
 <p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg></p>
 <h1 id='registration'>Registration</h1>
-<p>Create a user account and register your app in our developer portals:</p>
-
-<ul>
-<li><p><a href="http://developers.staging.wahooligan.com">Sandbox Developer Portal</a>.</p></li>
-<li><p><a href="http://developers.wahooligan.com">Production Developer Portal</a>.</p></li>
-</ul>
+<p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. In &#39;Sandbox&#39; mode, you will be able to test and see your changes to your app&#39;s settings immediately, but there are some limitations. To enable production mode on your app, your app will have to go through a review process with Wahoo Fitness, then when approved, your app can be released with no limitations.</p>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf.</p>
 
@@ -365,7 +360,7 @@
 </thead><tbody>
 <tr>
 <td><em>base_url</em>:</td>
-<td><code>api.wahooligan.com</code> for production; <code>api.staging.wahooligan.com</code> for sandbox.</td>
+<td><code>api.wahooligan.com</code></td>
 </tr>
 <tr>
 <td><em>client_id</em>:</td>
@@ -397,7 +392,7 @@
 </tr>
 </tbody></table>
 <h1 id='authorization'>Authorization</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
-curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profile_write"</span>
+curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read+user_write"</span>
   -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
 </code></pre>
 <p>Applications must only request permission for resources they intend to access or modify. You can choose which permission scopes your app will request either by setting the scopes for your app in the developer portal or by sending a space separated list of scopes as a parameter in the <code>oauth/authorize</code> request.</p>
@@ -411,12 +406,16 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=profile_read+profi
 </tr>
 </thead><tbody>
 <tr>
-<td>profile_read</td>
-<td>Access your user profile data</td>
+<td>email</td>
+<td>Access your email address</td>
 </tr>
 <tr>
-<td>profile_write</td>
-<td>Update your user profile data</td>
+<td>user_read</td>
+<td>Access your user data</td>
+</tr>
+<tr>
+<td>user_write</td>
+<td>Update your user data</td>
 </tr>
 <tr>
 <td>workouts_read</td>
@@ -454,14 +453,13 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample@test-domain.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Returns the authenticated user along with power and heart rate zone records.</p>
+<p>Returns the authenticated user along with email if email scope is included.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/user</code></p>
 <h2 id='update-user'>Update User</h2>
@@ -479,7 +477,6 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob.s@wahoofitness.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7704106437"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
@@ -515,12 +512,6 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>String</td>
 <td>no</td>
 <td>Last name</td>
-</tr>
-<tr>
-<td>user[mobile]</td>
-<td>String</td>
-<td>no</td>
-<td>Mobile number</td>
 </tr>
 <tr>
 <td>user[height]</td>
@@ -1296,7 +1287,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>422</td>
-<td>Unprocessable Entity -- One or more parameters supplied are missing or invalid.</td>
+<td>Unprocessable Entity -- One or more parameters supplied are missing or invalid or your app is not approved.</td>
 </tr>
 <tr>
 <td>429</td>
