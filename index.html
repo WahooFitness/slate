@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -231,6 +228,11 @@
           </li>
           <li>
             <a href="#registration" class="toc-h1 toc-link" data-title="Registration">Registration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#rate-limiting" class="toc-h2 toc-link" data-title="Rate Limiting">Rate Limiting</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -328,7 +330,33 @@
 
 <p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg></p>
 <h1 id='registration'>Registration</h1>
-<p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. In &#39;Sandbox&#39; mode, you will be able to test and see your changes to your app&#39;s settings immediately, but there are some limitations. To enable production mode on your app, your app will have to go through a review process with Wahoo Fitness, then when approved, your app can be released with no limitations.</p>
+<p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. With &#39;Sandbox&#39; apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.</p>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.</p>
+
+<table><thead>
+<tr>
+<th>Interval</th>
+<th>Sandbox Apps</th>
+<th>Production Apps</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Requests every 5 Min:</td>
+<td>25</td>
+<td>200</td>
+</tr>
+<tr>
+<td>Requests per Hour:</td>
+<td>100</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Requests per Day:</td>
+<td>250</td>
+<td>5000</td>
+</tr>
+</tbody></table>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf.</p>
 
@@ -440,7 +468,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
 <h2 id='get-authenticated-user'>Get Authenticated User</h2>
-<p>Requires <code>profile_read</code> scope</p>
+<p>Requires <code>user_read</code> scope</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
@@ -463,9 +491,9 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/user</code></p>
 <h2 id='update-user'>Update User</h2>
-<p>Requires the <code>profile_write</code> scope</p>
+<p>Requires the <code>user_write</code> scope</p>
 <pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
-     -X PUT -d user[mobile]<span class="o">=</span>7704106437 https://api.wahooligan.com/v1/user
+     -X PUT -d user[gender]<span class="o">=</span>1 https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -533,9 +561,9 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>user[gender]</td>
-<td>0 or 1</td>
+<td>0,1,2,3</td>
 <td>no</td>
-<td>Use 0 for male, 1 for female</td>
+<td>Use 0 for male, 1 for female, 2 for other, and 3 for prefer not to say</td>
 </tr>
 </tbody></table>
 <h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2>
@@ -1307,9 +1335,6 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
