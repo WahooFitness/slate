@@ -420,7 +420,7 @@
 </tr>
 </tbody></table>
 <h1 id='authorization'>Authorization</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
-curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read+user_write"</span>
+curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read%20user_write"</span>
   -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
 </code></pre>
 <p>Applications must only request permission for resources they intend to access or modify. You can choose which permission scopes your app will request either by setting the scopes for your app in the developer portal or by sending a space separated list of scopes as a parameter in the <code>oauth/authorize</code> request.</p>
