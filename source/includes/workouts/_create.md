@@ -10,7 +10,7 @@ curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05"  -X POST
       workout[workout_token]=123&
       workout[workout_type_id]=40&
       workout[starts]=2015-08-12T09:00:00.000Z&
-      workout[minutes]=12'  api.lvh.me:3000/v1/workouts
+      workout[minutes]=12'  api.wahooligan.com/v1/workouts
 ```
 
 > Sample Response:

@@ -14,6 +14,13 @@ includes:
 
   - deauthorize
 
+  - power_zones/overview
+  - power_zones/create
+  - power_zones/show
+  - power_zones/update
+  - power_zones/index
+  - power_zones/delete
+
   - users/overview
   - users/show
   - users/update

@@ -6,7 +6,7 @@ Updates a workout for the authenticated user.
 
 ```shell
 curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05" -X PUT
-  -d workout[name]="Friday afternoon" api.lvh.me:3000/v1/workouts/56519
+  -d workout[name]="Friday afternoon" api.wahooligan.com/v1/workouts/56519
 ```
 
 > Sample Response:
@@ -29,7 +29,7 @@ curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05" -X PUT
 
 ### HTTP Request
 
-`POST http://api.wahooligan.com/cloud-api/workouts`
+`POST http://api.wahooligan.com/v1/workouts`
 
 ### Query Parameters
 
