@@ -254,6 +254,26 @@
               </ul>
           </li>
           <li>
+            <a href="#power-zones" class="toc-h1 toc-link" data-title="Power Zones">Power Zones</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-power-zone" class="toc-h2 toc-link" data-title="Create a Power Zone">Create a Power Zone</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-power-zone" class="toc-h2 toc-link" data-title="Get a Power Zone">Get a Power Zone</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-power-zone" class="toc-h2 toc-link" data-title="Update a Power Zone">Update a Power Zone</a>
+                  </li>
+                  <li>
+                    <a href="#get-power-zones" class="toc-h2 toc-link" data-title="Get Power Zones">Get Power Zones</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-power-zone" class="toc-h2 toc-link" data-title="Delete a Power Zone">Delete a Power Zone</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
@@ -372,11 +392,11 @@
 
 <p><code>https://&lt;base_url&gt;/oauth/token?client_secret=&lt;client_secret&gt;&amp;code=&lt;code&gt;&amp;redirect_uri=&lt;redirect_uri&gt;&amp;grant_type=authorization_code&amp;client_id=&lt;client_id&gt;</code></p>
 
-<p><strong>Step 4.</strong> When the access_token expires you can use the refresh_token to get a new access_token</p>
+<p><strong>Step 4.</strong> When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token</p>
 
 <p><code>https://&lt;base_url&gt;/oauth/token?client_secret=&lt;client_secret&gt;&amp;client_id=&lt;client_id&gt;&amp;grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;</code></p>
 
-<p><strong>Step 5.</strong> You are now ready to send requests to our API by putting the <strong>access_token</strong> within the following HTTP Header:</p>
+<p><strong>Step 5.</strong> You are now ready to send requests to our API by putting the new <strong>access_token</strong> within the following HTTP Header:</p>
 
 <p><code>&quot;Authorization&quot;: &quot;Bearer &lt;access_token&gt;&quot;</code></p>
 
@@ -419,6 +439,10 @@
 <td>Returned in Step 3; Indicates when the access_token will expire.</td>
 </tr>
 </tbody></table>
+
+<p><strong>Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:</strong></p>
+
+<p><strong><code>Content-Type: application/json</code></strong></p>
 <h1 id='authorization'>Authorization</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
 curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read%20user_write"</span>
   -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
@@ -465,6 +489,364 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Application access can be revoked by sending a request to delete all permissions.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
+<h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2>
+<p>Requires the <code>power_zones_write</code> scope</p>
+
+<p>Creates a power zone for the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+  -d <span class="s1">'power_zone[zone_1]=100
+      power_zone[zone_2]=120&amp;
+      power_zone[zone_3]=120&amp;
+      power_zone[zone_4]=120&amp;
+      power_zone[zone_5]=120&amp;
+      power_zone[zone_6]=120&amp;
+      power_zone[zone_7]=120&amp;
+      power_zone[ftp]=400&amp;
+      power_zone[zone_count]=8&amp;
+      power_zone[workout_type_id]=10&amp;
+      power_zone[workout_type_family_id]=6&amp;
+      power_zone[workout_type_location_id]=8&amp;
+      power_zone[critical_power]=324'</span>  https://api.wahooligan.com/v1/power_zones
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/power_zones</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>power_zone[zone_1]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_2]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_3]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_4]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_5]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_6]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_7]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_count]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Total Count</td>
+</tr>
+<tr>
+<td>power_zone[ftp]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Functional Threshold Power</td>
+</tr>
+<tr>
+<td>power_zone[critical_power]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>MMP/Best average power</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_family_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_location_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-power-zone'>Get a Power Zone</h2>
+<p>Requires the <code>power_zones_read</code> scope</p>
+
+<p>Returns a power zone for the current authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/power_zones/:id</code></p>
+<h2 id='update-a-power-zone'>Update a Power Zone</h2>
+<p>Requires the <code>power_zones_write</code> scope</p>
+
+<p>Updates a power zone for the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
+  -d power_zone[ftp]<span class="o">=</span>300 https://api.wahooligan.com/v1/power_zones/56519
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/power_zones</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>power_zone[zone_1]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_2]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_3]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_4]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_5]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_6]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_7]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Value</td>
+</tr>
+<tr>
+<td>power_zone[zone_count]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Power Zone Total Count</td>
+</tr>
+<tr>
+<td>power_zone[ftp]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Functional Threshold Power</td>
+</tr>
+<tr>
+<td>power_zone[critical_power]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Critical Power</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_location_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type Location</td>
+</tr>
+<tr>
+<td>power_zone[workout_type_family_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>ID of the Workout Type Family</td>
+</tr>
+</tbody></table>
+<h2 id='get-power-zones'>Get Power Zones</h2>
+<p>Requires the <code>power_zones_read</code> scope</p>
+
+<p>Returns the power zones for the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"power_zones"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/power_zones</code></p>
+<h2 id='delete-a-power-zone'>Delete a Power Zone</h2>
+<p>Requires the <code>power_zones_write</code> scope</p>
+
+<p>Deletes a power zone that is owned by the authenticated user.</p>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/:id
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE https://api.wahooligan.com/v1/power_zones/:id</code></p>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
 <h2 id='get-authenticated-user'>Get Authenticated User</h2>
@@ -570,12 +952,12 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Creates a workout for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span>  -X POST
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
       workout[workout_type_id]=40&amp;
       workout[starts]=2015-08-12T09:00:00.000Z&amp;
-      workout[minutes]=12'</span>  api.lvh.me:3000/v1/workouts
+      workout[minutes]=12'</span>  https://api.wahooligan.com/v1/workouts
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -680,8 +1062,8 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Updates a workout for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X PUT
-  -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> api.lvh.me:3000/v1/workouts/56519
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
+  -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> https://api.wahooligan.com/v1/workouts/56519
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -699,7 +1081,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://api.wahooligan.com/cloud-api/workouts</code></p>
+<p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -831,21 +1213,21 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">1500.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">24909.71</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">179</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">275</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">94.59</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="mf">304.90</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.75</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">104148000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
@@ -856,31 +1238,31 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer 414c6a44a5f8b918830b370db05"</span> -X POST
-  -d workout_summary[data]<span class="o">=</span><span class="s2">"Friday afternoon workout"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
+  -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">1500.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">24909.71</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">179</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">275</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="mf">304.90</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">94.59</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.75</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">104148000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.24"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.54"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
@@ -900,7 +1282,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>workout_summary[cadence_avg]</td>
-<td>number</td>
+<td>decimal</td>
 <td>Average rotations per minute</td>
 </tr>
 <tr>
@@ -915,22 +1297,22 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>workout_summary[duration_active_accum]</td>
-<td>number</td>
+<td>decimal</td>
 <td>Seconds</td>
 </tr>
 <tr>
 <td>workout_summary[duration_paused_accum]</td>
-<td>number</td>
+<td>decimal</td>
 <td>Seconds</td>
 </tr>
 <tr>
 <td>workout_summary[duration_total_accum]</td>
-<td>number</td>
+<td>decimal</td>
 <td>Seconds</td>
 </tr>
 <tr>
 <td>workout_summary[heart_rate_avg]</td>
-<td>number</td>
+<td>decimal</td>
 <td>bpm</td>
 </tr>
 <tr>
@@ -940,7 +1322,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>workout_summary[power_bike_np_last]</td>
-<td>number</td>
+<td>decimal</td>
 <td>Watts</td>
 </tr>
 <tr>
@@ -955,7 +1337,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>workout_summary[work_accum]</td>
-<td>number</td>
+<td>decimal</td>
 <td>joules</td>
 </tr>
 <tr>
@@ -1011,23 +1393,23 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">1500.00</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="mf">24909.71</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">179</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">275</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="mf">304.90</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">94.59</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.75</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="mi">104148000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"104148000.01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"workout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
@@ -1043,7 +1425,379 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="p">}</span><span class="w">     
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='workout-types'>Workout Types</h1>
-<p>The Wahoo Fitness API supports the following workout types:</p>
+<p>The Wahoo Fitness API supports the following workout locations, families and types:</p>
+
+<p>Workout Types:</p>
+
+<table><thead>
+<tr>
+<th>Id</th>
+<th>Description</th>
+<th>Location</th>
+<th>Family</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>BIKING</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>1</td>
+<td>RUNNING</td>
+<td>OUTDOOR</td>
+<td>RUNNING</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FE</td>
+<td>INDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RUNNING_TRACK</td>
+<td>OUTDOOR</td>
+<td>TRACK</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RUNNING_TRAIL</td>
+<td>OUTDOOR</td>
+<td>TRAIL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RUNNING_TREADMILL</td>
+<td>INDOOR</td>
+<td>RUNNING</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WALKING</td>
+<td>OUTDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>7</td>
+<td>WALKING_SPEED</td>
+<td>OUTDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>8</td>
+<td>WALKING_NORDIC</td>
+<td>OUTDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>9</td>
+<td>HIKING</td>
+<td>OUTDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MOUNTAINEERING</td>
+<td>OUTDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BIKING_CYCLECROSS</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>12</td>
+<td>BIKING_INDOOR</td>
+<td>INDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>13</td>
+<td>BIKING_MOUNTAIN</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>14</td>
+<td>BIKING_RECUMBENT</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>15</td>
+<td>BIKING_ROAD</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>16</td>
+<td>BIKING_TRACK</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>17</td>
+<td>BIKING_MOTOCYCLING</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>18</td>
+<td>FE_GENERAL</td>
+<td>INDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>19</td>
+<td>FE_TREADMILL</td>
+<td>INDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>20</td>
+<td>FE_ELLIPTICAL</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>21</td>
+<td>FE_BIKE</td>
+<td>INDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>22</td>
+<td>FE_ROWER</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>23</td>
+<td>FE_CLIMBER</td>
+<td>INDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>25</td>
+<td>SWIMMING_LAP</td>
+<td>INDOOR</td>
+<td>SWIMMING</td>
+</tr>
+<tr>
+<td>26</td>
+<td>SWIMMING_OPEN_WATER</td>
+<td>OUTDOOR</td>
+<td>SWIMMING</td>
+</tr>
+<tr>
+<td>27</td>
+<td>SNOWBOARDING</td>
+<td>OUTDOOR</td>
+<td>SNOW_SPORT</td>
+</tr>
+<tr>
+<td>28</td>
+<td>SKIING</td>
+<td>OUTDOOR</td>
+<td>SNOW_SPORT</td>
+</tr>
+<tr>
+<td>29</td>
+<td>SKIING_DOWNHILL</td>
+<td>OUTDOOR</td>
+<td>SNOW_SPORT</td>
+</tr>
+<tr>
+<td>30</td>
+<td>SKIINGCROSS_COUNTRY</td>
+<td>OUTDOOR</td>
+<td>SNOW_SPORT</td>
+</tr>
+<tr>
+<td>31</td>
+<td>SKATING</td>
+<td>OUTDOOR</td>
+<td>SKATING</td>
+</tr>
+<tr>
+<td>32</td>
+<td>SKATING_ICE</td>
+<td>INDOOR</td>
+<td>SKATING</td>
+</tr>
+<tr>
+<td>33</td>
+<td>SKATING_INLINE</td>
+<td>INDOOR</td>
+<td>SKATING</td>
+</tr>
+<tr>
+<td>34</td>
+<td>LONG_BOARDING</td>
+<td>OUTDOOR</td>
+<td>SKATING</td>
+</tr>
+<tr>
+<td>35</td>
+<td>SAILING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>36</td>
+<td>WINDSURFING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>37</td>
+<td>CANOEING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>38</td>
+<td>KAYAKING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>39</td>
+<td>ROWING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>40</td>
+<td>KITEBOARDING</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>41</td>
+<td>STAND_UP_PADDLE_BOARD</td>
+<td>OUTDOOR</td>
+<td>WATER_SPORTS</td>
+</tr>
+<tr>
+<td>42</td>
+<td>WORKOUT</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>43</td>
+<td>CARDIO_CLASS</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>44</td>
+<td>STAIR_CLIMBER</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>45</td>
+<td>WHEELCHAIR</td>
+<td>OUTDOOR</td>
+<td>OTHER</td>
+</tr>
+<tr>
+<td>46</td>
+<td>GOLFING</td>
+<td>OUTDOOR</td>
+<td>OTHER</td>
+</tr>
+<tr>
+<td>47</td>
+<td>OTHER</td>
+<td>OUTDOOR</td>
+<td>OTHER</td>
+</tr>
+<tr>
+<td>49</td>
+<td>BIKING_INDOOR_CYCLING_CLASS</td>
+<td>INDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>56</td>
+<td>WALKING_TREADMILL</td>
+<td>INDOOR</td>
+<td>WALKING</td>
+</tr>
+<tr>
+<td>61</td>
+<td>BIKING_INDOOR_TRAINER</td>
+<td>INDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>62</td>
+<td>MULTISPORT</td>
+<td>OUTDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>63</td>
+<td>TRANSITION</td>
+<td>OUTDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>64</td>
+<td>EBIKING</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>65</td>
+<td>TICKR_OFFLINE</td>
+<td>OUTDOOR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>66</td>
+<td>YOGA</td>
+<td>INDOOR</td>
+<td>GYM</td>
+</tr>
+<tr>
+<td>255</td>
+<td>UNKNOWN</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Workout Type Locations:</p>
+
+<table><thead>
+<tr>
+<th>Id</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>INDOOR</td>
+</tr>
+<tr>
+<td>1</td>
+<td>OUTDOOR</td>
+</tr>
+<tr>
+<td>255</td>
+<td>UNKNOWN</td>
+</tr>
+</tbody></table>
+
+<p>Workout Type Families:</p>
 
 <table><thead>
 <tr>
@@ -1061,223 +1815,39 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </tr>
 <tr>
 <td>2</td>
-<td>FE</td>
-</tr>
-<tr>
-<td>3</td>
-<td>RUNNING_TRACK</td>
-</tr>
-<tr>
-<td>4</td>
-<td>RUNNING_TRAIL</td>
-</tr>
-<tr>
-<td>5</td>
-<td>RUNNING_TREADMILL</td>
-</tr>
-<tr>
-<td>6</td>
-<td>WALKING</td>
-</tr>
-<tr>
-<td>7</td>
-<td>WALKING_SPEED</td>
-</tr>
-<tr>
-<td>8</td>
-<td>WALKING_NORDIC</td>
-</tr>
-<tr>
-<td>9</td>
-<td>HIKING</td>
-</tr>
-<tr>
-<td>10</td>
-<td>MOUNTAINEERING</td>
-</tr>
-<tr>
-<td>11</td>
-<td>BIKING_CYCLECROSS</td>
-</tr>
-<tr>
-<td>12</td>
-<td>BIKING_INDOOR</td>
-</tr>
-<tr>
-<td>13</td>
-<td>BIKING_MOUNTAIN</td>
-</tr>
-<tr>
-<td>14</td>
-<td>BIKING_RECUMBENT</td>
-</tr>
-<tr>
-<td>15</td>
-<td>BIKING_ROAD</td>
-</tr>
-<tr>
-<td>16</td>
-<td>BIKING_TRACK</td>
-</tr>
-<tr>
-<td>17</td>
-<td>BIKING_MOTOCYCLING</td>
-</tr>
-<tr>
-<td>18</td>
-<td>FE_GENERAL</td>
-</tr>
-<tr>
-<td>19</td>
-<td>FE_TREADMILL</td>
-</tr>
-<tr>
-<td>20</td>
-<td>FE_ELLIPTICAL</td>
-</tr>
-<tr>
-<td>21</td>
-<td>FE_BIKE</td>
-</tr>
-<tr>
-<td>22</td>
-<td>FE_ROWER</td>
-</tr>
-<tr>
-<td>23</td>
-<td>FE_CLIMBER</td>
-</tr>
-<tr>
-<td>24</td>
 <td>SWIMMING</td>
 </tr>
 <tr>
-<td>25</td>
-<td>SWIMMING_LAP</td>
+<td>3</td>
+<td>WATER SPORTS</td>
 </tr>
 <tr>
-<td>26</td>
-<td>SWIMMING_OPEN_WATER</td>
+<td>4</td>
+<td>SNOW SPORTS</td>
 </tr>
 <tr>
-<td>27</td>
-<td>SNOWBOARDING</td>
-</tr>
-<tr>
-<td>28</td>
-<td>SKIING</td>
-</tr>
-<tr>
-<td>29</td>
-<td>SKIING_DOWNHILL</td>
-</tr>
-<tr>
-<td>30</td>
-<td>SKIINGCROSS_COUNTRY</td>
-</tr>
-<tr>
-<td>31</td>
+<td>5</td>
 <td>SKATING</td>
 </tr>
 <tr>
-<td>32</td>
-<td>SKATING_ICE</td>
+<td>6</td>
+<td>GYM</td>
 </tr>
 <tr>
-<td>33</td>
-<td>SKATING_INLINE</td>
+<td>9</td>
+<td>WALKING</td>
 </tr>
 <tr>
-<td>34</td>
-<td>LONG_BOARDING</td>
+<td>30</td>
+<td>N/A</td>
 </tr>
 <tr>
-<td>35</td>
-<td>SAILING</td>
-</tr>
-<tr>
-<td>36</td>
-<td>WINDSURFING</td>
-</tr>
-<tr>
-<td>37</td>
-<td>CANOEING</td>
-</tr>
-<tr>
-<td>38</td>
-<td>KAYAKING</td>
-</tr>
-<tr>
-<td>39</td>
-<td>ROWING</td>
-</tr>
-<tr>
-<td>40</td>
-<td>KITEBOARDING</td>
-</tr>
-<tr>
-<td>41</td>
-<td>STAND_UP_PADDLE_BOARD</td>
-</tr>
-<tr>
-<td>42</td>
-<td>WORKOUT</td>
-</tr>
-<tr>
-<td>43</td>
-<td>CARDIO_CLASS</td>
-</tr>
-<tr>
-<td>44</td>
-<td>STAIR_CLIMBER</td>
-</tr>
-<tr>
-<td>45</td>
-<td>WHEELCHAIR</td>
-</tr>
-<tr>
-<td>46</td>
-<td>GOLFING</td>
-</tr>
-<tr>
-<td>47</td>
+<td>31</td>
 <td>OTHER</td>
 </tr>
 <tr>
-<td>49</td>
-<td>BIKING_INDOOR_CYCLING_CLASS</td>
-</tr>
-<tr>
-<td>56</td>
-<td>WALKING_TREADMILL</td>
-</tr>
-<tr>
-<td>61</td>
-<td>BIKING_INDOOR_TRAINER</td>
-</tr>
-<tr>
-<td>62</td>
-<td>MULTISPORT</td>
-</tr>
-<tr>
-<td>63</td>
-<td>TRIATHALON</td>
-</tr>
-<tr>
-<td>64</td>
-<td>EBIKING</td>
-</tr>
-<tr>
-<td>65</td>
-<td>TICKR_OFFLINE</td>
-</tr>
-<tr>
-<td>66</td>
-<td>YOGA</td>
-</tr>
-<tr>
-<td>67</td>
-<td>RUNNING_RACE</td>
+<td>255</td>
+<td>UNKNOWN</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
