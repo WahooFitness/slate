@@ -1,9 +1,5 @@
 ## Get Power Zones
 
-Requires the `power_zones_read` scope
-
-Returns the power zones for the authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/power_zones
 ```
@@ -39,6 +35,9 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 }
 ```
 
+Requires the `power_zones_read` scope
+
+Returns the power zones for the authenticated user.
 
 ### HTTP Request
 

@@ -1,9 +1,5 @@
 ## Create a Workout Summary
 
-Requires the `workouts_write` scope
-
-Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" -X POST
   -d workout_summary[power_avg]="240.52" https://api.wahooligan.com/v1/workouts/56519/workout_summary
@@ -11,7 +7,7 @@ curl --header "Authorization: Bearer users-token-goes-here" -X POST
 
 > Sample Response:
 
-``````json
+```json
 {
     "id": 8297,
     "ascent_accum": "450.00",
@@ -34,6 +30,14 @@ curl --header "Authorization: Bearer users-token-goes-here" -X POST
     }
 }
 ```
+
+<aside class="warning">
+DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-workout-file-upload">workout_file_uploads</a></code> endpoint. Developers will need to migrate to the new endpoint by May 1, 2024 to avoid an interruption in service. 
+</aside>
+
+Requires the `workouts_write` scope
+
+Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.
 
 ### HTTP Request
 

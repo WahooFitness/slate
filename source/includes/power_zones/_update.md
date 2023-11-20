@@ -1,9 +1,5 @@
 ## Update a Power Zone
 
-Requires the `power_zones_write` scope
-
-Updates a power zone for the authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" -X PUT
   -d power_zone[ftp]=300 https://api.wahooligan.com/v1/power_zones/56519
@@ -11,7 +7,7 @@ curl --header "Authorization: Bearer users-token-goes-here" -X PUT
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 56519,
   "user_id": 1,
@@ -35,6 +31,9 @@ curl --header "Authorization: Bearer users-token-goes-here" -X PUT
 }
 ```
 
+Requires the `power_zones_write` scope
+
+Updates a power zone for the authenticated user.
 
 ### HTTP Request
 

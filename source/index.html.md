@@ -32,9 +32,15 @@ includes:
   - workouts/index
   - workouts/delete
 
+  - workout_file_uploads/overview
+  - workout_file_uploads/create
+  - workout_file_uploads/show
+
   - workout_summaries/overview
   - workout_summaries/show
   - workout_summaries/create
+  
+  - plans/overview 
 
   - webhooks/overview
   - webhooks/settings
@@ -65,6 +71,30 @@ Create a user account and register your app in our developer portal (https://dev
 
 ## Rate Limiting
 
+> Rate limits and usage are included within each HTTP response header
+
+```shell
+  X-RateLimit-Limit: <limit_day>, <limit_hour>, <limit_5min>
+  X-RateLimit-Remaining: <remaining_day>, <remaining_hour>, <remaining_5min>
+  X-RateLimit-Reset: <seconds_until_reset>
+```
+
+> Sample header values for a successful response:
+
+```shell
+  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4999, 999, 199
+  X-RateLimit-Reset: 0
+```
+
+> Sample header values for a rate limited response:
+
+```shell
+  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4800, 800, 0
+  X-RateLimit-Reset: 300
+```
+
 The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.
 
 Interval                     | Sandbox Apps        | Production Apps
@@ -72,27 +102,6 @@ Interval                     | Sandbox Apps        | Production Apps
 Requests every 5 Min:        | 25                  | 200
 Requests per Hour:           | 100                 | 1000
 Requests per Day:            | 250                 | 5000
-
-Rate limits and usage are included within each HTTP response header
-```http request
-  X-RateLimit-Limit: <limit_day>, <limit_hour>, <limit_5min>
-  X-RateLimit-Remaining: <remaining_day>, <remaining_hour>, <remaining_5min>
-  X-RateLimit-Reset: <seconds_until_reset>
-```
-Sample header values for a successful response
-```http request
-  X-RateLimit-Limit: 5000, 1000, 200
-  X-RateLimit-Remaining: 4999, 999, 199
-  X-RateLimit-Reset: 0
-```
-Sample header values for a rate limited response
-```http request
-  X-RateLimit-Limit: 5000, 1000, 200
-  X-RateLimit-Remaining: 4800, 800, 0
-  X-RateLimit-Reset: 300
-```
-
-
 
 # Authentication
 

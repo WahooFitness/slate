@@ -1,12 +1,5 @@
 ## Get all Workouts
 
-Requires the `workouts_read` scope
-
-Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.
-
-In the response the total attribute is the total number of workouts for the current user.
-
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts
 ```
@@ -36,6 +29,12 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "sort": "starts"
 }
 ```
+
+Requires the `workouts_read` scope
+
+Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.
+
+In the response the total attribute is the total number of workouts for the current user.
 
 
 ### HTTP Request

@@ -1,7 +1,5 @@
 ## Update User
 
-Requires the `user_write` scope
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d user[gender]=1 https://api.wahooligan.com/v1/user
@@ -9,7 +7,7 @@ curl --header "Authorization: Bearer users-token-goes-here"
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 60462,
   "height": "2.0",
@@ -24,8 +22,9 @@ curl --header "Authorization: Bearer users-token-goes-here"
 }
 ```
 
-Updates the current authenticated user.
+Requires the `user_write` scope
 
+Updates the current authenticated user.
 
 ### HTTP Request
 

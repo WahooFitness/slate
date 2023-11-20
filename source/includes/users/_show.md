@@ -1,14 +1,12 @@
 ## Get Authenticated User
 
-Requires `user_read` scope
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/user
 ```
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 60462,
   "height": "2.0",
@@ -22,6 +20,8 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "updated_at": "2018-10-24T20:46:40.000Z"
 }
 ```
+
+Requires `user_read` scope
 
 Returns the authenticated user along with email if email scope is included.
 

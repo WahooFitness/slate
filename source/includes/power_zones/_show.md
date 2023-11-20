@@ -1,16 +1,12 @@
 ## Get a Power Zone
 
-Requires the `power_zones_read` scope
-
-Returns a power zone for the current authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/power_zones/56519
 ```
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 56519,
   "user_id": 1,
@@ -33,6 +29,10 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "updated_at": "2016-01-27T16:18:53.927Z"
 }
 ```
+
+Requires the `power_zones_read` scope
+
+Returns a power zone for the current authenticated user.
 
 ### HTTP Request
 

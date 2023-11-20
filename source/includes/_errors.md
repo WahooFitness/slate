@@ -6,7 +6,7 @@
 
 The Wahoo Fitness API uses the following error codes:
 
-Code | Meaning
+Code | Description
 ---------- | -------
 400     | Bad Request -- Your request is invalid.
 401     | Unauthorized -- Your API key is wrong.

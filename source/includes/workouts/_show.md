@@ -1,9 +1,5 @@
 ## Get a Workout
 
-Requires the `workouts_read` scope
-
-Returns a workout for the current authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts/56519
 ```
@@ -24,6 +20,10 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "updated_at": "2018-10-23T20:41:55.000Z"
 }
 ```
+
+Requires the `workouts_read` scope
+
+Returns a workout for the current authenticated user.
 
 ### HTTP Request
 

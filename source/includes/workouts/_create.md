@@ -1,9 +1,5 @@
 ## Create a Workout
 
-Requires the `workouts_write` scope
-
-Creates a workout for the authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"  -X POST
   -d 'workout[name]="Friday fun"&
@@ -15,7 +11,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 
 > Sample Response:
 
-``````json
+```json
 {
     "id": 56519,
     "starts": "2015-08-12T09:00:00.000Z",
@@ -28,6 +24,10 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
     "workout_type_id": 40
 }
 ```
+
+Requires the `workouts_write` scope
+
+Creates a workout for the authenticated user.
 
 ### HTTP Request
 

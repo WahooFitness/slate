@@ -1,9 +1,5 @@
 ## Create a Power Zone
 
-Requires the `power_zones_write` scope
-
-Creates a power zone for the authenticated user.
-
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"  -X POST
   -d 'power_zone[zone_1]=100
@@ -46,6 +42,10 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
   "updated_at": "2016-01-27T16:18:53.927Z"
 }
 ```
+
+Requires the `power_zones_write` scope
+
+Creates a power zone for the authenticated user.
 
 ### HTTP Request
 

@@ -1,12 +1,5 @@
 ## Get a Workout Summary
 
-Requires the `workouts_read` scope
-
-Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.
-
-```shell
-curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts/:id/workout_summary
-```
 > Sample Response:
 
 ``````json
@@ -31,6 +24,14 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
     "created_at": "2018-10-23T20:43:50.000Z",
     "updated_at": "2018-10-23T20:43:50.000Z"
 }
+```
+
+Requires the `workouts_read` scope
+
+Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.
+
+```shell
+curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts/:id/workout_summary
 ```
 
 ### HTTP Request
