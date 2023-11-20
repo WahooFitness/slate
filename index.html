@@ -379,6 +379,25 @@
 <td>5000</td>
 </tr>
 </tbody></table>
+
+<p>Rate limits and usage are included within each HTTP response header
+<code>http request
+  X-RateLimit-Limit: &lt;limit_day&gt;, &lt;limit_hour&gt;, &lt;limit_5min&gt;
+  X-RateLimit-Remaining: &lt;remaining_day&gt;, &lt;remaining_hour&gt;, &lt;remaining_5min&gt;
+  X-RateLimit-Reset: &lt;seconds_until_reset&gt;
+</code>
+Sample header values for a successful response
+<code>http request
+  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4999, 999, 199
+  X-RateLimit-Reset: 0
+</code>
+Sample header values for a rate limited response
+<code>http request
+  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4800, 800, 0
+  X-RateLimit-Reset: 300
+</code></p>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf.</p>
 
@@ -1361,6 +1380,8 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </ol>
 
 <p>API Calls will be sent via HTTP POST with the HTTP header <code>Content-Type: application/json</code></p>
+
+<p>It is possible for duplicate webhooks to be made when files are updated or deleted.</p>
 <h2 id='settings'>Settings</h2>
 <table><thead>
 <tr>
@@ -1768,6 +1789,36 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>YOGA</td>
 <td>INDOOR</td>
 <td>GYM</td>
+</tr>
+<tr>
+<td>67</td>
+<td>RUNNING_RACE</td>
+<td>OUTDOOR</td>
+<td>RUNNING</td>
+</tr>
+<tr>
+<td>68</td>
+<td>BIKING_INDOOR_VIRTUAL</td>
+<td>INDOOR</td>
+<td>BIKING</td>
+</tr>
+<tr>
+<td>69</td>
+<td>MENTAL_STRENGTH</td>
+<td>INDOOR</td>
+<td>OTHER</td>
+</tr>
+<tr>
+<td>70</td>
+<td>RUNNING_TREADMILL_VIRTUAL</td>
+<td>INDOOR</td>
+<td>RUNNING</td>
+</tr>
+<tr>
+<td>71</td>
+<td>RUNNING_INDOOR_VIRTUAL</td>
+<td>INDOOR</td>
+<td>RUNNING</td>
 </tr>
 <tr>
 <td>255</td>
