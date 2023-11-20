@@ -307,6 +307,17 @@
               </ul>
           </li>
           <li>
+            <a href="#workout-file-uploads" class="toc-h1 toc-link" data-title="Workout File Uploads">Workout File Uploads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-workout-file-upload" class="toc-h2 toc-link" data-title="Create a Workout File Upload">Create a Workout File Upload</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-workout-file-upload" class="toc-h2 toc-link" data-title="Get a Workout File Upload">Get a Workout File Upload</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#workout-summaries" class="toc-h1 toc-link" data-title="Workout Summaries">Workout Summaries</a>
               <ul class="toc-list-h2">
                   <li>
@@ -316,6 +327,9 @@
                     <a href="#create-a-workout-summary" class="toc-h2 toc-link" data-title="Create a Workout Summary">Create a Workout Summary</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#plans" class="toc-h1 toc-link" data-title="Plans">Plans</a>
           </li>
           <li>
             <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
@@ -354,6 +368,27 @@
 <h1 id='registration'>Registration</h1>
 <p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. With &#39;Sandbox&#39; apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.</p>
 <h2 id='rate-limiting'>Rate Limiting</h2>
+<blockquote>
+<p>Rate limits and usage are included within each HTTP response header</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: &lt;limit_day&gt;, &lt;limit_hour&gt;, &lt;limit_5min&gt;
+  X-RateLimit-Remaining: &lt;remaining_day&gt;, &lt;remaining_hour&gt;, &lt;remaining_5min&gt;
+  X-RateLimit-Reset: &lt;seconds_until_reset&gt;
+</code></pre>
+<blockquote>
+<p>Sample header values for a successful response:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4999, 999, 199
+  X-RateLimit-Reset: 0
+</code></pre>
+<blockquote>
+<p>Sample header values for a rate limited response:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
+  X-RateLimit-Remaining: 4800, 800, 0
+  X-RateLimit-Reset: 300
+</code></pre>
 <p>The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.</p>
 
 <table><thead>
@@ -379,25 +414,6 @@
 <td>5000</td>
 </tr>
 </tbody></table>
-
-<p>Rate limits and usage are included within each HTTP response header
-<code>http request
-  X-RateLimit-Limit: &lt;limit_day&gt;, &lt;limit_hour&gt;, &lt;limit_5min&gt;
-  X-RateLimit-Remaining: &lt;remaining_day&gt;, &lt;remaining_hour&gt;, &lt;remaining_5min&gt;
-  X-RateLimit-Reset: &lt;seconds_until_reset&gt;
-</code>
-Sample header values for a successful response
-<code>http request
-  X-RateLimit-Limit: 5000, 1000, 200
-  X-RateLimit-Remaining: 4999, 999, 199
-  X-RateLimit-Reset: 0
-</code>
-Sample header values for a rate limited response
-<code>http request
-  X-RateLimit-Limit: 5000, 1000, 200
-  X-RateLimit-Remaining: 4800, 800, 0
-  X-RateLimit-Reset: 300
-</code></p>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf.</p>
 
@@ -510,11 +526,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Application access can be revoked by sending a request to delete all permissions.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
-<h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2>
-<p>Requires the <code>power_zones_write</code> scope</p>
-
-<p>Creates a power zone for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+<h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'power_zone[zone_1]=100
       power_zone[zone_2]=120&amp;
       power_zone[zone_3]=120&amp;
@@ -553,7 +565,11 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>power_zones_write</code> scope</p>
+
+<p>Creates a power zone for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/power_zones</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -657,11 +673,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>ID of the Workout Type</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-power-zone'>Get a Power Zone</h2>
-<p>Requires the <code>power_zones_read</code> scope</p>
-
-<p>Returns a power zone for the current authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
+<h2 id='get-a-power-zone'>Get a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -687,13 +699,13 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/power_zones/:id</code></p>
-<h2 id='update-a-power-zone'>Update a Power Zone</h2>
-<p>Requires the <code>power_zones_write</code> scope</p>
+</span></code></pre>
+<p>Requires the <code>power_zones_read</code> scope</p>
 
-<p>Updates a power zone for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
+<p>Returns a power zone for the current authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/power_zones/:id</code></p>
+<h2 id='update-a-power-zone'>Update a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
   -d power_zone[ftp]<span class="o">=</span>300 https://api.wahooligan.com/v1/power_zones/56519
 </code></pre>
 <blockquote>
@@ -720,7 +732,11 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>power_zones_write</code> scope</p>
+
+<p>Updates a power zone for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/power_zones</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -824,11 +840,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>ID of the Workout Type Family</td>
 </tr>
 </tbody></table>
-<h2 id='get-power-zones'>Get Power Zones</h2>
-<p>Requires the <code>power_zones_read</code> scope</p>
-
-<p>Returns the power zones for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
+<h2 id='get-power-zones'>Get Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -859,20 +871,22 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>power_zones_read</code> scope</p>
+
+<p>Returns the power zones for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/power_zones</code></p>
-<h2 id='delete-a-power-zone'>Delete a Power Zone</h2>
+<h2 id='delete-a-power-zone'>Delete a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/:id
+</code></pre>
 <p>Requires the <code>power_zones_write</code> scope</p>
 
 <p>Deletes a power zone that is owned by the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/:id
-</code></pre><h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/power_zones/:id</code></p>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
-<h2 id='get-authenticated-user'>Get Authenticated User</h2>
-<p>Requires <code>user_read</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
+<h2 id='get-authenticated-user'>Get Authenticated User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -890,12 +904,12 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>Requires <code>user_read</code> scope</p>
+
 <p>Returns the authenticated user along with email if email scope is included.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/user</code></p>
-<h2 id='update-user'>Update User</h2>
-<p>Requires the <code>user_write</code> scope</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+<h2 id='update-user'>Update User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
      -X PUT -d user[gender]<span class="o">=</span>1 https://api.wahooligan.com/v1/user
 </code></pre>
 <blockquote>
@@ -914,6 +928,8 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>Requires the <code>user_write</code> scope</p>
+
 <p>Updates the current authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.wahooligan.com/v1/user</code></p>
@@ -969,11 +985,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Use 0 for male, 1 for female, 2 for other, and 3 for prefer not to say</td>
 </tr>
 </tbody></table>
-<h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2>
-<p>Requires the <code>workouts_write</code> scope</p>
-
-<p>Creates a workout for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+<h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
       workout[workout_type_id]=40&amp;
@@ -994,7 +1006,11 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
     </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>workouts_write</code> scope</p>
+
+<p>Creates a workout for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -1056,11 +1072,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Include summary results - <a href="#create-a-workout-summary">Workout Summary</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-a-workout'>Get a Workout</h2>
-<p>Requires the <code>workouts_read</code> scope</p>
-
-<p>Returns a workout for the current authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
+<h2 id='get-a-workout'>Get a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -1077,13 +1089,13 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/workouts/:id</code></p>
-<h2 id='update-a-workout'>Update a Workout</h2>
-<p>Requires the <code>workouts_write</code> scope</p>
+</span></code></pre>
+<p>Requires the <code>workouts_read</code> scope</p>
 
-<p>Updates a workout for the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
+<p>Returns a workout for the current authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:id</code></p>
+<h2 id='update-a-workout'>Update a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
   -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> https://api.wahooligan.com/v1/workouts/56519
 </code></pre>
 <blockquote>
@@ -1101,7 +1113,11 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>workouts_write</code> scope</p>
+
+<p>Updates a workout for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1155,13 +1171,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Include summary results - <a href="#update-a-workout-summary">Workout Summary</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-all-workouts'>Get all Workouts</h2>
-<p>Requires the <code>workouts_read</code> scope</p>
-
-<p>Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
-
-<p>In the response the total attribute is the total number of workouts for the current user.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
+<h2 id='get-all-workouts'>Get all Workouts</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -1187,7 +1197,13 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
   </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"descending"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starts"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<p>Requires the <code>workouts_read</code> scope</p>
+
+<p>Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
+
+<p>In the response the total attribute is the total number of workouts for the current user.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1214,21 +1230,150 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Limits the number of workouts returned.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-workout'>Delete a Workout</h2>
+<h2 id='delete-a-workout'>Delete a Workout</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
+</code></pre>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Deletes a workout that is owned by the authenticated user.</p>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
-</code></pre><h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/workouts/:id</code></p>
+<h1 id='workout-file-uploads'>Workout File Uploads</h1><h2 id='create-a-workout-file-upload'>Create a Workout File Upload</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+  -d <span class="s1">'workout_file_upload[file]="data:application/vnd.fit;base64,RmFrZSBmaXQgZmlsZQ=="&amp;
+      workout_file_upload[filename]="workout_results.fit"&amp;
+      workout_file_upload[time_zone]="America/New_York"'</span> https://api.wahooligan.com/v1/workouts_file_uploads
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>workouts_write</code> scope</p>
+
+<p>Send the results of a workout to Wahoo for processing. This endpoint will attempt to process the uploaded FIT file and generate the correct workout and workout summary objects. If a workout object has already been created it is recommended to specify the <code>target_workout_id</code> within the request to ensure that the workout summary is associated with the correct workout.</p>
+
+<aside class="notice">
+If the contents of the FIT file is modified after uploading it to Wahoo you must create a new Workout File Upload with the updated FIT file. It is not possible to modify a Workout File Upload.
+</aside>
+
+<p>This endpoint will return a <code>workout_file_upload</code> object that will contain the current status of the upload.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/workout_file_uploads</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workout_file_upload[file]</td>
+<td>File</td>
+<td>yes</td>
+<td></td>
+<td>Base64 encoded FIT File</td>
+</tr>
+<tr>
+<td>workout_file_upload[filename]</td>
+<td>String</td>
+<td>no</td>
+<td></td>
+<td>The name of the workout file</td>
+</tr>
+<tr>
+<td>workout_file_upload[time_zone]</td>
+<td>String</td>
+<td>no</td>
+<td></td>
+<td>The time zone where the FIT file was recorded</td>
+</tr>
+<tr>
+<td>workout_file_upload[workout_name]</td>
+<td>String</td>
+<td>no</td>
+<td></td>
+<td>Name to use for the workout summary</td>
+</tr>
+<tr>
+<td>workout_file_upload[target_workout_id]</td>
+<td>Number</td>
+<td>no</td>
+<td></td>
+<td>Wahoo Id of the workout this file should be associated with</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-workout-file-upload'>Get a Workout File Upload</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workout_file_uploads/:token
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fRa2HvZ1N0WxuHw"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_summary_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_file_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target_workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>workouts_write</code> scope</p>
+
+<p>Returns the workout file upload object with the corresponding token. Since the processing of a Workout File Upload is asynchronous it may take a few seconds to a few hours before the upload has been processed. On average Workout File Uploads are processed in less than 5 seconds.</p>
+
+<p>When the status is <code>complete</code> the file has completed processing and the <code>workout_id</code> and <code>workout_summary_id</code> fields will be populated with values that can be used to fetch those objects from the <a href="#get-a-workout">workouts</a> and <a href="#get-a-workout-summary">workout_summary</a> endpoints.</p>
+
+<p>When the status is <code>error</code> the <code>error</code> attribute will contain additional information regarding the failure of the upload.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workout_file_uploads/:token</code></p>
+<h3 id='upload-status'>Upload Status</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>The file is waiting to be processed</td>
+</tr>
+<tr>
+<td>in_progress</td>
+<td>The file is currently being processed and should complete within 1-5 seconds</td>
+</tr>
+<tr>
+<td>complete</td>
+<td>The file has successfully been processed</td>
+</tr>
+<tr>
+<td>error</td>
+<td>There was an error processing the file</td>
+</tr>
+<tr>
+<td>duplicate</td>
+<td>The uploaded file exactly matches a previously uploaded file</td>
+</tr>
+</tbody></table>
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
 <h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
-<p>Requires the <code>workouts_read</code> scope</p>
-
-<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
-</code></pre>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
@@ -1253,13 +1398,14 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
-<h2 id='create-a-workout-summary'>Create a Workout Summary</h2>
-<p>Requires the <code>workouts_write</code> scope</p>
+</span></code></pre>
+<p>Requires the <code>workouts_read</code> scope</p>
 
-<p>Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
+<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
+<h2 id='create-a-workout-summary'>Create a Workout Summary</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
   -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
 </code></pre>
 <blockquote>
@@ -1286,7 +1432,15 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre>
+<aside class="warning">
+DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-workout-file-upload">workout_file_uploads</a></code> endpoint. Developers will need to migrate to the new endpoint by May 1, 2024 to avoid an interruption in service. 
+</aside>
+
+<p>Requires the <code>workouts_write</code> scope</p>
+
+<p>Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.</p>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -1367,6 +1521,12 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Fit file</td>
 </tr>
 </tbody></table>
+<h1 id='plans'>Plans</h1>
+<p>Upload planned workout files that can be played on Wahoo devices and applications.</p>
+
+<aside class="notice">
+Coming soon!
+</aside>
 <h1 id='webhooks'>Webhooks</h1>
 <p>Receive API calls from Wahoo to your webhook url.</p>
 
@@ -1913,7 +2073,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <table><thead>
 <tr>
 <th>Code</th>
-<th>Meaning</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
