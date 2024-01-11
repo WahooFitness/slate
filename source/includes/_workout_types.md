@@ -64,7 +64,7 @@ Id         | Description                  | Location | Family       |
 67	       | 	RUNNING_RACE                | OUTDOOR  | RUNNING      | 
 68	       | 	BIKING_INDOOR_VIRTUAL       | INDOOR   | BIKING       | 
 69         | MENTAL_STRENGTH              | INDOOR   | OTHER        |
-70         | HANDCYCLING                  | OUTDOOR  | CYCLING      |
+70         | HANDCYCLING                  | OUTDOOR  | BIKING       |
 71         | RUNNING_INDOOR_VIRTUAL       | INDOOR   | RUNNING      |
 255        | UNKNOWN                      |          |              | 
 
