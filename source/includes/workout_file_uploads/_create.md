@@ -4,7 +4,7 @@
 curl --header "Authorization: Bearer users-token-goes-here"  -X POST
   -d 'workout_file_upload[file]="data:application/vnd.fit;base64,RmFrZSBmaXQgZmlsZQ=="&
       workout_file_upload[filename]="workout_results.fit"&
-      workout_file_upload[time_zone]="America/New_York"' https://api.wahooligan.com/v1/workouts_file_uploads
+      workout_file_upload[time_zone]="America/New_York"' https://api.wahooligan.com/v1/workout_file_uploads
 ```
 
 > Sample Response:
