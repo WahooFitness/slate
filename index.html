@@ -1240,7 +1240,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <h1 id='workout-file-uploads'>Workout File Uploads</h1><h2 id='create-a-workout-file-upload'>Create a Workout File Upload</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout_file_upload[file]="data:application/vnd.fit;base64,RmFrZSBmaXQgZmlsZQ=="&amp;
       workout_file_upload[filename]="workout_results.fit"&amp;
-      workout_file_upload[time_zone]="America/New_York"'</span> https://api.wahooligan.com/v1/workouts_file_uploads
+      workout_file_upload[time_zone]="America/New_York"'</span> https://api.wahooligan.com/v1/workout_file_uploads
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
@@ -1970,9 +1970,9 @@ Coming soon!
 </tr>
 <tr>
 <td>70</td>
-<td>RUNNING_TREADMILL_VIRTUAL</td>
-<td>INDOOR</td>
-<td>RUNNING</td>
+<td>HANDCYCLING</td>
+<td>OUTDOOR</td>
+<td>BIKING</td>
 </tr>
 <tr>
 <td>71</td>
