@@ -256,6 +256,26 @@
               </ul>
           </li>
           <li>
+            <a href="#plans" class="toc-h1 toc-link" data-title="Plans">Plans</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#plan-files" class="toc-h2 toc-link" data-title="Plan Files">Plan Files</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-plan" class="toc-h2 toc-link" data-title="Create a Plan">Create a Plan</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-plan" class="toc-h2 toc-link" data-title="Get a Plan">Get a Plan</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-plan" class="toc-h2 toc-link" data-title="Update a Plan">Update a Plan</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-plan" class="toc-h2 toc-link" data-title="Delete a Plan">Delete a Plan</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#power-zones" class="toc-h1 toc-link" data-title="Power Zones">Power Zones</a>
               <ul class="toc-list-h2">
                   <li>
@@ -321,15 +341,12 @@
             <a href="#workout-summaries" class="toc-h1 toc-link" data-title="Workout Summaries">Workout Summaries</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-a-workout-summary" class="toc-h2 toc-link" data-title="Get a Workout Summary">Get a Workout Summary</a>
-                  </li>
-                  <li>
                     <a href="#create-a-workout-summary" class="toc-h2 toc-link" data-title="Create a Workout Summary">Create a Workout Summary</a>
                   </li>
+                  <li>
+                    <a href="#get-a-workout-summary" class="toc-h2 toc-link" data-title="Get a Workout Summary">Get a Workout Summary</a>
+                  </li>
               </ul>
-          </li>
-          <li>
-            <a href="#plans" class="toc-h1 toc-link" data-title="Plans">Plans</a>
           </li>
           <li>
             <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
@@ -526,6 +543,195 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Application access can be revoked by sending a request to delete all permissions.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
+<h1 id='plans'>Plans</h1>
+<p>Plan records hold information pertaining to the structure of a <a href="#workouts">workout</a> that can played on Wahoo devices and applications. A plan record includes a file which holds details about the intervals and targets to be performed during a workout.</p>
+
+<p>For Information regarding how to build your plan file see <a href="#plan-files">Plan Files</a>.</p>
+
+<p>Wahoo uses a library data model approach for planned workouts. A user should only have a single copy of a plan that can then be referenced by multiple workout instances. As a result creating a planned workout is a two-step process: </p>
+
+<ol>
+<li>Create a plan record to place the plan in the user&#39;s library and receive a plan id.</li>
+<li>Create (or update) a workout record with a reference to the plan id.</li>
+</ol>
+
+<p>It is best practice to use the external_id and provider_updated_at fields to prevent duplicate records and ensure only a single copy of a plan is uploaded to a user&#39;s library.</p>
+<h2 id='plan-files'>Plan Files</h2>
+<p>The plan file contains a single JSON object with the following sections: </p>
+
+<ul>
+<li>Header</li>
+<li>Intervals</li>
+</ul>
+
+<p>Detailed information regarding the structure of the plan file can be found in the link below.</p>
+
+<p><strong><a href="https://cdn.wahooligan.com/wahoo-cloud/documentation/plan-json-format.pdf" target="_blank">Instructions for creating a plan file</a></strong></p>
+<h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+  -d <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
+      plan[filename]=plan.json&amp;
+      plan[external_id]=P0001&amp;
+      plan[provider_updated_at]=2023-01-01T12:00:00.000Z'</span>  https://api.wahooligan.com/v1/plans
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>plans_write</code> scope</p>
+
+<p>Creates a plan for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/plans</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>plan[file]</td>
+<td>File</td>
+<td>yes</td>
+<td>Base64 encoded JSON file</td>
+</tr>
+<tr>
+<td>plan[filename]</td>
+<td>String</td>
+<td>no</td>
+<td>The name of the plan file</td>
+</tr>
+<tr>
+<td>plan[external_id]</td>
+<td>String</td>
+<td>yes</td>
+<td>Unique external Id of the plan</td>
+</tr>
+<tr>
+<td>plan[provider_updated_at]</td>
+<td>Date</td>
+<td>yes</td>
+<td>External date/time the file was updated externally</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-plan'>Get a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>plans_read</code> scope</p>
+
+<p>Returns a plan from the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/plans/:id</code></p>
+
+<aside class='notice'>
+Plans can only be retrieved which were uploaded by the same app
+</aside>
+<h2 id='update-a-plan'>Update a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
+  -d <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
+      plan[filename]=plan.json&amp;
+      plan[provider_updated_at]=2023-01-04T12:00:00.000Z'</span>  https://api.wahooligan.com/v1/plans/5
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-04T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-05T05:18:21.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>plans_write</code> scope</p>
+
+<p>Updates a plan that is in the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.wahooligan.com/v1/plans/:id</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>plan[file]</td>
+<td>File</td>
+<td>yes</td>
+<td>Base64 encoded JSON file</td>
+</tr>
+<tr>
+<td>plan[filename]</td>
+<td>String</td>
+<td>no</td>
+<td>The name of the plan file</td>
+</tr>
+<tr>
+<td>plan[provider_updated_at]</td>
+<td>Date</td>
+<td>yes</td>
+<td>External date/time the file was updated externally</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-plan'>Delete a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
+</code></pre>
+<p>Requires the <code>plans_write</code> scope</p>
+
+<p>Deletes a plan that is in the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE https://api.wahooligan.com/v1/plans/:id</code></p>
+
+<aside class="notice">
+Workouts that are associated with a plan will not be deleted, but the workouts will lose their association with the plan.
+</aside>
 <h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'power_zone[zone_1]=100
       power_zone[zone_2]=120&amp;
@@ -985,7 +1191,9 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <td>Use 0 for male, 1 for female, 2 for other, and 3 for prefer not to say</td>
 </tr>
 </tbody></table>
-<h1 id='workouts'>Workouts</h1><h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+<h1 id='workouts'>Workouts</h1>
+<p>A workout record holds information about a single workout event. A workout becomes a structured workout when it includes an association to a <a href="#plans">plan</a>.</p>
+<h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
       workout[workout_type_id]=40&amp;
@@ -1118,7 +1326,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 
 <p>Updates a workout for the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
+<p><code>PUT https://api.wahooligan.com/v1/workouts/:id</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1373,38 +1581,6 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 </tbody></table>
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
-<h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
-<blockquote>
-<p>Sample Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Requires the <code>workouts_read</code> scope</p>
-
-<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
-</code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
 <h2 id='create-a-workout-summary'>Create a Workout Summary</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
   -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
 </code></pre>
@@ -1521,12 +1697,38 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
 <td>Fit file</td>
 </tr>
 </tbody></table>
-<h1 id='plans'>Plans</h1>
-<p>Upload planned workout files that can be played on Wahoo devices and applications.</p>
+<h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>workouts_read</code> scope</p>
 
-<aside class="notice">
-Coming soon!
-</aside>
+<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
 <h1 id='webhooks'>Webhooks</h1>
 <p>Receive API calls from Wahoo to your webhook url.</p>
 
