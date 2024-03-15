@@ -14,6 +14,14 @@ includes:
 
   - deauthorize
 
+  - plans/overview
+  - plans/plan_files
+  - plans/create
+  - plans/show
+  - plans/update
+  - plans/index
+  - plans/delete
+
   - power_zones/overview
   - power_zones/create
   - power_zones/show
@@ -37,10 +45,8 @@ includes:
   - workout_file_uploads/show
 
   - workout_summaries/overview
-  - workout_summaries/show
   - workout_summaries/create
-  
-  - plans/overview 
+  - workout_summaries/show
 
   - webhooks/overview
   - webhooks/settings

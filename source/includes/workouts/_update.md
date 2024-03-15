@@ -28,7 +28,7 @@ Updates a workout for the authenticated user.
 
 ### HTTP Request
 
-`POST https://api.wahooligan.com/v1/workouts`
+`PUT https://api.wahooligan.com/v1/workouts/:id`
 
 ### Query Parameters
 
