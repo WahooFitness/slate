@@ -544,7 +544,7 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
 <h1 id='plans'>Plans</h1>
-<p>Plan records hold information pertaining to the structure of a <a href="#workouts">workout</a> that can played on Wahoo devices and applications. A plan record includes a file which holds details about the intervals and targets to be performed during a workout.</p>
+<p>Plan records hold information pertaining to the structure of a <a href="#workouts">workout</a> that can be played on Wahoo devices and applications. A plan record includes a file which holds details about the intervals and targets to be performed during a workout.</p>
 
 <p>For Information regarding how to build your plan file see <a href="#plan-files">Plan Files</a>.</p>
 
@@ -556,6 +556,10 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 </ol>
 
 <p>It is best practice to use the external_id and provider_updated_at fields to prevent duplicate records and ensure only a single copy of a plan is uploaded to a user&#39;s library.</p>
+
+<aside class="notice">
+In order for a plan to be displayed in the ELEMNT app and bike computer/RIVAL, the plan must be attached to a workout that is scheduled for the current day through six days from the current day. 
+</aside>
 <h2 id='plan-files'>Plan Files</h2>
 <p>The plan file contains a single JSON object with the following sections: </p>
 
