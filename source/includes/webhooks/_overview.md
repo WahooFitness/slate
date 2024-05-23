@@ -2,6 +2,8 @@
 
 Receive API calls from Wahoo to your webhook url.
 
+Please make sure the `offline_data` scope is added to receive webhooks.
+
 If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:
     
 1. After 30 minutes
