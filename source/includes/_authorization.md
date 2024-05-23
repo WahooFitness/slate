@@ -19,3 +19,6 @@ user_write	| Update your user data
 workouts_read	| Access your workout history 
 workouts_write	| Update your workout history
 offline_data    | Receive data even when the app is closed
+
+
+Please note: If the `user_read` scope is not included the API will return a 403 response.
