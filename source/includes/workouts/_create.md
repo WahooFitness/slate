@@ -29,6 +29,9 @@ Requires the `workouts_write` scope
 
 Creates a workout for the authenticated user.
 
+If you would like to create a planned structured workout please make sure to create a plan file
+that can be attached to the workout. Documentation for creating a plan file can be found under the Plans tab.
+
 ### HTTP Request
 
 `POST https://api.wahooligan.com/v1/workouts`
