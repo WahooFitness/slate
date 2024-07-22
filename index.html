@@ -536,6 +536,8 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read%20user_w
 <td>Receive data even when the app is closed</td>
 </tr>
 </tbody></table>
+
+<p>Please note: If the <code>user_read</code> scope is not included the API will return a 403 response.</p>
 <h1 id='deauthorize'>Deauthorize</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can revoke access to an application</span>
 curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/permissions"</span>
   -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
@@ -1222,6 +1224,9 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Creates a workout for the authenticated user.</p>
+
+<p>If you would like to create a planned structured workout please make sure to create a plan file
+that can be attached to the workout. Documentation for creating a plan file can be found under the Plans tab.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -1416,7 +1421,7 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 
 <p>In the response the total attribute is the total number of workouts for the current user.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://api.wahooligan.com/v1/workouts</code></p>
+<p><code>GET https://api.wahooligan.com/v1/workouts</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1735,6 +1740,8 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
 <p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
 <h1 id='webhooks'>Webhooks</h1>
 <p>Receive API calls from Wahoo to your webhook url.</p>
+
+<p>Please make sure the <code>offline_data</code> scope is added to receive webhooks.</p>
 
 <p>If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:</p>
 
