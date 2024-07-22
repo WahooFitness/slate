@@ -39,7 +39,7 @@ In the response the total attribute is the total number of workouts for the curr
 
 ### HTTP Request
 
-`GET http://api.wahooligan.com/v1/workouts`
+`GET https://api.wahooligan.com/v1/workouts`
 
 ### Query Parameters
 
