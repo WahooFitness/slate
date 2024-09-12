@@ -40,4 +40,5 @@ workout[starts]         | Time   | no       | Start time
 workout[minutes]        | Number | no       | Duration of the workout in minutes
 workout[plan_id]        | Number | no       | Id of the plan used in this workout
 workout[workout_type_id]| Number | no       | The type of the workout - [Workout Types](#workout-types)
+workout[day_code ]      | Number | no       | The number of days since 1/1/2020
 workout[workout_summary]| Object | no       | Include summary results - [Workout Summary](#update-a-workout-summary)
