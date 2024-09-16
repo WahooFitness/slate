@@ -113,7 +113,9 @@ Requests per Day:            | 250                 | 5000
 
 ## Workflow
 
-OAuth2 Uses the following authentication workflow. The goal is to obtain an **access_token** for a user that can be used for accessing Wahoo's API on the user's behalf.
+OAuth2 Uses the following authentication workflow. The goal is to obtain an **access_token** for a user that can be used for accessing Wahoo's API on the user's behalf. 
+
+The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'Yes' under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
 
 **Step 1.** Send the user to Wahoo in order to login and grant access to your app using the following url:
 
@@ -145,6 +147,8 @@ _scopes_:           | See [Authorization Scopes](#authorization)
 _access_token_:     | Returned in Step 3; Used for API calls to view/manage user data.
 _refresh_token_:    | Returned in Step 3; Used to refresh the access_token.
 _expires_in_:       | Returned in Step 3; Indicates when the access_token will expire.
+_code_challenge_:   | Required for PKCE in Step 1; A SHA256 hash value for the code verifier, must be Base64 encoded
+_code_verifier_:    | Required for PKCE in Step 3; The original code verifier for the PKCE request 
 
 **Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:**
 
