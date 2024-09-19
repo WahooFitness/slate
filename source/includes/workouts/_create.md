@@ -46,4 +46,5 @@ workout[starts]         | Time   | yes      |         | Start time
 workout[minutes]        | Number | yes      |         | Duration of the workout in minutes
 workout[workout_token]  | String | no       |         | Can be used by the application to identify the workout
 workout[plan_id]        | Number | no       | null    | Id of the plan used in this workout
+workout[day_code]       | Number | no       | null    | The number of days since 1/1/2020
 workout[workout_summary]| Object | no       |         | Include summary results - [Workout Summary](#create-a-workout-summary)
