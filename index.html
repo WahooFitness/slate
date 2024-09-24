@@ -310,6 +310,9 @@
             <a href="#workouts" class="toc-h1 toc-link" data-title="Workouts">Workouts</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#what-is-a-daycode" class="toc-h2 toc-link" data-title="What is a daycode?">What is a daycode?</a>
+                  </li>
+                  <li>
                     <a href="#create-a-workout" class="toc-h2 toc-link" data-title="Create a Workout">Create a Workout</a>
                   </li>
                   <li>
@@ -432,7 +435,9 @@
 </tr>
 </tbody></table>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
-<p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf.</p>
+<p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
+
+<p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;Yes&#39; under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
 
 <p><strong>Step 1.</strong> Send the user to Wahoo in order to login and grant access to your app using the following url:</p>
 
@@ -491,6 +496,14 @@
 <tr>
 <td><em>expires_in</em>:</td>
 <td>Returned in Step 3; Indicates when the access_token will expire.</td>
+</tr>
+<tr>
+<td><em>code_challenge</em>:</td>
+<td>Required for PKCE in Step 1; A SHA256 hash value for the code verifier, must be Base64 encoded</td>
+</tr>
+<tr>
+<td><em>code_verifier</em>:</td>
+<td>Required for PKCE in Step 3; The original code verifier for the PKCE request</td>
 </tr>
 </tbody></table>
 
@@ -1199,6 +1212,10 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 </tbody></table>
 <h1 id='workouts'>Workouts</h1>
 <p>A workout record holds information about a single workout event. A workout becomes a structured workout when it includes an association to a <a href="#plans">plan</a>.</p>
+<h3 id='what-is-a-daycode'>What is a daycode?</h3>
+<p>Daycodes can be used to specify a specific date a user would like a workout on without having to also tie the workout to a start time.
+A daycode is an integer that is calculated based on how many days it has been since January 1st 2020 (daycode of 1), for example 1/1/2021 would have a daycode of 366 becuase 2020 was a leap year,
+and 09/12/2024 would have a daycode of 1716.</p>
 <h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
@@ -1280,6 +1297,13 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>no</td>
 <td>null</td>
 <td>Id of the plan used in this workout</td>
+</tr>
+<tr>
+<td>workout[day_code]</td>
+<td>Number</td>
+<td>no</td>
+<td>null</td>
+<td>The number of days since 1/1/2020</td>
 </tr>
 <tr>
 <td>workout[workout_summary]</td>
@@ -1380,6 +1404,12 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>Number</td>
 <td>no</td>
 <td>The type of the workout - <a href="#workout-types">Workout Types</a></td>
+</tr>
+<tr>
+<td>workout[day_code ]</td>
+<td>Number</td>
+<td>no</td>
+<td>The number of days since 1/1/2020</td>
 </tr>
 <tr>
 <td>workout[workout_summary]</td>
