@@ -18,6 +18,7 @@
     "power_avg": "94.59",
     "speed_avg": "10.75",
     "work_accum": "1041480.00",
+    "time_zone": "America/Denver",
     "file": {
         "url": "https://server.com/4_Mile_Segment_.fit"
     },
