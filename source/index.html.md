@@ -117,6 +117,8 @@ OAuth2 Uses the following authentication workflow. The goal is to obtain an **ac
 
 The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'Yes' under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
 
+Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.
+
 **Step 1.** Send the user to Wahoo in order to login and grant access to your app using the following url:
 
     `https://<base_url>/oauth/authorize?client_id=<client_id>&redirect_uri=<redirect_uri>&scope=<scopes>&response_type=code`
