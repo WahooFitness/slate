@@ -344,6 +344,9 @@
             <a href="#workout-summaries" class="toc-h1 toc-link" data-title="Workout Summaries">Workout Summaries</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#how-to-download-a-file" class="toc-h2 toc-link" data-title="How to download a file">How to download a file</a>
+                  </li>
+                  <li>
                     <a href="#create-a-workout-summary" class="toc-h2 toc-link" data-title="Create a Workout Summary">Create a Workout Summary</a>
                   </li>
                   <li>
@@ -438,6 +441,8 @@
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
 
 <p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;Yes&#39; under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
+
+<p>Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.</p>
 
 <p><strong>Step 1.</strong> Send the user to Wahoo in order to login and grant access to your app using the following url:</p>
 
@@ -1620,6 +1625,9 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 </tbody></table>
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
+<h3 id='how-to-download-a-file'>How to download a file</h3>
+<p>The Workout Summary show endpoint will provide the url for the workout fit file. If you would like to download the fit file
+please copy the url, then paste it into your browser or make a GET call to download the fit ile.</p>
 <h2 id='create-a-workout-summary'>Create a Workout Summary</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
   -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
 </code></pre>
@@ -1755,6 +1763,7 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
     </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
