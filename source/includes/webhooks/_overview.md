@@ -2,7 +2,7 @@
 
 Receive API calls from Wahoo to your webhook url.
 
-Please make sure the `offline_data` scope is added to receive webhooks.
+Please make sure the `offline_data` scope is added and users have a valid access token with the scope to receive webhooks.
 
 If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:
     
