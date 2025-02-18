@@ -1,5 +1,10 @@
 ## Get a Workout Summary
 
+### How to download a file
+
+The Workout Summary show endpoint will provide the url for the workout summary fit file. The workout summary fit file is an 'activity' type fit file and provides additional in-depth information on a recorded workout. In order to download the fit file
+please copy the url listed under "file", then paste it into your browser or make a GET call to download the fit file.
+
 > Sample Response:
 
 ``````json
