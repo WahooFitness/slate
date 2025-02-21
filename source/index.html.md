@@ -71,6 +71,10 @@ This diagram shows how the data records are related within the API
 [//]: # (Edit file here: https://drive.google.com/file/d/1cOpAiu_1DGkx8oLKtqP_uLMgk9d1x-vE/view?usp=sharing)
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg>
 
+## Bluetooth Fitness Machine Service
+
+The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here (https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).
+
 # Registration
 
 Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. With 'Sandbox' apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.
@@ -115,9 +119,11 @@ Requests per Day:            | 250                 | 5000
 
 OAuth2 Uses the following authentication workflow. The goal is to obtain an **access_token** for a user that can be used for accessing Wahoo's API on the user's behalf. 
 
-The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'Yes' under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
+The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'No' under the 'Confidential?' field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
 
 Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.
+
+### Regular OAuth2 Flow Steps
 
 **Step 1.** Send the user to Wahoo in order to login and grant access to your app using the following url:
 
@@ -131,11 +137,37 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 
     `https://<base_url>/oauth/token?client_secret=<client_secret>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&client_id=<client_id>`
 
-**Step 4.** When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token
+**Step 4.** When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.
 
     `https://<base_url>/oauth/token?client_secret=<client_secret>&client_id=<client_id>&grant_type=refresh_token&refresh_token=<refresh_token>`
 
 **Step 5.** You are now ready to send requests to our API by putting the new **access_token** within the following HTTP Header:
+
+    `"Authorization": "Bearer <access_token>"`
+
+### PKCE OAuth2 Flow Steps
+
+**Step 1.** Please make sure that the application's confidential field is set to 'No' in the developer portal.
+
+**Step 2.** Generate a code challenge and a code verifier The code verifier is a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_”. Wahoo supports both types of code challenges- ‘Plain’ which means the code challenge is the same as the code verifier and ‘S256’ where the code challenge is a SHA256 hash value of the code verifier url safe base64 encoded without the trailing ‘=’.
+
+**Step. 3** Send the user to Wahoo in order to login and grant access to your app using the following url:
+
+    `https://api.wahooligan.com/oauth/authorize?client_id=<client_id>&redirect_uri=<redirect-uri>&scope=<scopes>&response_type=code&code_challenge=<code_challenge>&<code_challenge_method=<code_challenge_method>`
+
+**Step 4.** After successful authorization the user will be redirected back to your redirect_uri with a code.
+
+    `<redirect_uri>?code=<code>`
+
+**Step 5.** Send an HTTP POST to Wahoo with the code, your app's OAuth2 credentials, and the code verifier and receive the access_token and refresh_token:
+
+    `https://api.wahooligan.com/oauth/token?client_id=<client_id>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&code_verifier=<code_verifier>.`
+
+**Step 4.** When the access_token expires after 2 hours you can use the refresh_token and the code verifier to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.
+
+    `https://<base_url>/oauth/token?&client_id=<client_id>&grant_type=refresh_token&refresh_token=<refresh_token>&code_verifier=<code_verifier>`
+
+**Step 7.** You are now ready to send requests to our API by putting the new **access_token** within the following HTTP Header:
 
     `"Authorization": "Bearer <access_token>"`
 
@@ -149,8 +181,9 @@ _scopes_:           | See [Authorization Scopes](#authorization)
 _access_token_:     | Returned in Step 3; Used for API calls to view/manage user data.
 _refresh_token_:    | Returned in Step 3; Used to refresh the access_token.
 _expires_in_:       | Returned in Step 3; Indicates when the access_token will expire.
-_code_challenge_:   | Required for PKCE in Step 1; A SHA256 hash value for the code verifier, must be Base64 encoded
-_code_verifier_:    | Required for PKCE in Step 3; The original code verifier for the PKCE request 
+_code_challenge_:   | Required for PKCE in Step 1; if using 'plain' code_challenge_method the same string as the code_verifier. If using code_challenge_method 'S256' this will be a SHA256 hash value of the code_verifier url safe base64 encoded without the trailing ‘=’.
+_code_challenge_method_:   | Required for PKCE in Step 1; A string indicating if the 'plain' or 'S256' code_challenge_method is being used.
+_code_verifier_:    | Required for PKCE in Step 3; a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_” 
 
 **Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:**
 
