@@ -163,7 +163,7 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 
     `https://api.wahooligan.com/oauth/token?client_id=<client_id>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&code_verifier=<code_verifier>.`
 
-**Step 4.** When the access_token expires after 2 hours you can use the refresh_token and the code verifier to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.
+**Step 6.** When the access_token expires after 2 hours you can use the refresh_token and the code verifier to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.
 
     `https://<base_url>/oauth/token?&client_id=<client_id>&grant_type=refresh_token&refresh_token=<refresh_token>&code_verifier=<code_verifier>`
 
