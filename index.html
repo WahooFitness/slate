@@ -226,6 +226,9 @@
                   <li>
                     <a href="#data-model" class="toc-h2 toc-link" data-title="Data Model">Data Model</a>
                   </li>
+                  <li>
+                    <a href="#bluetooth-fitness-machine-service" class="toc-h2 toc-link" data-title="Bluetooth Fitness Machine Service">Bluetooth Fitness Machine Service</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -269,6 +272,9 @@
                   </li>
                   <li>
                     <a href="#update-a-plan" class="toc-h2 toc-link" data-title="Update a Plan">Update a Plan</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-plans" class="toc-h2 toc-link" data-title="Get All Plans">Get All Plans</a>
                   </li>
                   <li>
                     <a href="#delete-a-plan" class="toc-h2 toc-link" data-title="Delete a Plan">Delete a Plan</a>
@@ -344,9 +350,6 @@
             <a href="#workout-summaries" class="toc-h1 toc-link" data-title="Workout Summaries">Workout Summaries</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#how-to-download-a-file" class="toc-h2 toc-link" data-title="How to download a file">How to download a file</a>
-                  </li>
-                  <li>
                     <a href="#create-a-workout-summary" class="toc-h2 toc-link" data-title="Create a Workout Summary">Create a Workout Summary</a>
                   </li>
                   <li>
@@ -388,6 +391,8 @@
 <p>This diagram shows how the data records are related within the API</p>
 
 <p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg></p>
+<h2 id='bluetooth-fitness-machine-service'>Bluetooth Fitness Machine Service</h2>
+<p>The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here (https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).</p>
 <h1 id='registration'>Registration</h1>
 <p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. With &#39;Sandbox&#39; apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.</p>
 <h2 id='rate-limiting'>Rate Limiting</h2>
@@ -440,10 +445,10 @@
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
 
-<p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;Yes&#39; under the question asking if you would like to use PKCE for your application. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
+<p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;No&#39; under the &#39;Confidential?&#39; field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
 
 <p>Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.</p>
-
+<h3 id='regular-oauth2-flow-steps'>Regular OAuth2 Flow Steps</h3>
 <p><strong>Step 1.</strong> Send the user to Wahoo in order to login and grant access to your app using the following url:</p>
 
 <p><code>https://&lt;base_url&gt;/oauth/authorize?client_id=&lt;client_id&gt;&amp;redirect_uri=&lt;redirect_uri&gt;&amp;scope=&lt;scopes&gt;&amp;response_type=code</code></p>
@@ -456,11 +461,35 @@
 
 <p><code>https://&lt;base_url&gt;/oauth/token?client_secret=&lt;client_secret&gt;&amp;code=&lt;code&gt;&amp;redirect_uri=&lt;redirect_uri&gt;&amp;grant_type=authorization_code&amp;client_id=&lt;client_id&gt;</code></p>
 
-<p><strong>Step 4.</strong> When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token</p>
+<p><strong>Step 4.</strong> When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.</p>
 
 <p><code>https://&lt;base_url&gt;/oauth/token?client_secret=&lt;client_secret&gt;&amp;client_id=&lt;client_id&gt;&amp;grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;</code></p>
 
 <p><strong>Step 5.</strong> You are now ready to send requests to our API by putting the new <strong>access_token</strong> within the following HTTP Header:</p>
+
+<p><code>&quot;Authorization&quot;: &quot;Bearer &lt;access_token&gt;&quot;</code></p>
+<h3 id='pkce-oauth2-flow-steps'>PKCE OAuth2 Flow Steps</h3>
+<p><strong>Step 1.</strong> Please make sure that the application&#39;s confidential field is set to &#39;No&#39; in the developer portal.</p>
+
+<p><strong>Step 2.</strong> Generate a code challenge and a code verifier The code verifier is a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_”. Wahoo supports both types of code challenges- ‘Plain’ which means the code challenge is the same as the code verifier and ‘S256’ where the code challenge is a SHA256 hash value of the code verifier url safe base64 encoded without the trailing ‘=’.</p>
+
+<p><strong>Step. 3</strong> Send the user to Wahoo in order to login and grant access to your app using the following url:</p>
+
+<p><code>https://api.wahooligan.com/oauth/authorize?client_id=&lt;client_id&gt;&amp;redirect_uri=&lt;redirect-uri&gt;&amp;scope=&lt;scopes&gt;&amp;response_type=code&amp;code_challenge=&lt;code_challenge&gt;&amp;&lt;code_challenge_method=&lt;code_challenge_method&gt;</code></p>
+
+<p><strong>Step 4.</strong> After successful authorization the user will be redirected back to your redirect_uri with a code.</p>
+
+<p><code>&lt;redirect_uri&gt;?code=&lt;code&gt;</code></p>
+
+<p><strong>Step 5.</strong> Send an HTTP POST to Wahoo with the code, your app&#39;s OAuth2 credentials, and the code verifier and receive the access_token and refresh_token:</p>
+
+<p><code>https://api.wahooligan.com/oauth/token?client_id=&lt;client_id&gt;&amp;code=&lt;code&gt;&amp;redirect_uri=&lt;redirect_uri&gt;&amp;grant_type=authorization_code&amp;code_verifier=&lt;code_verifier&gt;.</code></p>
+
+<p><strong>Step 6.</strong> When the access_token expires after 2 hours you can use the refresh_token and the code verifier to get a new access_token and a new refresh_token. Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked.</p>
+
+<p><code>https://&lt;base_url&gt;/oauth/token?&amp;client_id=&lt;client_id&gt;&amp;grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;&amp;code_verifier=&lt;code_verifier&gt;</code></p>
+
+<p><strong>Step 7.</strong> You are now ready to send requests to our API by putting the new <strong>access_token</strong> within the following HTTP Header:</p>
 
 <p><code>&quot;Authorization&quot;: &quot;Bearer &lt;access_token&gt;&quot;</code></p>
 
@@ -504,11 +533,15 @@
 </tr>
 <tr>
 <td><em>code_challenge</em>:</td>
-<td>Required for PKCE in Step 1; A SHA256 hash value for the code verifier, must be Base64 encoded</td>
+<td>Required for PKCE in Step 1; if using &#39;plain&#39; code_challenge_method the same string as the code_verifier. If using code_challenge_method &#39;S256&#39; this will be a SHA256 hash value of the code_verifier url safe base64 encoded without the trailing ‘=’.</td>
+</tr>
+<tr>
+<td><em>code_challenge_method</em>:</td>
+<td>Required for PKCE in Step 1; A string indicating if the &#39;plain&#39; or &#39;S256&#39; code_challenge_method is being used.</td>
 </tr>
 <tr>
 <td><em>code_verifier</em>:</td>
-<td>Required for PKCE in Step 3; The original code verifier for the PKCE request</td>
+<td>Required for PKCE in Step 3; a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_”</td>
 </tr>
 </tbody></table>
 
@@ -743,6 +776,54 @@ Plans can only be retrieved which were uploaded by the same app
 <td>Date</td>
 <td>yes</td>
 <td>External date/time the file was updated externally</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-plans'>Get All Plans</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"plans"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>plans_read</code> scope</p>
+
+<p>Returns the plans for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/plans</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>external_id</td>
+<td>String</td>
+<td>no</td>
+<td>Limits the plans returned to the plan that matches the external Id provided</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-plan'>Delete a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
@@ -1292,7 +1373,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <tr>
 <td>workout[workout_token]</td>
 <td>String</td>
-<td>no</td>
+<td>yes</td>
 <td></td>
 <td>Can be used by the application to identify the workout</td>
 </tr>
@@ -1625,9 +1706,6 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 </tbody></table>
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
-<h3 id='how-to-download-a-file'>How to download a file</h3>
-<p>The Workout Summary show endpoint will provide the url for the workout fit file. If you would like to download the fit file
-please copy the url, then paste it into your browser or make a GET call to download the fit ile.</p>
 <h2 id='create-a-workout-summary'>Create a Workout Summary</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
   -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
 </code></pre>
@@ -1744,7 +1822,10 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
 <td>Fit file</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-workout-summary'>Get a Workout Summary</h2>
+<h2 id='get-a-workout-summary'>Get a Workout Summary</h2><h3 id='how-to-download-a-file'>How to download a file</h3>
+<p>The Workout Summary show endpoint will provide the url for the workout summary fit file. The workout summary fit file is an &#39;activity&#39; type fit file and provides additional in-depth information on a recorded workout. In order to download the fit file
+please copy the url listed under &quot;file&quot;, then paste it into your browser or make a GET call to download the fit file.</p>
+
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
@@ -1780,7 +1861,7 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
 <h1 id='webhooks'>Webhooks</h1>
 <p>Receive API calls from Wahoo to your webhook url.</p>
 
-<p>Please make sure the <code>offline_data</code> scope is added to receive webhooks.</p>
+<p>Please make sure the <code>offline_data</code> scope is added and users have a valid access token with the scope to receive webhooks.</p>
 
 <p>If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:</p>
 
