@@ -13,7 +13,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X PUT
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 5,
   "user_id": 4,
@@ -53,7 +53,7 @@ route[filename]                      | String | no        | The name of the rout
 route[provider_updated_at]           | Date   | yes       | External date/time the file was updated externally
 route[name]                          | String | yes       | The name of the route
 route[description]                   | String | no        | The description of the route
-route[workout_type_family_id]        | Integer| no        | The workout type family ({“Biking”=>0, “Running”=>1, “Swimming”=>2, “Water Sports”=>3, “Snow Sports”=>4, “Skating”=>5, “Gym”=>6, “Yoga”=>7, “Strength”=>8, “Walking”=>9, “Multisport”=>10, “N/A”=>30, “Other”=>31, “Unknown”=>255})
+route[workout_type_family_id]        | Integer| no        | The workout type family - [Workout Type Family](#workout-type-family)
 route[start_lat]                     | Float  | yes       | The start latitude of the route
 route[start_lng]                     | Float  | yes       | The start longitude of the route
 route[distance]                      | Float  | yes       | The distance of the route(in meters)

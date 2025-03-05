@@ -11,30 +11,10 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "routes":
   [
     {
-      "id": 4,
-      "user_id": 4,
-      "name": null,
-      "description": null,
-      "file": {
-        "url": "https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/Jj7dyVsMdeKQyih9C0S9SQ/testfile"
-      },
-      "workout_type_family_id": 1,
-      "external_id": "1234",
-      "provider_updated_at": "2023-12-19T22:26:36.000Z",
-      "deleted": false,
-      "start_lat": 33.975087,
-      "start_lng": -85.105208,
-      "distance": 123.0,
-      "ascent": 2.5,
-      "descent": 2.5,
-      "updated_at": "2024-08-26T23:23:35.000Z",
-      "created_at": "2024-08-26T23:23:35.000Z"
-    },
-    {
       "id": 5,
       "user_id": 4,
       "name": "awesome test",
-      "description": null,
+      "description": "a fun route to test the cloud API",
       "file": {
         "url": "https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"
       },
