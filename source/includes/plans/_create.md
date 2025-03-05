@@ -10,7 +10,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 5,
   "user_id": 4,
