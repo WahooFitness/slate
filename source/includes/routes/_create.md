@@ -40,7 +40,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 }
 ```
 
-Requires the `routes_write` scope
+Requires the `routes_write` scope.
 
 Creates a route for the authenticated user.
 
@@ -64,3 +64,4 @@ route[start_lng]                     | Float  | yes       | The start longitude 
 route[distance]                      | Float  | yes       | The total distance of the route(in meters)
 route[ascent]                        | Float  | yes       | The total ascent of the route(in meters)
 route[descent]                       | Float  | no        | The total descent of the route(in meters)
+
