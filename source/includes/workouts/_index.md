@@ -6,7 +6,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 
 > Sample Response:
 
-``````json
+```json
 {
   "workouts": [
     {
@@ -15,6 +15,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
       "minutes": 12,
       "name": "Friday afternoon",
       "plan_id": null,
+      "route_id": null,
       "workout_token": "123",
       "workout_type_id": 40,
       "workout_summary": null,
