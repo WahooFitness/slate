@@ -7,13 +7,14 @@ curl --header "Authorization: Bearer users-token-goes-here" -X PUT
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 56519,
   "starts": "2015-08-12T09:00:00.000Z",
   "minutes": 12,
   "name": "Friday afternoon",
   "plan_id": null,
+  "route_id": null,
   "workout_token": "123",
   "workout_type_id": 40,
   "workout_summary": null,
@@ -42,3 +43,4 @@ workout[plan_id]        | Number | no       | Id of the plan used in this workou
 workout[workout_type_id]| Number | no       | The type of the workout - [Workout Types](#workout-types)
 workout[day_code ]      | Number | no       | The number of days since 1/1/2020
 workout[workout_summary]| Object | no       | Include summary results - [Workout Summary](#update-a-workout-summary)
+workout[route_id]       | Number | no       | null    | Id of the route used in this workout

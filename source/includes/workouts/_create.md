@@ -20,6 +20,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
     "created_at": "2018-10-23T20:41:55.000Z",
     "updated_at": "2018-10-23T20:41:55.000Z",
     "plan_id": null,
+    "route_id": null,
     "workout_token": "123",
     "workout_type_id": 40
 }
@@ -48,3 +49,4 @@ workout[workout_token]  | String | yes      |         | Can be used by the appli
 workout[plan_id]        | Number | no       | null    | Id of the plan used in this workout
 workout[day_code]       | Number | no       | null    | The number of days since 1/1/2020
 workout[workout_summary]| Object | no       |         | Include summary results - [Workout Summary](#create-a-workout-summary)
+workout[route_id]       | Number | no       | null    | Id of the route used in this workout
