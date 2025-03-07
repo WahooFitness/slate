@@ -21,7 +21,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 {
   "id": 5,
   "user_id": 4,
-  "name": "awesome test",
+  "name": "test route",
   "description": null,
   "file": {
       "url": "https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"
