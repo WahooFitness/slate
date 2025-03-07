@@ -42,7 +42,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 
 Requires the `routes_write` scope.
 
-Creates a route for the authenticated user.
+Creates a route for the authenticated user
 
 ### HTTP Request
 
