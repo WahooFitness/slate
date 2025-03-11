@@ -29,6 +29,13 @@ includes:
   - power_zones/index
   - power_zones/delete
 
+  - routes/overview
+  - routes/create
+  - routes/show
+  - routes/update
+  - routes/index
+  - routes/delete
+
   - users/overview
   - users/show
   - users/update
