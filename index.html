@@ -302,6 +302,26 @@
               </ul>
           </li>
           <li>
+            <a href="#routes" class="toc-h1 toc-link" data-title="Routes">Routes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-route" class="toc-h2 toc-link" data-title="Create a Route">Create a Route</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-route" class="toc-h2 toc-link" data-title="Get a Route">Get a Route</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-route" class="toc-h2 toc-link" data-title="Update a Route">Update a Route</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-routes" class="toc-h2 toc-link" data-title="Get All Routes">Get All Routes</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-route" class="toc-h2 toc-link" data-title="Delete a Route">Delete a Route</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
@@ -1195,6 +1215,338 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <p>Deletes a power zone that is owned by the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/power_zones/:id</code></p>
+<h1 id='routes'>Routes</h1>
+<p>A route record holds navigation and other information relating to a specified course a user has selected. This includes but is not limited to a FIT file containing route data, a name, description, total distance, total ascent, and starting coordinates.</p>
+
+<p>It is best practice to use the external_id and provider_updated_at fields to prevent duplicate records and ensure only a single copy of a route is uploaded to a user&#39;s library.</p>
+<h2 id='create-a-route'>Create a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
+  -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
+      route[filename]=route.fit&amp;
+      route[external_id]=P0001&amp;
+      route[provider_updated_at]=2023-01-01T12:00:00.000Z
+      route[name]=route name
+      route[description]=fun test route
+      route[workout_type_family_id]=0
+      route[start_lat]=33.975087
+      route[start_lng]=-85.105208
+      route[ascent]=2.5
+      route[descent]=2.5'</span>  https://api.wahooligan.com/v1/routes
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample route"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>routes_write</code> scope.</p>
+
+<p>Creates a route for the authenticated user</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.wahooligan.com/v1/routes</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>route[file]</td>
+<td>File</td>
+<td>yes</td>
+<td>Base64 encoded FIT file</td>
+</tr>
+<tr>
+<td>route[filename]</td>
+<td>String</td>
+<td>no</td>
+<td>The name of the route file</td>
+</tr>
+<tr>
+<td>route[external_id]</td>
+<td>String</td>
+<td>yes</td>
+<td>Unique external Id of the route</td>
+</tr>
+<tr>
+<td>route[provider_updated_at]</td>
+<td>Date</td>
+<td>yes</td>
+<td>External date/time the file was updated externally</td>
+</tr>
+<tr>
+<td>route[name]</td>
+<td>String</td>
+<td>yes</td>
+<td>The name of the route</td>
+</tr>
+<tr>
+<td>route[description]</td>
+<td>String</td>
+<td>no</td>
+<td>A description of the route</td>
+</tr>
+<tr>
+<td>route[workout_type_family_id]</td>
+<td>Integer</td>
+<td>yes</td>
+<td>The workout type family - <a href="#workout-type-family">Workout Type Family</a></td>
+</tr>
+<tr>
+<td>route[start_lat]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The start latitude of the route</td>
+</tr>
+<tr>
+<td>route[start_lng]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The start longitude of the route</td>
+</tr>
+<tr>
+<td>route[distance]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The total distance of the route(in meters)</td>
+</tr>
+<tr>
+<td>route[ascent]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The total ascent of the route(in meters)</td>
+</tr>
+<tr>
+<td>route[descent]</td>
+<td>Float</td>
+<td>no</td>
+<td>The total descent of the route(in meters)</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-route'>Get a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>routes_read</code> scope</p>
+
+<p>Returns a route from the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/routes/:id</code></p>
+<h2 id='update-a-route'>Update a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
+  -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
+      route[filename]=route.fit&amp;
+      route[provider_updated_at]=2023-01-04T12:00:00.000Z
+      route[name]=route name
+      route[start_lat]=33.975087
+      route[start_lng]=-85.105208
+      route[ascent]=2.5'</span>  https://api.wahooligan.com/v1/routes/5
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>routes_write</code> scope</p>
+
+<p>Updates a route that is in the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.wahooligan.com/v1/routes/:id</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>route[file]</td>
+<td>File</td>
+<td>no</td>
+<td>Base64 encoded FIT file</td>
+</tr>
+<tr>
+<td>route[filename]</td>
+<td>String</td>
+<td>no</td>
+<td>The name of the route file</td>
+</tr>
+<tr>
+<td>route[provider_updated_at]</td>
+<td>Date</td>
+<td>yes</td>
+<td>External date/time the file was updated externally</td>
+</tr>
+<tr>
+<td>route[name]</td>
+<td>String</td>
+<td>yes</td>
+<td>The name of the route</td>
+</tr>
+<tr>
+<td>route[description]</td>
+<td>String</td>
+<td>no</td>
+<td>The description of the route</td>
+</tr>
+<tr>
+<td>route[workout_type_family_id]</td>
+<td>Integer</td>
+<td>no</td>
+<td>The workout type family - <a href="#workout-type-family">Workout Type Family</a></td>
+</tr>
+<tr>
+<td>route[start_lat]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The start latitude of the route</td>
+</tr>
+<tr>
+<td>route[start_lng]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The start longitude of the route</td>
+</tr>
+<tr>
+<td>route[distance]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The distance of the route(in meters)</td>
+</tr>
+<tr>
+<td>route[ascent]</td>
+<td>Float</td>
+<td>yes</td>
+<td>The total ascent of the route(in meters)</td>
+</tr>
+<tr>
+<td>route[descent]</td>
+<td>Float</td>
+<td>no</td>
+<td>The total descent of the route(in meters)</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-routes'>Get All Routes</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"routes"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a fun route to test the cloud API"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Requires the <code>routes_read</code> scope</p>
+
+<p>Returns the routes for the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/routes</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>external_id</td>
+<td>String</td>
+<td>no</td>
+<td>Limits the routes returned to the route that matches the external Id provided</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-route'>Delete a Route</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
+</code></pre>
+<p>Requires the <code>routes_write</code> scope</p>
+
+<p>Deletes a route that is in the library of the authenticated user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE https://api.wahooligan.com/v1/routes/:id</code></p>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
 <h2 id='get-authenticated-user'>Get Authenticated User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
