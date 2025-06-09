@@ -13,7 +13,7 @@ The parent workout object contains information about when a workout is scheduled
 Wahoo does not share completed workout data that originates from third-party applications. 
 This means that if a user completes a workout using a third-party application, the workout will not be available in the Wahoo API.
 
-### Fitness App ID
+### Fitness App Id
 The fitness_app_id is an identifier for the application that created the workout.
 This is used to identify the source of the workout data, such as Wahoo's own applications or third-party applications.
 A fitness_app_id < 1000 indicates that the workout was created by a Wahoo application, while a fitness_app_id > 1000 indicates that the workout was created by a third-party application.
