@@ -24,9 +24,12 @@ please copy the url listed under "file", then paste it into your browser or make
     "speed_avg": "10.75",
     "work_accum": "1041480.00",
     "time_zone": "America/Denver",
+    "manual": false,
+    "edited": false,
     "file": {
         "url": "https://server.com/4_Mile_Segment_.fit"
     },
+    "fitness_app_id": 1002,
     "created_at": "2018-10-23T20:43:50.000Z",
     "updated_at": "2018-10-23T20:43:50.000Z"
 }
