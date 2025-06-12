@@ -10,6 +10,7 @@ curl --header "Authorization: Bearer users-token-goes-here" -X POST
 ```json
 {
     "id": 8297,
+    "name": "Easy Ride",
     "ascent_accum": "450.00",
     "cadence_avg": "50.00",
     "calories_accum": "1500.00",
@@ -45,20 +46,21 @@ Creates a workout summary and associates it with a workout. If a workout summary
 
 ### Parameters
 
-Parameter                                            | Type       | Description
----------------------------------------------------- | ---------- | -----------
-workout_summary[ascent_accum]                        | decimal    | Ascent in meters
-workout_summary[cadence_avg]                         | decimal    | Average rotations per minute
-workout_summary[calories_accum]                      | decimal    | Calories (kCal)
-workout_summary[distance_accum]                      | decimal    | Meters
-workout_summary[duration_active_accum]               | decimal    | Seconds
-workout_summary[duration_paused_accum]               | decimal    | Seconds
-workout_summary[duration_total_accum]                | decimal    | Seconds
-workout_summary[heart_rate_avg]                      | decimal    | bpm
-workout_summary[power_avg]                           | decimal    | Watts
-workout_summary[power_bike_np_last]                  | decimal    | Watts
-workout_summary[power_bike_tss_last]                 | decimal    | unitless
-workout_summary[speed_avg]                           | decimal    | Meters/Sec
-workout_summary[work_accum]                          | decimal    | joules
-workout_summary[file]                                | File       | Fit file
+Parameter                                            | Type    | Description
+---------------------------------------------------- |---------| -----------
+workout_summary[name]                                | String  | Name of the workout summary
+workout_summary[ascent_accum]                        | decimal | Ascent in meters
+workout_summary[cadence_avg]                         | decimal | Average rotations per minute
+workout_summary[calories_accum]                      | decimal | Calories (kCal)
+workout_summary[distance_accum]                      | decimal | Meters
+workout_summary[duration_active_accum]               | decimal | Seconds
+workout_summary[duration_paused_accum]               | decimal | Seconds
+workout_summary[duration_total_accum]                | decimal | Seconds
+workout_summary[heart_rate_avg]                      | decimal | bpm
+workout_summary[power_avg]                           | decimal | Watts
+workout_summary[power_bike_np_last]                  | decimal | Watts
+workout_summary[power_bike_tss_last]                 | decimal | unitless
+workout_summary[speed_avg]                           | decimal | Meters/Sec
+workout_summary[work_accum]                          | decimal | joules
+workout_summary[file]                                | File    | Fit file
 
