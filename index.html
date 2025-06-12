@@ -336,6 +336,15 @@
             <a href="#workouts" class="toc-h1 toc-link" data-title="Workouts">Workouts</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#how-to-get-workout-information" class="toc-h2 toc-link" data-title="How to get workout information">How to get workout information</a>
+                  </li>
+                  <li>
+                    <a href="#limitations" class="toc-h2 toc-link" data-title="Limitations">Limitations</a>
+                  </li>
+                  <li>
+                    <a href="#fitness-app-id" class="toc-h2 toc-link" data-title="Fitness App Id">Fitness App Id</a>
+                  </li>
+                  <li>
                     <a href="#what-is-a-daycode" class="toc-h2 toc-link" data-title="What is a daycode?">What is a daycode?</a>
                   </li>
                   <li>
@@ -393,6 +402,20 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+          <li>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#2025-06-11" class="toc-h2 toc-link" data-title="2025-06-11">2025-06-11</a>
+                  </li>
+                  <li>
+                    <a href="#2025-04-01" class="toc-h2 toc-link" data-title="2025-04-01">2025-04-01</a>
+                  </li>
+                  <li>
+                    <a href="#2025-03-04" class="toc-h2 toc-link" data-title="2025-03-04">2025-03-04</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -618,6 +641,8 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
 <h1 id='plans'>Plans</h1>
 <p>Plan records hold information pertaining to the structure of a <a href="#workouts">workout</a> that can be played on Wahoo devices and applications. A plan record includes a file which holds details about the intervals and targets to be performed during a workout.</p>
+
+<p>Plans played on Wahoo Bike Computers will only use the first target type set in an interval. For example, if an interval has a target type of power first then speed, only the power target will be shown on the bike computer.</p>
 
 <p>For Information regarding how to build your plan file see <a href="#plan-files">Plan Files</a>.</p>
 
@@ -1219,6 +1244,8 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <p>A route record holds navigation and other information relating to a specified course a user has selected. This includes but is not limited to a FIT file containing route data, a name, description, total distance, total ascent, and starting coordinates.</p>
 
 <p>It is best practice to use the external_id and provider_updated_at fields to prevent duplicate records and ensure only a single copy of a route is uploaded to a user&#39;s library.</p>
+
+<p>Routes imported by the Cloud API will not sync to the ELEMNT App. Routes will sync to the Wahoo App and directly to a ELEMNT bike computer.</p>
 <h2 id='create-a-route'>Create a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
       route[filename]=route.fit&amp;
@@ -1650,6 +1677,17 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 </tbody></table>
 <h1 id='workouts'>Workouts</h1>
 <p>A workout record holds information about a single workout event. A workout becomes a structured workout when it includes an association to a <a href="#plans">plan</a>.</p>
+<h3 id='how-to-get-workout-information'>How to get workout information</h3>
+<p>To get information on a &#39;completed&#39; workout, you can check the workout_summary attached to the workout record.
+The workout_summary contains the results of the workout, such as distance, duration, and calories burned.
+The parent workout object contains information about when a workout is scheduled or what sort of workout the end user was planning on completing.</p>
+<h3 id='limitations'>Limitations</h3>
+<p>Wahoo does not share completed workout data that originates from third-party applications. 
+This means that if a user completes a workout using a third-party application, the workout will not be available in the Wahoo API.</p>
+<h3 id='fitness-app-id'>Fitness App Id</h3>
+<p>The fitness_app_id is an identifier for the application that created the workout.
+This is used to identify the source of the workout data, such as Wahoo&#39;s own applications or third-party applications.
+A fitness_app_id &lt; 1000 indicates that the workout was created by a Wahoo application, while a fitness_app_id &gt; 1000 indicates that the workout was created by a third-party application.</p>
 <h3 id='what-is-a-daycode'>What is a daycode?</h3>
 <p>Daycodes can be used to specify a specific date a user would like a workout on without having to also tie the workout to a start time.
 A daycode is an integer that is calculated based on how many days it has been since January 1st 2020 (daycode of 1), for example 1/1/2021 would have a daycode of 366 becuase 2020 was a leap year,
@@ -1773,7 +1811,31 @@ that can be attached to the workout. Documentation for creating a plan file can 
   </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2214,9 +2276,12 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
     </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2823,6 +2888,20 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+<h1 id='changelog'>Changelog</h1><h3 id='2025-06-11'>2025-06-11</h3>
+<ul>
+<li>Added the <code>manual</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a manual workout</li>
+<li>Added the <code>edited</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a workout that has been edited after creation</li>
+<li>Added the <code>name</code> field to the &#39;workout_summaries&#39; endpoint to indicate the name of the workout</li>
+</ul>
+<h3 id='2025-04-01'>2025-04-01</h3>
+<ul>
+<li>Wahoo no longer shares workout summaries created by third-party apps</li>
+</ul>
+<h3 id='2025-03-04'>2025-03-04</h3>
+<ul>
+<li>Added documentation for the <code>routes</code> endpoint</li>
+</ul>
 
       </div>
       <div class="dark-box">
