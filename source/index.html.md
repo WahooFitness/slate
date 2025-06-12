@@ -61,6 +61,7 @@ includes:
   
   - workout_types
   - errors
+  - changelog
 
 search: true
 ---
