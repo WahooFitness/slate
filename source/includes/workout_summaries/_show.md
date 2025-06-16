@@ -10,6 +10,7 @@ please copy the url listed under "file", then paste it into your browser or make
 ``````json
 {
     "id": 8297,
+    "name": "Easy Ride",
     "ascent_accum": "450.00",
     "cadence_avg": "50.00",
     "calories_accum": "1500.00",
