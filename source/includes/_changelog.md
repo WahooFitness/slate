@@ -1,5 +1,7 @@
 # Changelog
 
+### 2025-07-22
+- Added the `deauthorization features` documentation to the `deauthorize` endpoint
 ### 2025-06-11
 - Added the `manual` flag to the 'workout_summaries' endpoint to indicate a manual workout
 - Added the `edited` flag to the 'workout_summaries' endpoint to indicate a workout that has been edited after creation
