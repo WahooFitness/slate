@@ -127,6 +127,9 @@ Requests per Day:            | 250                 | 5000
 
 OAuth2 Uses the following authentication workflow. The goal is to obtain an **access_token** for a user that can be used for accessing Wahoo's API on the user's behalf. 
 
+> **Important Update:**  
+> Starting **January 1, 2026**, applications will be limited to **10 unrevoked access tokens per user**.
+
 The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'No' under the 'Confidential?' field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
 
 Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.
@@ -178,6 +181,12 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 **Step 7.** You are now ready to send requests to our API by putting the new **access_token** within the following HTTP Header:
 
     `"Authorization": "Bearer <access_token>"`
+
+
+### Token Limits
+
+- **Access tokens** that have not been revoked will be automatically deleted **60 days after creation**.
+- **Applications** will be limited to **10 unrevoked access tokens per user** starting **January 1, 2026**. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.
 
 Attribute           | Notes
 -----------         | ----------- 
