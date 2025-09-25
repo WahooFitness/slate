@@ -256,6 +256,9 @@
                   <li>
                     <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
+                  <li>
+                    <a href="#deauthorization-features" class="toc-h2 toc-link" data-title="Deauthorization Features">Deauthorization Features</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -407,7 +410,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2025-06-11" class="toc-h2 toc-link" data-title="2025-06-11">2025-06-11</a>
+                    <a href="#2025-07-22" class="toc-h2 toc-link" data-title="2025-07-22">2025-07-22</a>
                   </li>
                   <li>
                     <a href="#2025-04-01" class="toc-h2 toc-link" data-title="2025-04-01">2025-04-01</a>
@@ -488,6 +491,11 @@
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
 
+<blockquote>
+<p><strong>Important Update:</strong><br>
+Starting <strong>January 1, 2026</strong>, applications will be limited to <strong>10 unrevoked access tokens per user</strong>.</p>
+</blockquote>
+
 <p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;No&#39; under the &#39;Confidential?&#39; field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
 
 <p>Prior to starting the OAuth2 workflow please make sure the application has been created here(https://developers.wahooligan.com/applications) in order to obtain the client id and client secret.</p>
@@ -535,6 +543,11 @@
 <p><strong>Step 7.</strong> You are now ready to send requests to our API by putting the new <strong>access_token</strong> within the following HTTP Header:</p>
 
 <p><code>&quot;Authorization&quot;: &quot;Bearer &lt;access_token&gt;&quot;</code></p>
+<h3 id='token-limits'>Token Limits</h3>
+<ul>
+<li><strong>Access tokens</strong> that have not been revoked will be automatically deleted <strong>60 days after creation</strong>.</li>
+<li><strong>Applications</strong> will be limited to <strong>10 unrevoked access tokens per user</strong> starting <strong>January 1, 2026</strong>. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.</li>
+</ul>
 
 <table><thead>
 <tr>
@@ -639,6 +652,10 @@ curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/p
 <p>Application access can be revoked by sending a request to delete all permissions.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
+<h3 id='deauthorization-features'>Deauthorization Features</h3>
+<p>In the Wahoo developer portal, there are several flags that can be set to control the deauthorization process. If these flags are set to true, the following actions will trigger when the above endpoint is called, or when a user revokes access to the application from their account settings.
+- <strong>Delete Upcoming Workouts</strong>: This will delete incomplete workouts scheduled in the future. You should set this to true if you schedule workouts far in advance and want to clean up any excess data.
+- <strong>Delete Owned Plans</strong>: This will delete all plans available to the user through your application. This is useful if you would like deauthorized users to lose access to any plans they have created or that you have shared with them.</p>
 <h1 id='plans'>Plans</h1>
 <p>Plan records hold information pertaining to the structure of a <a href="#workouts">workout</a> that can be played on Wahoo devices and applications. A plan record includes a file which holds details about the intervals and targets to be performed during a workout.</p>
 
@@ -1813,6 +1830,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
   </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
@@ -2145,6 +2163,7 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
@@ -2182,6 +2201,11 @@ DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-wo
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>workout_summary[name]</td>
+<td>String</td>
+<td>Name of the workout summary</td>
+</tr>
 <tr>
 <td>workout_summary[ascent_accum]</td>
 <td>decimal</td>
@@ -2262,6 +2286,7 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
@@ -2888,8 +2913,10 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='changelog'>Changelog</h1><h3 id='2025-06-11'>2025-06-11</h3>
+<h1 id='changelog'>Changelog</h1><h3 id='2025-07-22'>2025-07-22</h3>
 <ul>
+<li>Added the <code>deauthorization features</code> documentation to the <code>deauthorize</code> endpoint
+### 2025-06-11</li>
 <li>Added the <code>manual</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a manual workout</li>
 <li>Added the <code>edited</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a workout that has been edited after creation</li>
 <li>Added the <code>name</code> field to the &#39;workout_summaries&#39; endpoint to indicate the name of the workout</li>
