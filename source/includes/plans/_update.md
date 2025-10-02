@@ -36,10 +36,15 @@ Updates a plan that is in the library of the authenticated user.
 
 `PUT https://api.wahooligan.com/v1/plans/:id`
 
-### Query Parameters
+### Parameters
 
-Parameter                            | Type   | Required  | Description
----------                            | ----   | --------  | -----------
-plan[file]                           | File   | yes       | Base64 encoded JSON file
-plan[filename]                       | String | no        | The name of the plan file
-plan[provider_updated_at]            | Date   | yes       | External date/time the file was updated externally
+| Parameter                 | Type   | Required | Description                                        |
+|---------------------------|--------|----------|----------------------------------------------------|
+| plan[file]                | File   | yes      | Base64 encoded JSON file                           |
+| plan[filename]            | String | no       | The name of the plan file                          |
+| plan[provider_updated_at] | Date   | yes      | External date/time the file was updated externally |
+
+
+<aside class='notice'>
+Plans can only be updated if they were originally created by the app.
+</aside>

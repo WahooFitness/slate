@@ -20,6 +20,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
     "created_at": "2018-10-23T20:41:55.000Z",
     "updated_at": "2018-10-23T20:41:55.000Z",
     "plan_id": null,
+    "plan_ids": [],
     "route_id": null,
     "workout_token": "123",
     "workout_type_id": 40
@@ -39,14 +40,14 @@ that can be attached to the workout. Documentation for creating a plan file can 
 
 ### Parameters
 
-Parameter               | Type   | Required | Default | Description
----------               | ----   |----------| ------- | -----------
-workout[name]           | String | yes      |         | The name of the workout
-workout[workout_type_id]| Number | yes      |         | The type of the workout - [Workout Types](#workout-types)
-workout[starts]         | Time   | yes      |         | Start time
-workout[minutes]        | Number | yes      |         | Duration of the workout in minutes
-workout[workout_token]  | String | yes      |         | Can be used by the application to identify the workout
-workout[plan_id]        | Number | no       | null    | Id of the plan used in this workout
-workout[day_code]       | Number | no       | null    | The number of days since 1/1/2020
-workout[workout_summary]| Object | no       |         | Include summary results - [Workout Summary](#create-a-workout-summary)
-workout[route_id]       | Number | no       | null    | Id of the route used in this workout
+| Parameter                | Type   | Required | Default | Description                                             |
+|--------------------------|--------|----------|---------|---------------------------------------------------------|
+| workout[name]            | String | yes      |         | The name of the workout                                 |
+| workout[workout_token]   | String | yes      |         | Can be used by the application to identify the workout  |
+| workout[workout_type_id] | Number | yes      |         | The Id of the [Workout Type](#workout-types)            |
+| workout[starts]          | Time   | yes      |         | Start time                                              |
+| workout[day_code]        | Number | no       | null    | The number of days since [1/1/2020](#what-is-a-daycode) |
+| workout[minutes]         | Number | yes      |         | Duration of the workout in minutes                      |
+| workout[plan_id]         | Number | no       | null    | Id of the plan used in this workout                     |
+| workout[route_id]        | Number | no       | null    | Id of the route used in this workout                    |
+| workout[workout_summary] | Object | no       |         | [Workout Summary Results](#create-a-workout-summary)    |

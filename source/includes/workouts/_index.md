@@ -15,6 +15,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
       "minutes": 12,
       "name": "Friday afternoon",
       "plan_id": null,
+      "plan_ids": [],
       "route_id": null,
       "workout_token": "123",
       "workout_type_id": 40,
@@ -33,7 +34,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 
 Requires the `workouts_read` scope
 
-Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.
+Returns all workouts for the authenticated user. The workouts are always sorted by the starts field in descending order. By default, the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.
 
 In the response the total attribute is the total number of workouts for the current user.
 
@@ -44,7 +45,7 @@ In the response the total attribute is the total number of workouts for the curr
 
 ### Query Parameters
 
-Parameter | Type    | Required | Default | Description
---------- | ----    | -------- | ------- | -----------
-page      | integer | no       | 1       | Used for pagination.
-per_page  | integer | no       | 30      | Limits the number of workouts returned.
+| Parameter | Type    | Required | Default | Description                             |
+|-----------|---------|----------|---------|-----------------------------------------|
+| page      | integer | no       | 1       | Used for pagination.                    |
+| per_page  | integer | no       | 30      | Limits the number of workouts returned. |

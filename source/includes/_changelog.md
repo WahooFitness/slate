@@ -1,7 +1,14 @@
 # Changelog
 
+### 2025-10-06
+- Added the [Wahoo Plans](#wahoo-plans) section
+- Added the [Get Plans for Workout](#get-plans-for-workout) endpoint
+- Added the [Multiple Plans](#multiple-plans) documentation to the [Workouts](#workouts) section
+- Added the `plan_ids` attribute to workout objects
+
 ### 2025-07-22
 - Added the `deauthorization features` documentation to the `deauthorize` endpoint
+
 ### 2025-06-11
 - Added the `manual` flag to the 'workout_summaries' endpoint to indicate a manual workout
 - Added the `edited` flag to the 'workout_summaries' endpoint to indicate a workout that has been edited after creation

@@ -20,7 +20,9 @@ includes:
   - plans/show
   - plans/update
   - plans/index
+  - plans/workout_plans
   - plans/delete
+  - plans/wahoo_plans
 
   - power_zones/overview
   - power_zones/create
@@ -59,7 +61,7 @@ includes:
   - webhooks/settings
   - webhooks/workout_summary
   
-  - workout_types
+  - data_types
   - errors
   - changelog
 
@@ -81,11 +83,11 @@ This diagram shows how the data records are related within the API
 
 ## Bluetooth Fitness Machine Service
 
-The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here (https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).
+The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here [https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).
 
 # Registration
 
-Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. With 'Sandbox' apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.
+Create a user account and register your app in our developer portal [https://developers.wahooligan.com](https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. With 'Sandbox' apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.
 
 ## Rate Limiting
 
@@ -115,11 +117,11 @@ Create a user account and register your app in our developer portal (https://dev
 
 The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.
 
-Interval                     | Sandbox Apps        | Production Apps
------------                  | -----------         | ------------
-Requests every 5 Min:        | 25                  | 200
-Requests per Hour:           | 100                 | 1000
-Requests per Day:            | 250                 | 5000
+| Interval              | Sandbox Apps | Production Apps |
+|-----------------------|--------------|-----------------|
+| Requests every 5 Min: | 25           | 200             |
+| Requests per Hour:    | 100          | 1000            |
+| Requests per Day:     | 250          | 5000            |
 
 # Authentication
 
@@ -127,8 +129,10 @@ Requests per Day:            | 250                 | 5000
 
 OAuth2 Uses the following authentication workflow. The goal is to obtain an **access_token** for a user that can be used for accessing Wahoo's API on the user's behalf. 
 
-> **Important Update:**  
-> Starting **January 1, 2026**, applications will be limited to **10 unrevoked access tokens per user**.
+<aside class="notice">
+<strong>Important Update</strong><br/>
+Starting <strong>January 1, 2026</strong>, applications will be limited to <strong>10 unrevoked access tokens per user</strong>.
+</aside>
 
 The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -> select edit on your app and then select 'No' under the 'Confidential?' field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/
 
@@ -188,19 +192,19 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 - **Access tokens** that have not been revoked will be automatically deleted **60 days after creation**.
 - **Applications** will be limited to **10 unrevoked access tokens per user** starting **January 1, 2026**. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.
 
-Attribute           | Notes
------------         | ----------- 
-_base_url_:         | `api.wahooligan.com`
-_client_id_:        | You can get your app's client_id from the developer portal.
-_client_secret_:    | You can get your app's client_secret from the developer portal.
-_redirect_uri_:     | You can set the redirect_uri for your app in the developer portal.
-_scopes_:           | See [Authorization Scopes](#authorization)
-_access_token_:     | Returned in Step 3; Used for API calls to view/manage user data.
-_refresh_token_:    | Returned in Step 3; Used to refresh the access_token.
-_expires_in_:       | Returned in Step 3; Indicates when the access_token will expire.
-_code_challenge_:   | Required for PKCE in Step 1; if using 'plain' code_challenge_method the same string as the code_verifier. If using code_challenge_method 'S256' this will be a SHA256 hash value of the code_verifier url safe base64 encoded without the trailing ‘=’.
-_code_challenge_method_:   | Required for PKCE in Step 1; A string indicating if the 'plain' or 'S256' code_challenge_method is being used.
-_code_verifier_:    | Required for PKCE in Step 3; a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_” 
+| Attribute                | Notes                                                                                                                                                                                                                                                   |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _base_url_:              | `api.wahooligan.com`                                                                                                                                                                                                                                    |
+| _client_id_:             | You can get your app's client_id from the developer portal.                                                                                                                                                                                             |
+| _client_secret_:         | You can get your app's client_secret from the developer portal.                                                                                                                                                                                         |
+| _redirect_uri_:          | You can set the redirect_uri for your app in the developer portal.                                                                                                                                                                                      |
+| _scopes_:                | See [Authorization Scopes](#authorization)                                                                                                                                                                                                              |
+| _access_token_:          | Returned in Step 3; Used for API calls to view/manage user data.                                                                                                                                                                                        |
+| _refresh_token_:         | Returned in Step 3; Used to refresh the access_token.                                                                                                                                                                                                   |
+| _expires_in_:            | Returned in Step 3; Indicates when the access_token will expire.                                                                                                                                                                                        |
+| _code_challenge_:        | Required for PKCE in Step 1; if using 'plain' code_challenge_method the same string as the code_verifier. If using code_challenge_method 'S256' this will be a SHA256 hash value of the code_verifier url safe base64 encoded without the trailing ‘=’. |
+| _code_challenge_method_: | Required for PKCE in Step 1; A string indicating if the 'plain' or 'S256' code_challenge_method is being used.                                                                                                                                          |
+| _code_verifier_:         | Required for PKCE in Step 3; a random string that is generated using characters using [A-Z], [a-z], [0-9], “.”, “-”, “~”, and “_”                                                                                                                       |
 
 **Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:**
 

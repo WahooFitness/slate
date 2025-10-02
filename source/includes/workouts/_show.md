@@ -13,6 +13,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "minutes": 12,
   "name": "Friday Fun",
   "plan_id": null,
+  "plan_ids": [],
   "route_id": null,
   "workout_token": "123",
   "workout_type_id": 40,

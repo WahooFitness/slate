@@ -14,6 +14,7 @@ curl --header "Authorization: Bearer users-token-goes-here" -X PUT
   "minutes": 12,
   "name": "Friday afternoon",
   "plan_id": null,
+  "plan_ids": [],
   "route_id": null,
   "workout_token": "123",
   "workout_type_id": 40,
@@ -31,16 +32,16 @@ Updates a workout for the authenticated user.
 
 `PUT https://api.wahooligan.com/v1/workouts/:id`
 
-### Query Parameters
+### Parameters
 
-Parameter               | Type   | Required | Description
----------               | ----   | -------- | -----------
-workout[name]           | String | no       | The name of the workout
-workout[workout_token]  | String | no       | Can be used by the application to identify the workout
-workout[starts]         | Time   | no       | Start time
-workout[minutes]        | Number | no       | Duration of the workout in minutes
-workout[plan_id]        | Number | no       | Id of the plan used in this workout
-workout[workout_type_id]| Number | no       | The type of the workout - [Workout Types](#workout-types)
-workout[day_code ]      | Number | no       | The number of days since 1/1/2020
-workout[workout_summary]| Object | no       | Include summary results - [Workout Summary](#update-a-workout-summary)
-workout[route_id]       | Number | no       | null    | Id of the route used in this workout
+| Parameter                | Type   | Required | Description                                             |
+|--------------------------|--------|----------|---------------------------------------------------------|
+| workout[name]            | String | no       | The name of the workout                                 |
+| workout[workout_token]   | String | no       | Can be used by the application to identify the workout  |
+| workout[workout_type_id] | Number | no       | The Id of the [Workout Type](#workout-types)            |
+| workout[starts]          | Time   | no       | Start time                                              |
+| workout[day_code]        | Number | no       | The number of days since [1/1/2020](#what-is-a-daycode) |
+| workout[minutes]         | Number | no       | Duration of the workout in minutes                      |
+| workout[plan_id]         | Number | no       | The Id of the plan used in this workout                 |
+| workout[route_id]        | Number | no       | The Id of the route used in this workout                |
+| workout[workout_summary] | Object | no       | [Workout Summary Results](#update-a-workout-summary)    |

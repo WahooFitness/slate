@@ -19,7 +19,7 @@ curl --header "Authorization: Bearer users-token-goes-here"  -X POST
 
 > Sample Response:
 
-``````json
+```json
 {
   "id": 1,
   "user_id": 1,
@@ -53,18 +53,18 @@ Creates a power zone for the authenticated user.
 
 ### Parameters
 
-Parameter                            | Type   | Required | Default | Description
----------                            | ----   | -------- | ------- | -----------
-power_zone[zone_1]                   | Number | no       |         | Power Zone Value
-power_zone[zone_2]                   | Number | no       |         | Power Zone Value
-power_zone[zone_3]                   | Number | no       |         | Power Zone Value
-power_zone[zone_4]                   | Number | no       |         | Power Zone Value
-power_zone[zone_5]                   | Number | no       |         | Power Zone Value
-power_zone[zone_6]                   | Number | no       |         | Power Zone Value
-power_zone[zone_7]                   | Number | no       |         | Power Zone Value
-power_zone[zone_count]               | Number | no       |         | Power Zone Total Count
-power_zone[ftp]                      | Number | no       |         | Functional Threshold Power
-power_zone[critical_power]           | Number | no       |         | MMP/Best average power
-power_zone[workout_type_id]          | Number | no       |         | ID of the Workout Type
-power_zone[workout_type_family_id]   | Number | no       |         | ID of the Workout Type
-power_zone[workout_type_location_id] | Number | no       |         | ID of the Workout Type
+| Parameter                            | Type   | Required | Default | Description                                                |
+|--------------------------------------|--------|----------|---------|------------------------------------------------------------|
+| power_zone[zone_1]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_2]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_3]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_4]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_5]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_6]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_7]                   | Number | no       |         | Power Zone Value                                           |
+| power_zone[zone_count]               | Number | no       |         | Power Zone Total Count                                     |
+| power_zone[ftp]                      | Number | no       |         | Functional Threshold Power                                 |
+| power_zone[critical_power]           | Number | no       |         | MMP/Best average power                                     |
+| power_zone[workout_type_id]          | Number | no       |         | Id of the [Workout Type](#workout-types)                   |
+| power_zone[workout_type_family_id]   | Number | no       |         | Id of the [Workout Type Family](#workout-type-families)    |
+| power_zone[workout_type_location_id] | Number | no       |         | Id of the [Workout Type Location](#workout-type-locations) |

@@ -39,9 +39,9 @@ Creates a plan for the authenticated user.
 
 ### Parameters
 
-Parameter                            | Type   | Required  | Description
----------                            | ----   | --------  | -----------
-plan[file]                           | File   | yes       | Base64 encoded JSON file
-plan[filename]                       | String | no        | The name of the plan file
-plan[external_id]                    | String | yes       | Unique external Id of the plan
-plan[provider_updated_at]            | Date   | yes       | External date/time the file was updated externally
+| Parameter                 | Type   | Required | Description                                        |
+|---------------------------|--------|----------|----------------------------------------------------|
+| plan[file]                | File   | yes      | Base64 encoded JSON file                           |
+| plan[filename]            | String | no       | The name of the plan file                          |
+| plan[external_id]         | String | yes      | Unique external Id of the plan                     |
+| plan[provider_updated_at] | Date   | yes      | External date/time the file was updated externally |

@@ -35,5 +35,5 @@ Returns a plan from the library of the authenticated user.
 
 
 <aside class='notice'>
-Plans can only be retrieved which were uploaded by the same app
+Plans can only be retrieved which were uploaded by the same app unless the app has the <a href="#wahoo-plans">Wahoo Plans entitlement</a>.
 </aside>

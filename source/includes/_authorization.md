@@ -11,14 +11,13 @@ Applications must only request permission for resources they intend to access or
 We support the following OAuth 2.0 permission scopes:
 
 
-Scope | Description
----------- | -------
-email | Access your email address
-user_read	| Access your user data
-user_write	| Update your user data
-workouts_read	| Access your workout history 
-workouts_write	| Update your workout history
-offline_data    | Receive data even when the app is closed
-
+| Scope           | Description                              |
+|-----------------|------------------------------------------|
+| email           | Access your email address                |
+| user_read	      | Access your user data                    |
+| user_write	     | Update your user data                    |
+| workouts_read	  | Access your workout history              |
+| workouts_write	 | Update your workout history              |
+| offline_data    | Receive data even when the app is closed |
 
 Please note: If the `user_read` scope is not included the API will return a 403 response.

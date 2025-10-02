@@ -36,3 +36,8 @@ Returns a route from the library of the authenticated user.
 ### HTTP Request
 
 `GET https://api.wahooligan.com/v1/routes/:id`
+
+
+<aside class='notice'>
+Routes can only be retrieved which were uploaded by the same app
+</aside>

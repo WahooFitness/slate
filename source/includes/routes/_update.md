@@ -44,18 +44,18 @@ Updates a route that is in the library of the authenticated user.
 
 `PUT https://api.wahooligan.com/v1/routes/:id`
 
-### Query Parameters
+### Parameters
 
-Parameter                            | Type   | Required | Description
----------                            | ----   |----------| -----------
-route[file]                          | File   | no       | Base64 encoded FIT file
-route[filename]                      | String | no       | The name of the route file
-route[provider_updated_at]           | Date   | yes      | External date/time the file was updated externally
-route[name]                          | String | yes      | The name of the route
-route[description]                   | String | no       | The description of the route
-route[workout_type_family_id]        | Integer| no       | The workout type family - [Workout Type Family](#workout-type-family)
-route[start_lat]                     | Float  | yes      | The start latitude of the route
-route[start_lng]                     | Float  | yes      | The start longitude of the route
-route[distance]                      | Float  | yes      | The distance of the route(in meters)
-route[ascent]                        | Float  | yes      | The total ascent of the route(in meters)
-route[descent]                       | Float  | no       | The total descent of the route(in meters)
+| Parameter                     | Type    | Required | Description                                                 |
+|-------------------------------|---------|----------|-------------------------------------------------------------|
+| route[file]                   | File    | no       | Base64 encoded FIT file                                     |
+| route[filename]               | String  | no       | The name of the route file                                  |
+| route[provider_updated_at]    | Date    | yes      | External date/time the file was updated externally          |
+| route[name]                   | String  | yes      | The name of the route                                       |
+| route[description]            | String  | no       | The description of the route                                |
+| route[workout_type_family_id] | Integer | no       | The Id of the [Workout Type Family](#workout-type-families) |
+| route[start_lat]              | Float   | yes      | The start latitude of the route                             |
+| route[start_lng]              | Float   | yes      | The start longitude of the route                            |
+| route[distance]               | Float   | yes      | The distance of the route(in meters)                        |
+| route[ascent]                 | Float   | yes      | The total ascent of the route(in meters)                    |
+| route[descent]                | Float   | no       | The total descent of the route(in meters)                   |

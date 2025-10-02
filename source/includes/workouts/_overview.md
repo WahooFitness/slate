@@ -24,3 +24,9 @@ Daycodes can be used to specify a specific date a user would like a workout on w
 A daycode is an integer that is calculated based on how many days it has been since January 1st 2020 (daycode of 1), for example 1/1/2021 would have a daycode of 366 becuase 2020 was a leap year,
 and 09/12/2024 would have a daycode of 1716.
 
+### Multiple plans  
+
+A workout may have a specific plan attached in which case the `plan_id` attribute will hold the id of the plan. However, it is possible that a workout may have a list of multiple plan options. In this case the `plan_ids` array will hold the ids of the available plan options.
+
+The most common use of `plan_ids` is to link a workout to different variants of plan (e.g. an **Indoor** and an **Outdoor** version of the same plan). The plan ids of both plans will be included in the `plan_ids` array. We recommend using the [Get Plans for Workout](#get-plans-for-workout) endpoint to retrieve the metadata for all the plans attached to a workout in a single api call.
+

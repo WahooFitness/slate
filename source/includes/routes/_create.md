@@ -50,18 +50,18 @@ Creates a route for the authenticated user
 
 ### Parameters
 
-Parameter                            | Type   | Required  | Description
----------                            | ----   | --------  | -----------
-route[file]                          | File   | yes       | Base64 encoded FIT file
-route[filename]                      | String | no        | The name of the route file
-route[external_id]                   | String | yes       | Unique external Id of the route
-route[provider_updated_at]           | Date   | yes       | External date/time the file was updated externally
-route[name]                          | String | yes       | The name of the route
-route[description]                   | String | no        | A description of the route
-route[workout_type_family_id]        | Integer| yes       | The workout type family - [Workout Type Family](#workout-type-family)
-route[start_lat]                     | Float  | yes       | The start latitude of the route
-route[start_lng]                     | Float  | yes       | The start longitude of the route
-route[distance]                      | Float  | yes       | The total distance of the route(in meters)
-route[ascent]                        | Float  | yes       | The total ascent of the route(in meters)
-route[descent]                       | Float  | no        | The total descent of the route(in meters)
+| Parameter                     | Type    | Required | Description                                                 |
+|-------------------------------|---------|----------|-------------------------------------------------------------|
+| route[file]                   | File    | yes      | Base64 encoded FIT file                                     |
+| route[filename]               | String  | no       | The name of the route file                                  |
+| route[external_id]            | String  | yes      | Unique external Id of the route                             |
+| route[provider_updated_at]    | Date    | yes      | External date/time the file was updated externally          |
+| route[name]                   | String  | yes      | The name of the route                                       |
+| route[description]            | String  | no       | A description of the route                                  |
+| route[workout_type_family_id] | Integer | yes      | The Id of the [Workout Type Family](#workout-type-families) |
+| route[start_lat]              | Float   | yes      | The start latitude of the route                             |
+| route[start_lng]              | Float   | yes      | The start longitude of the route                            |
+| route[distance]               | Float   | yes      | The total distance of the route(in meters)                  |
+| route[ascent]                 | Float   | yes      | The total ascent of the route(in meters)                    |
+| route[descent]                | Float   | no       | The total descent of the route(in meters)                   |
 
