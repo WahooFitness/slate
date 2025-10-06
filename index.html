@@ -280,7 +280,13 @@
                     <a href="#get-all-plans" class="toc-h2 toc-link" data-title="Get All Plans">Get All Plans</a>
                   </li>
                   <li>
+                    <a href="#get-plans-for-workout" class="toc-h2 toc-link" data-title="Get Plans for Workout">Get Plans for Workout</a>
+                  </li>
+                  <li>
                     <a href="#delete-a-plan" class="toc-h2 toc-link" data-title="Delete a Plan">Delete a Plan</a>
+                  </li>
+                  <li>
+                    <a href="#wahoo-plans" class="toc-h2 toc-link" data-title="Wahoo Plans">Wahoo Plans</a>
                   </li>
               </ul>
           </li>
@@ -351,6 +357,9 @@
                     <a href="#what-is-a-daycode" class="toc-h2 toc-link" data-title="What is a daycode?">What is a daycode?</a>
                   </li>
                   <li>
+                    <a href="#multiple-plans" class="toc-h2 toc-link" data-title="Multiple plans">Multiple plans</a>
+                  </li>
+                  <li>
                     <a href="#create-a-workout" class="toc-h2 toc-link" data-title="Create a Workout">Create a Workout</a>
                   </li>
                   <li>
@@ -401,7 +410,18 @@
               </ul>
           </li>
           <li>
-            <a href="#workout-types" class="toc-h1 toc-link" data-title="Workout Types">Workout Types</a>
+            <a href="#data-types" class="toc-h1 toc-link" data-title="Data Types">Data Types</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#workout-types" class="toc-h2 toc-link" data-title="Workout Types">Workout Types</a>
+                  </li>
+                  <li>
+                    <a href="#workout-type-locations" class="toc-h2 toc-link" data-title="Workout Type Locations">Workout Type Locations</a>
+                  </li>
+                  <li>
+                    <a href="#workout-type-families" class="toc-h2 toc-link" data-title="Workout Type Families">Workout Type Families</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -410,7 +430,13 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2025-10-06" class="toc-h2 toc-link" data-title="2025-10-06">2025-10-06</a>
+                  </li>
+                  <li>
                     <a href="#2025-07-22" class="toc-h2 toc-link" data-title="2025-07-22">2025-07-22</a>
+                  </li>
+                  <li>
+                    <a href="#2025-06-11" class="toc-h2 toc-link" data-title="2025-06-11">2025-06-11</a>
                   </li>
                   <li>
                     <a href="#2025-04-01" class="toc-h2 toc-link" data-title="2025-04-01">2025-04-01</a>
@@ -438,9 +464,9 @@
 
 <p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px" height="224px" viewBox="-0.5 -0.5 531 224"><defs/><g><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(100,0)scale(-1,1)translate(-100,0)" opacity="0.25"/><rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(100,0)scale(-1,1)translate(-100,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="99.5" y="35.5">User</text></g><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)translate(418,0)scale(-1,1)translate(-418,0)" opacity="0.25"/><rect x="308" y="160" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" transform="translate(418,0)scale(-1,1)translate(-418,0)" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="417.5" y="195.5">Workout Summary</text></g><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#000000" stroke="none" transform="translate(2,3)" opacity="0.25"/><rect x="148" y="80" width="220" height="60" rx="9" ry="9" fill="#10739e" stroke="none" pointer-events="all"/><g fill="#FFFFFF" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="14px"><text x="257.5" y="115.5">Workout</text></g><path d="M 100 60 L 100 100 Q 100 110 110 110 L 133.53 110" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 143.53 110 L 133.53 115 L 133.53 105 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/><path d="M 258 140 L 258 180 Q 258 190 268 190 L 293.53 190" fill="none" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 303.53 190 L 293.53 195 L 293.53 185 Z" fill="#23445d" stroke="#23445d" stroke-width="4" stroke-miterlimit="10" pointer-events="all"/></g></svg></p>
 <h2 id='bluetooth-fitness-machine-service'>Bluetooth Fitness Machine Service</h2>
-<p>The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here (https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).</p>
+<p>The Cloud API only creates, updates, and returns data that is stored in the Wahoo cloud.  If you would like to learn more about the Fitness Machine Service please visit the Bluetooth documentation for it here <a href="https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/">https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/</a>.</p>
 <h1 id='registration'>Registration</h1>
-<p>Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. With &#39;Sandbox&#39; apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.</p>
+<p>Create a user account and register your app in our developer portal <a href="https://developers.wahooligan.com">https://developers.wahooligan.com</a>. Your app can be set to &#39;Sandbox&#39; or &#39;Production&#39;. With &#39;Sandbox&#39; apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.</p>
 <h2 id='rate-limiting'>Rate Limiting</h2>
 <blockquote>
 <p>Rate limits and usage are included within each HTTP response header</p>
@@ -491,10 +517,10 @@
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
 
-<blockquote>
-<p><strong>Important Update:</strong><br>
-Starting <strong>January 1, 2026</strong>, applications will be limited to <strong>10 unrevoked access tokens per user</strong>.</p>
-</blockquote>
+<aside class="notice">
+<strong>Important Update</strong><br/>
+Starting <strong>January 1, 2026</strong>, applications will be limited to <strong>10 unrevoked access tokens per user</strong>.
+</aside>
 
 <p>The Wahoo API does allow users to use the PKCE flow for authorization. If you would like to use the PKCE flow for your application please go to My Developer Apps -&gt; select edit on your app and then select &#39;No&#39; under the &#39;Confidential?&#39; field. If you would like to learn more about the PKCE flow please visit their documentation https://www.oauth.com/oauth2-servers/pkce/</p>
 
@@ -780,7 +806,7 @@ In order for a plan to be displayed in the ELEMNT app and bike computer/RIVAL, t
 <p><code>GET https://api.wahooligan.com/v1/plans/:id</code></p>
 
 <aside class='notice'>
-Plans can only be retrieved which were uploaded by the same app
+Plans can only be retrieved which were uploaded by the same app unless the app has the <a href="#wahoo-plans">Wahoo Plans entitlement</a>.
 </aside>
 <h2 id='update-a-plan'>Update a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
   -d <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
@@ -812,7 +838,7 @@ Plans can only be retrieved which were uploaded by the same app
 <p>Updates a plan that is in the library of the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.wahooligan.com/v1/plans/:id</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -840,32 +866,33 @@ Plans can only be retrieved which were uploaded by the same app
 <td>External date/time the file was updated externally</td>
 </tr>
 </tbody></table>
+
+<aside class='notice'>
+Plans can only be updated if they were originally created by the app.
+</aside>
 <h2 id='get-all-plans'>Get All Plans</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans
 </code></pre>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"plans"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Requires the <code>plans_read</code> scope</p>
 
@@ -888,6 +915,41 @@ Plans can only be retrieved which were uploaded by the same app
 <td>Limits the plans returned to the plan that matches the external Id provided</td>
 </tr>
 </tbody></table>
+<h2 id='get-plans-for-workout'>Get Plans for Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:workout_id/plans
+</code></pre>
+<blockquote>
+<p>Sample Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Since a workout can link to a specific plan (<code>plan_id</code>) or to an array of plan options (<code>plan_ids</code>) this endpoint will return a list of all plans for a workout in a single api call.</p>
+
+<p>Requires the <code>plans_read</code> scope</p>
+
+<p>Returns the plans for the workout id.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.wahooligan.com/v1/workouts/:workout_id/plans</code></p>
+
+<aside class="notice">
+Only plans created by your app will be returned unless your app has the <a href="#wahoo-plans">Wahoo Plans entitlement</a>.
+</aside>
 <h2 id='delete-a-plan'>Delete a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
 </code></pre>
 <p>Requires the <code>plans_write</code> scope</p>
@@ -898,6 +960,29 @@ Plans can only be retrieved which were uploaded by the same app
 
 <aside class="notice">
 Workouts that are associated with a plan will not be deleted, but the workouts will lose their association with the plan.
+</aside>
+<h2 id='wahoo-plans'>Wahoo Plans</h2>
+<p>Developers can apply for access to Wahoo Plans. This entitlement will allow your app to access Wahoo plans from the API. To request access to the Wahoo Plans entitlement please send a request to <code>partnerships@wahoofitness.com</code>.</p>
+
+<p>The Wahoo Plans entitlement enables the following: </p>
+
+<ul>
+<li>Read Wahoo plan metadata from the plan endpoints. </li>
+<li>Read Wahoo plan files.</li>
+</ul>
+<h3 id='wahoo-plan-file-limitations'>Wahoo Plan File Limitations</h3>
+<p>The Wahoo plan files are considered intellectual property of Wahoo Fitness and have the following additional limitations: </p>
+
+<ul>
+<li>May only be retrieved during a specific window based on the <code>starts</code> time of the workout. 3 days before through 1 day after.</li>
+<li>The user must have an active Wahoo subscription plan.</li>
+<li>The user must authorize the <code>plans_read</code> scope.</li>
+</ul>
+
+<p>The url for accessing the Wahoo Plan file will be found in the <code>file[&#39;url&#39;]</code> attribute of a <code>plan</code> object.</p>
+
+<aside class='notice'>
+Your app must have the Wahoo Plans entitlement in order for your app to access Wahoo plans on behalf of the user.
 </aside>
 <h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'power_zone[zone_1]=100
@@ -1029,21 +1114,21 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type</td>
+<td>Id of the <a href="#workout-types">Workout Type</a></td>
 </tr>
 <tr>
 <td>power_zone[workout_type_family_id]</td>
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type</td>
+<td>Id of the <a href="#workout-type-families">Workout Type Family</a></td>
 </tr>
 <tr>
 <td>power_zone[workout_type_location_id]</td>
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type</td>
+<td>Id of the <a href="#workout-type-locations">Workout Type Location</a></td>
 </tr>
 </tbody></table>
 <h2 id='get-a-power-zone'>Get a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
@@ -1196,21 +1281,21 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type</td>
+<td>Id of the <a href="#workout-types">Workout Type</a></td>
 </tr>
 <tr>
 <td>power_zone[workout_type_location_id]</td>
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type Location</td>
+<td>Id of the <a href="#workout-type-locations">Workout Type Location</a></td>
 </tr>
 <tr>
 <td>power_zone[workout_type_family_id]</td>
 <td>Number</td>
 <td>no</td>
 <td></td>
-<td>ID of the Workout Type Family</td>
+<td>Id of the <a href="#workout-type-families">Workout Type Family</a></td>
 </tr>
 </tbody></table>
 <h2 id='get-power-zones'>Get Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
@@ -1218,32 +1303,29 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"power_zones"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Requires the <code>power_zones_read</code> scope</p>
 
@@ -1354,7 +1436,7 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <td>route[workout_type_family_id]</td>
 <td>Integer</td>
 <td>yes</td>
-<td>The workout type family - <a href="#workout-type-family">Workout Type Family</a></td>
+<td>The Id of the <a href="#workout-type-families">Workout Type Family</a></td>
 </tr>
 <tr>
 <td>route[start_lat]</td>
@@ -1418,6 +1500,10 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <p>Returns a route from the library of the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/routes/:id</code></p>
+
+<aside class='notice'>
+Routes can only be retrieved which were uploaded by the same app
+</aside>
 <h2 id='update-a-route'>Update a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
   -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
       route[filename]=route.fit&amp;
@@ -1456,7 +1542,7 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <p>Updates a route that is in the library of the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.wahooligan.com/v1/routes/:id</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1499,7 +1585,7 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <td>route[workout_type_family_id]</td>
 <td>Integer</td>
 <td>no</td>
-<td>The workout type family - <a href="#workout-type-family">Workout Type Family</a></td>
+<td>The Id of the <a href="#workout-type-families">Workout Type Family</a></td>
 </tr>
 <tr>
 <td>route[start_lat]</td>
@@ -1537,31 +1623,28 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"routes"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a fun route to test the cloud API"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a fun route to test the cloud API"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Requires the <code>routes_read</code> scope</p>
 
@@ -1709,6 +1792,10 @@ A fitness_app_id &lt; 1000 indicates that the workout was created by a Wahoo app
 <p>Daycodes can be used to specify a specific date a user would like a workout on without having to also tie the workout to a start time.
 A daycode is an integer that is calculated based on how many days it has been since January 1st 2020 (daycode of 1), for example 1/1/2021 would have a daycode of 366 becuase 2020 was a leap year,
 and 09/12/2024 would have a daycode of 1716.</p>
+<h3 id='multiple-plans'>Multiple plans</h3>
+<p>A workout may have a specific plan attached in which case the <code>plan_id</code> attribute will hold the id of the plan. However, it is possible that a workout may have a list of multiple plan options. In this case the <code>plan_ids</code> array will hold the ids of the available plan options.</p>
+
+<p>The most common use of <code>plan_ids</code> is to link a workout to different variants of plan (e.g. an <strong>Indoor</strong> and an <strong>Outdoor</strong> version of the same plan). The plan ids of both plans will be included in the <code>plan_ids</code> array. We recommend using the <a href="#get-plans-for-workout">Get Plans for Workout</a> endpoint to retrieve the metadata for all the plans attached to a workout in a single api call.</p>
 <h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
   -d <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
@@ -1727,6 +1814,7 @@ and 09/12/2024 would have a daycode of 1716.</p>
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
@@ -1758,11 +1846,18 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>The name of the workout</td>
 </tr>
 <tr>
+<td>workout[workout_token]</td>
+<td>String</td>
+<td>yes</td>
+<td></td>
+<td>Can be used by the application to identify the workout</td>
+</tr>
+<tr>
 <td>workout[workout_type_id]</td>
 <td>Number</td>
 <td>yes</td>
 <td></td>
-<td>The type of the workout - <a href="#workout-types">Workout Types</a></td>
+<td>The Id of the <a href="#workout-types">Workout Type</a></td>
 </tr>
 <tr>
 <td>workout[starts]</td>
@@ -1772,18 +1867,18 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>Start time</td>
 </tr>
 <tr>
+<td>workout[day_code]</td>
+<td>Number</td>
+<td>no</td>
+<td>null</td>
+<td>The number of days since <a href="#what-is-a-daycode">1/1/2020</a></td>
+</tr>
+<tr>
 <td>workout[minutes]</td>
 <td>Number</td>
 <td>yes</td>
 <td></td>
 <td>Duration of the workout in minutes</td>
-</tr>
-<tr>
-<td>workout[workout_token]</td>
-<td>String</td>
-<td>yes</td>
-<td></td>
-<td>Can be used by the application to identify the workout</td>
 </tr>
 <tr>
 <td>workout[plan_id]</td>
@@ -1793,25 +1888,18 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>Id of the plan used in this workout</td>
 </tr>
 <tr>
-<td>workout[day_code]</td>
+<td>workout[route_id]</td>
 <td>Number</td>
 <td>no</td>
 <td>null</td>
-<td>The number of days since 1/1/2020</td>
+<td>Id of the route used in this workout</td>
 </tr>
 <tr>
 <td>workout[workout_summary]</td>
 <td>Object</td>
 <td>no</td>
 <td></td>
-<td>Include summary results - <a href="#create-a-workout-summary">Workout Summary</a></td>
-</tr>
-<tr>
-<td>workout[route_id]</td>
-<td>Number</td>
-<td>no</td>
-<td>null</td>
-<td>Id of the route used in this workout</td>
+<td><a href="#create-a-workout-summary">Workout Summary Results</a></td>
 </tr>
 </tbody></table>
 <h2 id='get-a-workout'>Get a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
@@ -1825,6 +1913,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
   </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
@@ -1875,6 +1964,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
   </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
@@ -1888,7 +1978,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <p>Updates a workout for the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.wahooligan.com/v1/workouts/:id</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1910,10 +2000,22 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>Can be used by the application to identify the workout</td>
 </tr>
 <tr>
+<td>workout[workout_type_id]</td>
+<td>Number</td>
+<td>no</td>
+<td>The Id of the <a href="#workout-types">Workout Type</a></td>
+</tr>
+<tr>
 <td>workout[starts]</td>
 <td>Time</td>
 <td>no</td>
 <td>Start time</td>
+</tr>
+<tr>
+<td>workout[day_code]</td>
+<td>Number</td>
+<td>no</td>
+<td>The number of days since <a href="#what-is-a-daycode">1/1/2020</a></td>
 </tr>
 <tr>
 <td>workout[minutes]</td>
@@ -1925,31 +2027,19 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>workout[plan_id]</td>
 <td>Number</td>
 <td>no</td>
-<td>Id of the plan used in this workout</td>
-</tr>
-<tr>
-<td>workout[workout_type_id]</td>
-<td>Number</td>
-<td>no</td>
-<td>The type of the workout - <a href="#workout-types">Workout Types</a></td>
-</tr>
-<tr>
-<td>workout[day_code ]</td>
-<td>Number</td>
-<td>no</td>
-<td>The number of days since 1/1/2020</td>
-</tr>
-<tr>
-<td>workout[workout_summary]</td>
-<td>Object</td>
-<td>no</td>
-<td>Include summary results - <a href="#update-a-workout-summary">Workout Summary</a></td>
+<td>The Id of the plan used in this workout</td>
 </tr>
 <tr>
 <td>workout[route_id]</td>
 <td>Number</td>
 <td>no</td>
-<td>null</td>
+<td>The Id of the route used in this workout</td>
+</tr>
+<tr>
+<td>workout[workout_summary]</td>
+<td>Object</td>
+<td>no</td>
+<td><a href="#update-a-workout-summary">Workout Summary Results</a></td>
 </tr>
 </tbody></table>
 <h2 id='get-all-workouts'>Get all Workouts</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
@@ -1965,6 +2055,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
       </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
@@ -1982,7 +2073,7 @@ that can be attached to the workout. Documentation for creating a plan file can 
 </span></code></pre>
 <p>Requires the <code>workouts_read</code> scope</p>
 
-<p>Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
+<p>Returns all workouts for the authenticated user. The workouts are always sorted by the starts field in descending order. By default, the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
 
 <p>In the response the total attribute is the total number of workouts for the current user.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -2399,10 +2490,8 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">     
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='workout-types'>Workout Types</h1>
-<p>The Wahoo Fitness API supports the following workout locations, families and types:</p>
-
-<p>Workout Types:</p>
+</span></code></pre><h1 id='data-types'>Data Types</h1><h3 id='workout-types'>Workout Types</h3>
+<p>Workout types are specified by the <code>workout_type_id</code> attribute</p>
 
 <table><thead>
 <tr>
@@ -2779,8 +2868,8 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td></td>
 </tr>
 </tbody></table>
-
-<p>Workout Type Locations:</p>
+<h3 id='workout-type-locations'>Workout Type Locations</h3>
+<p>Workout type locations are specified by the <code>workout_type_location_id</code> attribute</p>
 
 <table><thead>
 <tr>
@@ -2801,8 +2890,8 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td>UNKNOWN</td>
 </tr>
 </tbody></table>
-
-<p>Workout Type Families:</p>
+<h3 id='workout-type-families'>Workout Type Families</h3>
+<p>Workout type families are specified by the <code>workout_type_family_id</code> attribute</p>
 
 <table><thead>
 <tr>
@@ -2913,10 +3002,19 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='changelog'>Changelog</h1><h3 id='2025-07-22'>2025-07-22</h3>
+<h1 id='changelog'>Changelog</h1><h3 id='2025-10-06'>2025-10-06</h3>
 <ul>
-<li>Added the <code>deauthorization features</code> documentation to the <code>deauthorize</code> endpoint
-### 2025-06-11</li>
+<li>Added the <a href="#wahoo-plans">Wahoo Plans</a> section</li>
+<li>Added the <a href="#get-plans-for-workout">Get Plans for Workout</a> endpoint</li>
+<li>Added the <a href="#multiple-plans">Multiple Plans</a> documentation to the <a href="#workouts">Workouts</a> section</li>
+<li>Added the <code>plan_ids</code> attribute to workout objects</li>
+</ul>
+<h3 id='2025-07-22'>2025-07-22</h3>
+<ul>
+<li>Added the <code>deauthorization features</code> documentation to the <code>deauthorize</code> endpoint</li>
+</ul>
+<h3 id='2025-06-11'>2025-06-11</h3>
+<ul>
 <li>Added the <code>manual</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a manual workout</li>
 <li>Added the <code>edited</code> flag to the &#39;workout_summaries&#39; endpoint to indicate a workout that has been edited after creation</li>
 <li>Added the <code>name</code> field to the &#39;workout_summaries&#39; endpoint to indicate the name of the workout</li>
