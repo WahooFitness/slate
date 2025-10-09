@@ -189,7 +189,7 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 
 ### Token Limits
 
-- **Access tokens** that have not been revoked will be automatically deleted **60 days after creation**.
+- **Access tokens** and **refresh tokens** that have not been revoked will be automatically deleted **60 days after creation**.
 - **Applications** will be limited to **10 unrevoked access tokens per user** starting **January 1, 2026**. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.
 
 | Attribute                | Notes                                                                                                                                                                                                                                                   |
