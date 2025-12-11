@@ -20,6 +20,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "workout_summary": {
       "id": 8297,
       "name": "Easy Ride",
+      "started_at": "2018-10-23T19:03:50.000Z",
       "ascent_accum": "450.00",
       "cadence_avg": "50.00",
       "calories_accum": "1500.00",
