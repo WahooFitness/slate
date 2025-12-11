@@ -1,7 +1,7 @@
 # Changelog
 
 ### 2025-12-11
-- Added the `started_at` field to the `workout_summary` object which indicates the fit file start time of the workout
+- Added the `started_at` field to the `workout_summary` object which indicates the fit file start time of the workout in UTC
 
 ### 2025-10-06
 - Added the [Wahoo Plans](#wahoo-plans) section
