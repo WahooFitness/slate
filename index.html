@@ -514,6 +514,11 @@
 <td>5000</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+<strong>Note</strong><br/>
+Requests to authenticate, refresh tokens, and download files do not count against rate limits.
+</aside>
 <h1 id='authentication'>Authentication</h1><h2 id='workflow'>Workflow</h2>
 <p>OAuth2 Uses the following authentication workflow. The goal is to obtain an <strong>access_token</strong> for a user that can be used for accessing Wahoo&#39;s API on the user&#39;s behalf. </p>
 
@@ -574,6 +579,10 @@ Starting <strong>January 1, 2026</strong>, applications will be limited to <stro
 <li><strong>Access tokens</strong> that have not been revoked will be automatically deleted <strong>60 days after creation</strong>.</li>
 <li><strong>Applications</strong> will be limited to <strong>10 unrevoked access tokens per user</strong> starting <strong>January 1, 2026</strong>. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.</li>
 </ul>
+
+<p><strong>Important:</strong> Access tokens should only be refreshed immediately prior to making an API request. Refreshing a token alone does <strong>not</strong> revoke the previous access token. The previous access token is only invalidated once an API call is successfully made using the newly refreshed access token. Refreshing tokens too early or without subsequently making an API call can result in multiple unrevoked tokens and may cause your application to exceed the per-user token limit.</p>
+
+<p><strong>Note on file downloads:</strong> Downloading files from Wahoo’s CDN (for example, FIT file downloads) does <strong>not</strong> make an API request and therefore does <strong>not</strong> invalidate previously issued access tokens. Only successful API calls made with a refreshed access token will revoke the prior access token.</p>
 
 <table><thead>
 <tr>
