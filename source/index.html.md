@@ -107,6 +107,8 @@ Create a user account and register your app in our developer portal [https://dev
   X-RateLimit-Reset: 0
 ```
 
+
+
 > Sample header values for a rate limited response:
 
 ```shell
@@ -122,6 +124,12 @@ The following chart shows how your app will be rate limited. If you require a hi
 | Requests every 5 Min: | 25           | 200             |
 | Requests per Hour:    | 100          | 1000            |
 | Requests per Day:     | 250          | 5000            |
+
+
+<aside class="notice">
+<strong>Note</strong><br/>
+Requests to authenticate, refresh tokens, and download files do not count against rate limits.
+</aside>
 
 # Authentication
 
@@ -191,6 +199,10 @@ Prior to starting the OAuth2 workflow please make sure the application has been 
 
 - **Access tokens** that have not been revoked will be automatically deleted **60 days after creation**.
 - **Applications** will be limited to **10 unrevoked access tokens per user** starting **January 1, 2026**. If you receive an error indicating you have exceeded this limit, you are likely refreshing tokens without making API calls with the refreshed tokens. Once an API call is made with the refreshed access token the previous access token will be revoked. Ensure that your app is only refreshing tokens when necessary.
+
+**Important:** Access tokens should only be refreshed immediately prior to making an API request. Refreshing a token alone does **not** revoke the previous access token. The previous access token is only invalidated once an API call is successfully made using the newly refreshed access token. Refreshing tokens too early or without subsequently making an API call can result in multiple unrevoked tokens and may cause your application to exceed the per-user token limit.
+
+**Note on file downloads:** Downloading files from Wahoo’s CDN (for example, FIT file downloads) does **not** make an API request and therefore does **not** invalidate previously issued access tokens. Only successful API calls made with a refreshed access token will revoke the prior access token.
 
 | Attribute                | Notes                                                                                                                                                                                                                                                   |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
