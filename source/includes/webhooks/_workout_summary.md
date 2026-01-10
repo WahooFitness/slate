@@ -13,6 +13,7 @@ Requires the `offline_data` scope
   },
   "workout_summary": {
     "id": 8297,
+    "started_at": "2018-10-23T09:00:00.000Z",
     "ascent_accum": "450.00",
     "cadence_avg": "52.00",
     "calories_accum": "1500.00",
