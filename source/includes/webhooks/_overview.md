@@ -14,3 +14,8 @@ If we do not receive an HTTP 200 response code we will retry the api call on the
 API Calls will be sent via HTTP POST with the HTTP header `Content-Type: application/json`
 
 It is possible for duplicate webhooks to be made when files are updated or deleted.
+
+<aside class='notice'>
+Webhooks will only be sent for workout summaries which were uploaded by the same app or by a Wahoo Fitness Application, not by any third parties.
+</aside>
+
