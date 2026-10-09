@@ -1,5 +1,8 @@
 # Changelog
 
+### 2026-10-09
+- Added a note to the [Authorization](#authorization) section explaining that scopes and other application settings can be changed on the [Applications](https://developers.wahooligan.com/applications) page of the developer portal
+
 ### 2025-10-06
 - Added the [Wahoo Plans](#wahoo-plans) section
 - Added the [Get Plans for Workout](#get-plans-for-workout) endpoint

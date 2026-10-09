@@ -21,3 +21,5 @@ We support the following OAuth 2.0 permission scopes:
 | offline_data    | Receive data even when the app is closed |
 
 Please note: If the `user_read` scope is not included the API will return a 403 response.
+
+You can change your app's scopes, or edit any of your other application settings, at any time on the [Applications](https://developers.wahooligan.com/applications) page of the developer portal.
