@@ -44,7 +44,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .cd {
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
   color: #75715e;
 }
 .highlight .err {
@@ -128,7 +128,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s {
+.highlight .s, .highlight .sa, .highlight .dl {
   color: #e6db74;
 }
 .highlight .na {
@@ -143,41 +143,52 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf {
+.highlight .nf, .highlight .fm {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nl {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
+  background-color: #272822;
 }
-.highlight .nv {
+.highlight .nv, .highlight .vm {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -207,11 +218,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -430,6 +441,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2026-10-09" class="toc-h2 toc-link" data-title="2026-10-09">2026-10-09</a>
+                  </li>
+                  <li>
                     <a href="#2025-10-06" class="toc-h2 toc-link" data-title="2025-10-06">2025-10-06</a>
                   </li>
                   <li>
@@ -471,24 +485,24 @@
 <blockquote>
 <p>Rate limits and usage are included within each HTTP response header</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: &lt;limit_day&gt;, &lt;limit_hour&gt;, &lt;limit_5min&gt;
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: &lt;limit_day&gt;, &lt;limit_hour&gt;, &lt;limit_5min&gt;
   X-RateLimit-Remaining: &lt;remaining_day&gt;, &lt;remaining_hour&gt;, &lt;remaining_5min&gt;
   X-RateLimit-Reset: &lt;seconds_until_reset&gt;
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample header values for a successful response:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
   X-RateLimit-Remaining: 4999, 999, 199
   X-RateLimit-Reset: 0
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample header values for a rate limited response:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  X-RateLimit-Limit: 5000, 1000, 200
   X-RateLimit-Remaining: 4800, 800, 0
   X-RateLimit-Reset: 300
-</code></pre>
+</code></pre></div>
 <p>The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.</p>
 
 <table><thead>
@@ -639,10 +653,10 @@ Starting <strong>January 1, 2026</strong>, applications will be limited to <stro
 <p><strong>Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:</strong></p>
 
 <p><strong><code>Content-Type: application/json</code></strong></p>
-<h1 id='authorization'>Authorization</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
+<h1 id='authorization'>Authorization</h1><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can append the requested scopes as a space separated list of values</span>
 curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read%20user_write"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
-</code></pre>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
+</code></pre></div>
 <p>Applications must only request permission for resources they intend to access or modify. You can choose which permission scopes your app will request either by setting the scopes for your app in the developer portal or by sending a space separated list of scopes as a parameter in the <code>oauth/authorize</code> request.</p>
 
 <p>We support the following OAuth 2.0 permission scopes:</p>
@@ -680,10 +694,12 @@ curl <span class="s2">"&lt;base_url&gt;/oauth/authorize?scope=user_read%20user_w
 </tbody></table>
 
 <p>Please note: If the <code>user_read</code> scope is not included the API will return a 403 response.</p>
-<h1 id='deauthorize'>Deauthorize</h1><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can revoke access to an application</span>
-curl -X <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/permissions"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
-</code></pre>
+
+<p>You can change your app&#39;s scopes, or edit any of your other application settings, at any time on the <a href="https://developers.wahooligan.com/applications">Applications</a> page of the developer portal.</p>
+<h1 id='deauthorize'>Deauthorize</h1><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can revoke access to an application</span>
+curl <span class="nt">-X</span> <span class="s2">"DELETE"</span> <span class="s2">"&lt;base_url&gt;/v1/permissions"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer &lt;Token&gt;"</span>
+</code></pre></div>
 <p>Application access can be revoked by sending a request to delete all permissions.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/permissions</code></p>
@@ -721,32 +737,32 @@ In order for a plan to be displayed in the ELEMNT app and bike computer/RIVAL, t
 <p>Detailed information regarding the structure of the plan file can be found in the link below.</p>
 
 <p><strong><a href="https://cloud-api.wahooligan.com/docs/plan-json-format.pdf" target="_blank">Instructions for creating a plan file</a></strong></p>
-<h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
-  -d <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
+<h2 id='create-a-plan'>Create a Plan</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> POST
+  <span class="nt">-d</span> <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
       plan[filename]=plan.json&amp;
       plan[external_id]=P0001&amp;
       plan[provider_updated_at]=2023-01-01T12:00:00.000Z'</span>  https://api.wahooligan.com/v1/plans
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>plans_write</code> scope</p>
 
 <p>Creates a plan for the authenticated user.</p>
@@ -786,28 +802,28 @@ In order for a plan to be displayed in the ELEMNT app and bike computer/RIVAL, t
 <td>External date/time the file was updated externally</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-plan'>Get a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
-</code></pre>
+<h2 id='get-a-plan'>Get a Plan</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-01T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>plans_read</code> scope</p>
 
 <p>Returns a plan from the library of the authenticated user.</p>
@@ -817,31 +833,31 @@ In order for a plan to be displayed in the ELEMNT app and bike computer/RIVAL, t
 <aside class='notice'>
 Plans can only be retrieved which were uploaded by the same app unless the app has the <a href="#wahoo-plans">Wahoo Plans entitlement</a>.
 </aside>
-<h2 id='update-a-plan'>Update a Plan</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
-  -d <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
+<h2 id='update-a-plan'>Update a Plan</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> PUT
+  <span class="nt">-d</span> <span class="s1">'plan[file]=data:application/json;base64,&lt;base64-encoded-plan-file&gt;&amp;
       plan[filename]=plan.json&amp;
       plan[provider_updated_at]=2023-01-04T12:00:00.000Z'</span>  https://api.wahooligan.com/v1/plans/5
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special Plan"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Warmup for 10 minutes, FTP ladder up, cool down for 5 minutes"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/production/uploads/plan/file/RGpT2JYKbmHzqRu2WFHHvg/plan.json"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-04T12:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-05T05:18:21.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P0001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-04T12:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-05T05:18:21.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>plans_write</code> scope</p>
 
 <p>Updates a plan that is in the library of the authenticated user.</p>
@@ -879,30 +895,30 @@ Plans can only be retrieved which were uploaded by the same app unless the app h
 <aside class='notice'>
 Plans can only be updated if they were originally created by the app.
 </aside>
-<h2 id='get-all-plans'>Get All Plans</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans
-</code></pre>
+<h2 id='get-all-plans'>Get All Plans</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
+    </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>plans_read</code> scope</p>
 
 <p>Returns the plans for the authenticated user.</p>
@@ -924,30 +940,30 @@ Plans can only be updated if they were originally created by the app.
 <td>Limits the plans returned to the plan that matches the external Id provided</td>
 </tr>
 </tbody></table>
-<h2 id='get-plans-for-workout'>Get Plans for Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:workout_id/plans
-</code></pre>
+<h2 id='get-plans-for-workout'>Get Plans for Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:workout_id/plans
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51848987</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public api plan 1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
+    </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-13T00:00:00.000Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Since a workout can link to a specific plan (<code>plan_id</code>) or to an array of plan options (<code>plan_ids</code>) this endpoint will return a list of all plans for a workout in a single api call.</p>
 
 <p>Requires the <code>plans_read</code> scope</p>
@@ -959,8 +975,8 @@ Plans can only be updated if they were originally created by the app.
 <aside class="notice">
 Only plans created by your app will be returned unless your app has the <a href="#wahoo-plans">Wahoo Plans entitlement</a>.
 </aside>
-<h2 id='delete-a-plan'>Delete a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
-</code></pre>
+<h2 id='delete-a-plan'>Delete a Plan</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/plans/5
+</code></pre></div>
 <p>Requires the <code>plans_write</code> scope</p>
 
 <p>Deletes a plan that is in the library of the authenticated user.</p>
@@ -993,8 +1009,8 @@ Workouts that are associated with a plan will not be deleted, but the workouts w
 <aside class='notice'>
 Your app must have the Wahoo Plans entitlement in order for your app to access Wahoo plans on behalf of the user.
 </aside>
-<h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
-  -d <span class="s1">'power_zone[zone_1]=100
+<h1 id='power-zones'>Power Zones</h1><h2 id='create-a-power-zone'>Create a Power Zone</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> POST
+  <span class="nt">-d</span> <span class="s1">'power_zone[zone_1]=100
       power_zone[zone_2]=120&amp;
       power_zone[zone_3]=120&amp;
       power_zone[zone_4]=120&amp;
@@ -1007,32 +1023,32 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
       power_zone[workout_type_family_id]=6&amp;
       power_zone[workout_type_location_id]=8&amp;
       power_zone[critical_power]=324'</span>  https://api.wahooligan.com/v1/power_zones
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>power_zones_write</code> scope</p>
 
 <p>Creates a power zone for the authenticated user.</p>
@@ -1140,66 +1156,66 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
 <td>Id of the <a href="#workout-type-locations">Workout Type Location</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-a-power-zone'>Get a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
-</code></pre>
+<h2 id='get-a-power-zone'>Get a Power Zone</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/56519
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>power_zones_read</code> scope</p>
 
 <p>Returns a power zone for the current authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/power_zones/:id</code></p>
-<h2 id='update-a-power-zone'>Update a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
-  -d power_zone[ftp]<span class="o">=</span>300 https://api.wahooligan.com/v1/power_zones/56519
-</code></pre>
+<h2 id='update-a-power-zone'>Update a Power Zone</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> <span class="nt">-X</span> PUT
+  <span class="nt">-d</span> power_zone[ftp]<span class="o">=</span>300 https://api.wahooligan.com/v1/power_zones/56519
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>power_zones_write</code> scope</p>
 
 <p>Updates a power zone for the authenticated user.</p>
@@ -1307,42 +1323,42 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
 <td>Id of the <a href="#workout-type-families">Workout Type Family</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-power-zones'>Get Power Zones</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
-</code></pre>
+<h2 id='get-power-zones'>Get Power Zones</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_3"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_5"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_7"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zone_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"critical_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">324</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"originator_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-27T16:18:53.927Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>power_zones_read</code> scope</p>
 
 <p>Returns the power zones for the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/power_zones</code></p>
-<h2 id='delete-a-power-zone'>Delete a Power Zone</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/:id
-</code></pre>
+<h2 id='delete-a-power-zone'>Delete a Power Zone</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/power_zones/:id
+</code></pre></div>
 <p>Requires the <code>power_zones_write</code> scope</p>
 
 <p>Deletes a power zone that is owned by the authenticated user.</p>
@@ -1354,8 +1370,8 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
 <p>It is best practice to use the external_id and provider_updated_at fields to prevent duplicate records and ensure only a single copy of a route is uploaded to a user&#39;s library.</p>
 
 <p>Routes imported by the Cloud API will not sync to the ELEMNT App. Routes will sync to the Wahoo App and directly to a ELEMNT bike computer.</p>
-<h2 id='create-a-route'>Create a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
-  -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
+<h2 id='create-a-route'>Create a Route</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> POST
+  <span class="nt">-d</span> <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
       route[filename]=route.fit&amp;
       route[external_id]=P0001&amp;
       route[provider_updated_at]=2023-01-01T12:00:00.000Z
@@ -1366,31 +1382,31 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
       route[start_lng]=-85.105208
       route[ascent]=2.5
       route[descent]=2.5'</span>  https://api.wahooligan.com/v1/routes
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample route"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample route"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>routes_write</code> scope.</p>
 
 <p>Creates a route for the authenticated user</p>
@@ -1478,32 +1494,32 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
 <td>The total descent of the route(in meters)</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-route'>Get a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
-</code></pre>
+<h2 id='get-a-route'>Get a Route</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>routes_read</code> scope</p>
 
 <p>Returns a route from the library of the authenticated user.</p>
@@ -1513,39 +1529,39 @@ Your app must have the Wahoo Plans entitlement in order for your app to access W
 <aside class='notice'>
 Routes can only be retrieved which were uploaded by the same app
 </aside>
-<h2 id='update-a-route'>Update a Route</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X PUT
-  -d <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
+<h2 id='update-a-route'>Update a Route</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> PUT
+  <span class="nt">-d</span> <span class="s1">'route[file]=data:application/vnd.fit;base64,&lt;base64-encoded-route-file&gt;&amp;
       route[filename]=route.fit&amp;
       route[provider_updated_at]=2023-01-04T12:00:00.000Z
       route[name]=route name
       route[start_lat]=33.975087
       route[start_lng]=-85.105208
       route[ascent]=2.5'</span>  https://api.wahooligan.com/v1/routes/5
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+  </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>routes_write</code> scope</p>
 
 <p>Updates a route that is in the library of the authenticated user.</p>
@@ -1627,34 +1643,34 @@ Routes can only be retrieved which were uploaded by the same app
 <td>The total descent of the route(in meters)</td>
 </tr>
 </tbody></table>
-<h2 id='get-all-routes'>Get All Routes</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes
-</code></pre>
+<h2 id='get-all-routes'>Get All Routes</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a fun route to test the cloud API"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awesome test"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a fun route to test the cloud API"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.wahooligan.com/wahoo-cloud/development/uploads/route/file/qRTvc2KTqb-YV6_gxUuB-A/testfile.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
+    </span><span class="nl">"workout_type_family_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12340"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"provider_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-19T22:26:36.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.975087</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-85.105208</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ascent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-26T23:33:15.000Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>routes_read</code> scope</p>
 
 <p>Returns the routes for the authenticated user.</p>
@@ -1676,8 +1692,8 @@ Routes can only be retrieved which were uploaded by the same app
 <td>Limits the routes returned to the route that matches the external Id provided</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-route'>Delete a Route</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
-</code></pre>
+<h2 id='delete-a-route'>Delete a Route</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/routes/5
+</code></pre></div>
 <p>Requires the <code>routes_write</code> scope</p>
 
 <p>Deletes a route that is in the library of the authenticated user.</p>
@@ -1685,48 +1701,48 @@ Routes can only be retrieved which were uploaded by the same app
 <p><code>DELETE https://api.wahooligan.com/v1/routes/:id</code></p>
 <h1 id='users'>Users</h1>
 <p>Applications can get and update the attributes of the authenticated user.</p>
-<h2 id='get-authenticated-user'>Get Authenticated User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
-</code></pre>
+<h2 id='get-authenticated-user'>Get Authenticated User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/user
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample@test-domain.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample@test-domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires <code>user_read</code> scope</p>
 
 <p>Returns the authenticated user along with email if email scope is included.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/user</code></p>
-<h2 id='update-user'>Update User</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
-     -X PUT -d user[gender]<span class="o">=</span>1 https://api.wahooligan.com/v1/user
-</code></pre>
+<h2 id='update-user'>Update User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>
+     <span class="nt">-X</span> PUT <span class="nt">-d</span> user[gender]<span class="o">=</span>1 https://api.wahooligan.com/v1/user
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob.s@wahoofitness.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob.s@wahoofitness.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-10-02"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T15:38:23.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-24T20:46:40.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>user_write</code> scope</p>
 
 <p>Updates the current authenticated user.</p>
@@ -1805,30 +1821,30 @@ and 09/12/2024 would have a daycode of 1716.</p>
 <p>A workout may have a specific plan attached in which case the <code>plan_id</code> attribute will hold the id of the plan. However, it is possible that a workout may have a list of multiple plan options. In this case the <code>plan_ids</code> array will hold the ids of the available plan options.</p>
 
 <p>The most common use of <code>plan_ids</code> is to link a workout to different variants of plan (e.g. an <strong>Indoor</strong> and an <strong>Outdoor</strong> version of the same plan). The plan ids of both plans will be included in the <code>plan_ids</code> array. We recommend using the <a href="#get-plans-for-workout">Get Plans for Workout</a> endpoint to retrieve the metadata for all the plans attached to a workout in a single api call.</p>
-<h2 id='create-a-workout'>Create a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
-  -d <span class="s1">'workout[name]="Friday fun"&amp;
+<h2 id='create-a-workout'>Create a Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> POST
+  <span class="nt">-d</span> <span class="s1">'workout[name]="Friday fun"&amp;
       workout[workout_token]=123&amp;
       workout[workout_type_id]=40&amp;
       workout[starts]=2015-08-12T09:00:00.000Z&amp;
       workout[minutes]=12'</span>  https://api.wahooligan.com/v1/workouts
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Creates a workout for the authenticated user.</p>
@@ -1911,77 +1927,77 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td><a href="#create-a-workout-summary">Workout Summary Results</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-a-workout'>Get a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
-</code></pre>
+<h2 id='get-a-workout'>Get a Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/56519
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_read</code> scope</p>
 
 <p>Returns a workout for the current authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.wahooligan.com/v1/workouts/:id</code></p>
-<h2 id='update-a-workout'>Update a Workout</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X PUT
-  -d workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> https://api.wahooligan.com/v1/workouts/56519
-</code></pre>
+<h2 id='update-a-workout'>Update a Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> <span class="nt">-X</span> PUT
+  <span class="nt">-d</span> workout[name]<span class="o">=</span><span class="s2">"Friday afternoon"</span> https://api.wahooligan.com/v1/workouts/56519
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Updates a workout for the authenticated user.</p>
@@ -2051,35 +2067,35 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td><a href="#update-a-workout-summary">Workout Summary Results</a></td>
 </tr>
 </tbody></table>
-<h2 id='get-all-workouts'>Get all Workouts</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
-</code></pre>
+<h2 id='get-all-workouts'>Get all Workouts</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"workouts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"workouts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday afternoon"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plan_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"route_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"descending"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starts"</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"descending"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starts"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_read</code> scope</p>
 
 <p>Returns all workouts for the authenticated user. The workouts are always sorted by the starts field in descending order. By default, the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.</p>
@@ -2112,32 +2128,32 @@ that can be attached to the workout. Documentation for creating a plan file can 
 <td>Limits the number of workouts returned.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-workout'>Delete a Workout</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
-</code></pre>
+<h2 id='delete-a-workout'>Delete a Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id
+</code></pre></div>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Deletes a workout that is owned by the authenticated user.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE https://api.wahooligan.com/v1/workouts/:id</code></p>
-<h1 id='workout-file-uploads'>Workout File Uploads</h1><h2 id='create-a-workout-file-upload'>Create a Workout File Upload</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  -X POST
-  -d <span class="s1">'workout_file_upload[file]="data:application/vnd.fit;base64,RmFrZSBmaXQgZmlsZQ=="&amp;
+<h1 id='workout-file-uploads'>Workout File Uploads</h1><h2 id='create-a-workout-file-upload'>Create a Workout File Upload</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span>  <span class="nt">-X</span> POST
+  <span class="nt">-d</span> <span class="s1">'workout_file_upload[file]="data:application/vnd.fit;base64,RmFrZSBmaXQgZmlsZQ=="&amp;
       workout_file_upload[filename]="workout_results.fit"&amp;
       workout_file_upload[time_zone]="America/New_York"'</span> https://api.wahooligan.com/v1/workout_file_uploads
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Send the results of a workout to Wahoo for processing. This endpoint will attempt to process the uploaded FIT file and generate the correct workout and workout summary objects. If a workout object has already been created it is recommended to specify the <code>target_workout_id</code> within the request to ensure that the workout summary is associated with the correct workout.</p>
@@ -2195,27 +2211,27 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 <td>Wahoo Id of the workout this file should be associated with</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-workout-file-upload'>Get a Workout File Upload</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workout_file_uploads/:token
-</code></pre>
+<h2 id='get-a-workout-file-upload'>Get a Workout File Upload</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workout_file_uploads/:token
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fRa2HvZ1N0WxuHw"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_summary_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_file_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workout_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"target_workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fRa2HvZ1N0WxuHw"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_summary_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_file_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workout_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target_workout_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Requires the <code>workouts_write</code> scope</p>
 
 <p>Returns the workout file upload object with the corresponding token. Since the processing of a Workout File Upload is asynchronous it may take a few seconds to a few hours before the upload has been processed. On average Workout File Uploads are processed in less than 5 seconds.</p>
@@ -2255,35 +2271,35 @@ If the contents of the FIT file is modified after uploading it to Wahoo you must
 </tbody></table>
 <h1 id='workout-summaries'>Workout Summaries</h1>
 <p>Workout Summary records contain the results of a workout.</p>
-<h2 id='create-a-workout-summary'>Create a Workout Summary</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> -X POST
-  -d workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
-</code></pre>
+<h2 id='create-a-workout-summary'>Create a Workout Summary</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--header</span> <span class="s2">"Authorization: Bearer users-token-goes-here"</span> <span class="nt">-X</span> POST
+  <span class="nt">-d</span> workout_summary[power_avg]<span class="o">=</span><span class="s2">"240.52"</span> https://api.wahooligan.com/v1/workouts/56519/workout_summary
+</code></pre></div>
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.24"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.54"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.24"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.54"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <aside class="warning">
 DEPRECATED: This endpoint has been replaced with the <code><a href="#create-a-workout-file-upload">workout_file_uploads</a></code> endpoint. Developers will need to migrate to the new endpoint by May 1, 2024 to avoid an interruption in service. 
 </aside>
@@ -2384,40 +2400,46 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <blockquote>
 <p>Sample Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Easy Ride"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95.25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1041480.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Denver"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"manual"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"edited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
+    </span><span class="nl">"fitness_app_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Requires the <code>workouts_read</code> scope</p>
+</span><span class="err">```</span><span class="w">
 
-<p>Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.</p>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Authorization: Bearer users-token-goes-here"</span> https://api.wahooligan.com/v1/workouts/:id/workout_summary
-</code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.wahooligan.com/v1/workouts/:id/workout_summary</code></p>
-<h1 id='webhooks'>Webhooks</h1>
+</span><span class="err">Requires</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">`workouts_read`</span><span class="w"> </span><span class="err">scope</span><span class="w">
+
+</span><span class="err">Returns</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">workout</span><span class="w"> </span><span class="err">summary</span><span class="w"> </span><span class="err">object</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">workout.</span><span class="w"> </span><span class="err">When</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">workout</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">created,</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">workout</span><span class="w"> </span><span class="err">summary</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">empty</span><span class="w"> </span><span class="err">until</span><span class="w"> </span><span class="err">it</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">updated.</span><span class="w">
+
+</span><span class="err">```shell</span><span class="w">
+</span><span class="err">curl</span><span class="w"> </span><span class="err">--header</span><span class="w"> </span><span class="s2">"Authorization: Bearer users-token-goes-here"</span><span class="w"> </span><span class="err">https://api.wahooligan.com/v</span><span class="mi">1</span><span class="err">/workouts/:id/workout_summary</span><span class="w">
+</span><span class="err">```</span><span class="w">
+
+</span><span class="err">###</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="err">`GET</span><span class="w"> </span><span class="err">https://api.wahooligan.com/v</span><span class="mi">1</span><span class="err">/workouts/:id/workout_summary`</span><span class="w">
+</span></code></pre></div><h1 id='webhooks'>Webhooks</h1>
 <p>Receive API calls from Wahoo to your webhook url.</p>
 
 <p>Please make sure the <code>offline_data</code> scope is added and users have a valid access token with the scope to receive webhooks.</p>
@@ -2460,46 +2482,47 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <blockquote>
 <p>Sample Workout Summary Webhook Message</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"workout_summary"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"webhook_token"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;webhook_token&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"workout_summary"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"webhook_token"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;webhook_token&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60462</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.20"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.23"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"104148000.01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
+  </span><span class="nl">"workout_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8297</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ascent_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cadence_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"calories_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"distance_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24909.71"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_active_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_paused_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration_total_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"275.20"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"heart_rate_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124.23"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_np_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_bike_tss_last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304.90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"power_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94.59"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"speed_avg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.75"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"work_accum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"104148000.01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:43:50.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://server.com/4_Mile_Segment_.fit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"workout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+    </span><span class="nl">"workout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56519</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"starts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-12T09:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday Fun"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-23T20:41:55.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workout_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workout_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">     
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='data-types'>Data Types</h1><h3 id='workout-types'>Workout Types</h3>
+</span><span class="err">```</span><span class="w">
+</span></code></pre></div><h1 id='data-types'>Data Types</h1><h3 id='workout-types'>Workout Types</h3>
 <p>Workout types are specified by the <code>workout_type_id</code> attribute</p>
 
 <table><thead>
@@ -3011,7 +3034,11 @@ please copy the url listed under &quot;file&quot;, then paste it into your brows
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-<h1 id='changelog'>Changelog</h1><h3 id='2025-10-06'>2025-10-06</h3>
+<h1 id='changelog'>Changelog</h1><h3 id='2026-10-09'>2026-10-09</h3>
+<ul>
+<li>Added a note to the <a href="#authorization">Authorization</a> section explaining that scopes and other application settings can be changed on the <a href="https://developers.wahooligan.com/applications">Applications</a> page of the developer portal</li>
+</ul>
+<h3 id='2025-10-06'>2025-10-06</h3>
 <ul>
 <li>Added the <a href="#wahoo-plans">Wahoo Plans</a> section</li>
 <li>Added the <a href="#get-plans-for-workout">Get Plans for Workout</a> endpoint</li>
