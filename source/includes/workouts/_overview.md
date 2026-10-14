@@ -18,11 +18,11 @@ The fitness_app_id is an identifier for the application that created the workout
 This is used to identify the source of the workout data, such as Wahoo's own applications or third-party applications.
 A fitness_app_id < 1000 indicates that the workout was created by a Wahoo application, while a fitness_app_id > 1000 indicates that the workout was created by a third-party application.
 
-### What is a daycode?
+### What is a day code?
 
-Daycodes can be used to specify a specific date a user would like a workout on without having to also tie the workout to a start time.
-A daycode is an integer that is calculated based on how many days it has been since January 1st 2020 (daycode of 1), for example 1/1/2021 would have a daycode of 366 becuase 2020 was a leap year,
-and 09/12/2024 would have a daycode of 1716.
+Day codes can be used to specify a specific date a user would like a workout on without having to also tie the workout to a start time.
+A day code is an integer that is calculated based on how many days it has been since January 1st 2020 (day code of 0), for example 1/1/2021 would have a day code of 366 because 2020 was a leap year,
+and 09/12/2024 would have a day code of 1716.
 
 ### Multiple plans  
 
